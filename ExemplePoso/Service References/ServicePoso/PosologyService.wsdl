@@ -1,0 +1,1091 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" xmlns:tns="urn:Vidal" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://posology.api.vidal.com" xmlns:ns1="http://utils.api.vidal.com" targetNamespace="urn:Vidal" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="urn:Vidal">
+      <xsd:simpleType name="DoseUnit">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="MG" />
+          <xsd:enumeration value="G" />
+          <xsd:enumeration value="ML" />
+          <xsd:enumeration value="MCG" />
+          <xsd:enumeration value="U" />
+          <xsd:enumeration value="KU" />
+          <xsd:enumeration value="MU" />
+          <xsd:enumeration value="MMOL" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="PosologyFrequencyType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="THIS_DAY" />
+          <xsd:enumeration value="PER_DAY" />
+          <xsd:enumeration value="PER_24_HOURS" />
+          <xsd:enumeration value="PER_WEEK" />
+          <xsd:enumeration value="PER_MONTH" />
+          <xsd:enumeration value="PER_YEAR" />
+          <xsd:enumeration value="PER_2_DAYS" />
+          <xsd:enumeration value="PER_N_HOURS" />
+          <xsd:enumeration value="PER_HOUR" />
+          <xsd:enumeration value="PER_MINUTE" />
+          <xsd:enumeration value="TYPE_66" />
+          <xsd:enumeration value="TYPE_46" />
+          <xsd:enumeration value="TYPE_44" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Gender">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="MALE" />
+          <xsd:enumeration value="FEMALE" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="HepaticInsufficiency">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="NONE" />
+          <xsd:enumeration value="MODERATE" />
+          <xsd:enumeration value="SEVERE" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="ArrayOfInt">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="int" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="checkDailyActivePrincipleDoseByProductId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="dose" nillable="true" type="xsd:double" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="doseUnit" nillable="true" type="tns:DoseUnit" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="frequencyType" nillable="true" type="tns:PosologyFrequencyType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="gender" nillable="true" type="tns:Gender" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="age" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="weight" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="height" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="creatinClearance" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="hepaticInsufficiency" nillable="true" type="tns:HepaticInsufficiency" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="routeIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="PosologyAlerts">
+        <xsd:sequence>
+          <xsd:element name="alerts" nillable="true" type="tns:ArrayOfSimplePosologyAlert" />
+          <xsd:element name="missingParamaterMessage" nillable="true" type="ns1:ArrayOfMessage" />
+          <xsd:element name="posologyText" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfSimplePosologyAlert">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="simplePosologyAlert" nillable="true" type="tns:simplePosologyAlert" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="simplePosologyAlert">
+        <xsd:sequence>
+          <xsd:element name="indication" nillable="true" type="tns:indication" />
+          <xsd:element name="posologyAlert" nillable="true" type="ns1:Message" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="indication">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="checkDailyActivePrincipleDoseByProductIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="posologyAlerts" nillable="true" type="tns:PosologyAlerts" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchPosologyRouteByCommonNameGroupId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="gender" nillable="true" type="tns:Gender" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="age" nillable="true" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="weight" nillable="true" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="height" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="creatinClearance" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="hepaticInsufficiency" nillable="true" type="tns:HepaticInsufficiency" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="CommonNameGroupPosologyRouteList">
+        <xsd:sequence>
+          <xsd:element name="homogeneous" type="xsd:boolean" />
+          <xsd:element name="posologyRoutes" nillable="true" type="tns:ArrayOfRoute" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfRoute">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="route" nillable="true" type="tns:route" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="route">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="parentId" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchPosologyRouteByCommonNameGroupIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="posologyRouteList" nillable="true" type="tns:CommonNameGroupPosologyRouteList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchPosologyUnitByCommonNameGroupId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="CommonNameGroupPosologyUnitList">
+        <xsd:sequence>
+          <xsd:element name="homogeneous" type="xsd:boolean" />
+          <xsd:element name="posologyUnits" nillable="true" type="tns:ArrayOfPosologyUnit" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfPosologyUnit">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="posologyUnit" nillable="true" type="tns:posologyUnit" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="posologyUnit">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchPosologyUnitByCommonNameGroupIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="posologyUnitList" nillable="true" type="tns:CommonNameGroupPosologyUnitList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:simpleType name="DurationType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="MINUTE" />
+          <xsd:enumeration value="HOUR" />
+          <xsd:enumeration value="DAY" />
+          <xsd:enumeration value="WEEK" />
+          <xsd:enumeration value="MONTH" />
+          <xsd:enumeration value="YEAR" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="checkActivePrincipleDoseForCommonNameGroupIdIndicationIdsRouteIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="dose" nillable="true" type="xsd:double" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="doseUnit" nillable="true" type="tns:DoseUnit" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="administrationDividedPerTimeUnit" nillable="true" type="xsd:boolean" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="frequency" nillable="true" type="xsd:double" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="frequencyType" nillable="true" type="tns:PosologyFrequencyType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="frequencyTypeDetail" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="durationValue" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="durationType" nillable="true" type="tns:DurationType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="secondDurationValue" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="secondDurationType" nillable="true" type="tns:DurationType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="thirdDurationValue" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="thirdDurationType" nillable="true" type="tns:DurationType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="gender" nillable="true" type="tns:Gender" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="age" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="weight" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="height" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="creatinClearance" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="hepaticInsufficiency" nillable="true" type="tns:HepaticInsufficiency" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="routeIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="CommonNameGroupPosologyAlertList">
+        <xsd:sequence>
+          <xsd:element name="homogeneous" type="xsd:boolean" />
+          <xsd:element name="posologyAlerts" nillable="true" type="tns:ArrayOfPosologyAlert" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfPosologyAlert">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="posologyAlert" nillable="true" type="tns:posologyAlert" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="posologyAlert">
+        <xsd:sequence>
+          <xsd:element name="activePrincipleDose" nillable="true" type="tns:detailedActivePrincipleDose" />
+          <xsd:element name="activePrincipleDoseLimit" nillable="true" type="tns:detailedActivePrincipleDose" />
+          <xsd:element name="age" nillable="true" type="xsd:float" />
+          <xsd:element name="contraIndications" nillable="true" type="tns:ArrayOfContraIndication" />
+          <xsd:element name="duration" nillable="true" type="tns:PosologyDuration" />
+          <xsd:element name="durationLimit" nillable="true" type="tns:PosologyDuration" />
+          <xsd:element name="frequency" nillable="true" type="tns:posologyFrequency" />
+          <xsd:element name="frequencyLimit" nillable="true" type="tns:posologyFrequency" />
+          <xsd:element name="gender" nillable="true" type="tns:Gender" />
+          <xsd:element name="maxAge" nillable="true" type="xsd:float" />
+          <xsd:element name="maxWeight" nillable="true" type="xsd:int" />
+          <xsd:element name="minAge" nillable="true" type="xsd:float" />
+          <xsd:element name="minWeight" nillable="true" type="xsd:int" />
+          <xsd:element name="numberOfDose" nillable="true" type="tns:detailedNumberOfDose" />
+          <xsd:element name="numberOfDoseLimit" nillable="true" type="tns:detailedNumberOfDose" />
+          <xsd:element name="posology" nillable="true" type="xsd:string" />
+          <xsd:element name="restrictedGender" nillable="true" type="tns:Gender" />
+          <xsd:element name="type" nillable="true" type="tns:PosologyAlertType" />
+          <xsd:element name="warnings" nillable="true" type="tns:ArrayOfWarning" />
+          <xsd:element name="weight" nillable="true" type="xsd:float" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfWarning">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="warning" nillable="true" type="tns:warning" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="warning">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PosologyDuration">
+        <xsd:sequence>
+          <xsd:element name="type" nillable="true" type="tns:DurationType" />
+          <xsd:element name="value" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="detailedNumberOfDose">
+        <xsd:sequence>
+          <xsd:element name="frequencyType" nillable="true" type="tns:posologyFrequency" />
+          <xsd:element name="unit" nillable="true" type="tns:posologyUnit" />
+          <xsd:element name="value" type="xsd:double" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="posologyFrequency">
+        <xsd:sequence>
+          <xsd:element name="asNeeded" nillable="true" type="xsd:boolean" />
+          <xsd:element name="secondDuration" nillable="true" type="tns:PosologyDuration" />
+          <xsd:element name="thirdDuration" nillable="true" type="tns:PosologyDuration" />
+          <xsd:element name="type" nillable="true" type="tns:PosologyFrequencyType" />
+          <xsd:element name="typeDetail" nillable="true" type="xsd:int" />
+          <xsd:element name="value" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="PosologyAlertType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="NO_POSOLOGY_FOR_THIS_PRODUCT" />
+          <xsd:enumeration value="NO_POSOLOGY_FOR_THESE_INDICATIONS" />
+          <xsd:enumeration value="NO_POSOLOGY_FOR_THESE_ROUTES" />
+          <xsd:enumeration value="NO_POSOLOGY_FOR_THIS_PROFILE" />
+          <xsd:enumeration value="NO_POSOLOGY_FOR_THIS_GENDER" />
+          <xsd:enumeration value="NO_POSOLOGY_FOR_THIS_WEIGHT" />
+          <xsd:enumeration value="NO_POSOLOGY_FOR_THIS_AGE" />
+          <xsd:enumeration value="ONLY_FIXED_POSOLOGIES" />
+          <xsd:enumeration value="MIXED_POSOLOGIES" />
+          <xsd:enumeration value="MAX_ABSOLUTE_NUMBER_OF_DOSE" />
+          <xsd:enumeration value="NO_POSOLOGY_FOR_THIS_HEIGHT" />
+          <xsd:enumeration value="MAX_USUAL_NUMBER_OF_DOSE" />
+          <xsd:enumeration value="MIN_USUAL_NUMBER_OF_DOSE" />
+          <xsd:enumeration value="MAX_NUMBER_OF_DOSE_AT_ONCE" />
+          <xsd:enumeration value="MAX_ABSOLUTE_ACTIVE_PRINCIPLE_DOSE" />
+          <xsd:enumeration value="MAX_USUAL_ACTIVE_PRINCIPLE_DOSE" />
+          <xsd:enumeration value="MIN_USUAL_ACTIVE_PRINCIPLE_DOSE" />
+          <xsd:enumeration value="MAX_ACTIVE_PRINCIPLE_DOSE_AT_ONCE" />
+          <xsd:enumeration value="MAX_ABSOLUTE_DURATION" />
+          <xsd:enumeration value="MAX_USUAL_DURATION" />
+          <xsd:enumeration value="MIN_ABSOLUTE_DURATION" />
+          <xsd:enumeration value="MIN_USUAL_DURATION" />
+          <xsd:enumeration value="PRESCRIPTION_LIMITED_TO_ONE_YEAR" />
+          <xsd:enumeration value="MAX_FREQUENCY" />
+          <xsd:enumeration value="MIN_FREQUENCY" />
+          <xsd:enumeration value="AGE_IGNORED" />
+          <xsd:enumeration value="RENAL_IMPAIRMENT" />
+          <xsd:enumeration value="CONTRAINDICATED" />
+          <xsd:enumeration value="RESERVED_FOR" />
+          <xsd:enumeration value="IN_EVERY_NOSTRIL" />
+          <xsd:enumeration value="MULTIPLE_ACTIVE_PRINCIPLES" />
+          <xsd:enumeration value="DOSE_CHECKING_FOR_RENAL_IMPAIRMENT_NOT_SUPPORTED_YET" />
+          <xsd:enumeration value="DOSE_CHECKING_FOR_LIVER_IMPAIRMENT_NOT_SUPPORTED_YET" />
+          <xsd:enumeration value="DOSE_CHECKING_FOR_ELDERLY_IMPAIRMENT_NOT_SUPPORTED_YET" />
+          <xsd:enumeration value="UNSUPPORTED_UNIT" />
+          <xsd:enumeration value="DOSE_CHECKING_BY_INDICATION_NOT_SUPPORTED_YET_INDICATIONS_IGNORED" />
+          <xsd:enumeration value="ONLY_DOSE_CHECKING_BY_DISPENSATION_UNIT_SUPPORTED" />
+          <xsd:enumeration value="ONLY_DOSE_CHECKING_BY_ACTIVE_PRINCIPLE_SUPPORTED" />
+          <xsd:enumeration value="CHECK_MAXIMUM_PER_INDICATION" />
+          <xsd:enumeration value="NON_HOMOGENEOUS" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="detailedActivePrincipleDose">
+        <xsd:sequence>
+          <xsd:element name="frequencyType" nillable="true" type="tns:posologyFrequency" />
+          <xsd:element name="unit" nillable="true" type="tns:DoseUnit" />
+          <xsd:element name="value" type="xsd:double" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfContraIndication">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="contraIndication" nillable="true" type="tns:contraIndication" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="contraIndication">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="checkActivePrincipleDoseForCommonNameGroupIdIndicationIdsRouteIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="posologyAlertList" nillable="true" type="tns:CommonNameGroupPosologyAlertList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchPosologyUnitByUcdId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchPosologyUnitByUcdIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="posologyUnitList" nillable="true" type="tns:ArrayOfPosologyUnit" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="checkActivePrincipleDoseForProductIdIndicationIdsRouteIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="dose" nillable="true" type="xsd:double" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="doseUnit" nillable="true" type="tns:DoseUnit" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="administrationDividedPerTimeUnit" nillable="true" type="xsd:boolean" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="frequency" nillable="true" type="xsd:double" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="frequencyType" nillable="true" type="tns:PosologyFrequencyType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="frequencyTypeDetail" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="durationValue" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="durationType" nillable="true" type="tns:DurationType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="secondDurationValue" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="secondDurationType" nillable="true" type="tns:DurationType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="thirdDurationValue" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="thirdDurationType" nillable="true" type="tns:DurationType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="gender" nillable="true" type="tns:Gender" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="age" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="weight" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="height" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="creatinClearance" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="hepaticInsufficiency" nillable="true" type="tns:HepaticInsufficiency" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="routeIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="checkActivePrincipleDoseForProductIdIndicationIdsRouteIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="posologyAlertList" nillable="true" type="tns:ArrayOfPosologyAlert" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchPosologyUnitByProductId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchPosologyUnitByProductIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="posologyUnitList" nillable="true" type="tns:ArrayOfPosologyUnit" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="checkDailyDoseByProductId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="dose" nillable="true" type="xsd:double" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="unitId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="frequencyType" nillable="true" type="tns:PosologyFrequencyType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="gender" nillable="true" type="tns:Gender" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="age" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="weight" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="height" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="creatinClearance" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="hepaticInsufficiency" nillable="true" type="tns:HepaticInsufficiency" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="routeIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="checkDailyDoseByProductIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="posologyAlerts" nillable="true" type="tns:PosologyAlerts" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchDosesByProductId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="gender" nillable="true" type="tns:Gender" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="age" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="weight" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="height" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="creatinClearance" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="hepaticInsufficiency" nillable="true" type="tns:HepaticInsufficiency" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="routeIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="numberOfDose">
+        <xsd:sequence>
+          <xsd:element name="type" nillable="true" type="tns:PosologyFrequencyType" />
+          <xsd:element name="unit" nillable="true" type="tns:posologyUnit" />
+          <xsd:element name="value" type="xsd:double" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="numberOfDoseRange">
+        <xsd:sequence>
+          <xsd:element name="max" nillable="true" type="tns:numberOfDose" />
+          <xsd:element name="min" nillable="true" type="tns:numberOfDose" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="durationRange">
+        <xsd:sequence>
+          <xsd:element name="max" nillable="true" type="tns:PosologyDuration" />
+          <xsd:element name="min" nillable="true" type="tns:PosologyDuration" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchDosesByProductIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="numberOfDosesList" nillable="true" type="ns2:ArrayOfNumberOfDoses" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchPosologyRouteByProductId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="gender" nillable="true" type="tns:Gender" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="age" nillable="true" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="weight" nillable="true" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="height" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="creatinClearance" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="hepaticInsufficiency" nillable="true" type="tns:HepaticInsufficiency" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchPosologyRouteByProductIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="posologyRouteList" nillable="true" type="tns:ArrayOfRoute" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="checkNumberOfDoseForCommonNameGroupIdIndicationIdsRouteIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="dose" nillable="true" type="xsd:double" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="unitId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="administrationDividedPerTimeUnit" nillable="true" type="xsd:boolean" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="frequency" nillable="true" type="xsd:double" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="frequencyType" nillable="true" type="tns:PosologyFrequencyType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="frequencyTypeDetail" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="durationValue" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="durationType" nillable="true" type="tns:DurationType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="secondDurationValue" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="secondDurationType" nillable="true" type="tns:DurationType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="thirdDurationValue" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="thirdDurationType" nillable="true" type="tns:DurationType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="gender" nillable="true" type="tns:Gender" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="age" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="weight" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="height" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="creatinClearance" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="hepaticInsufficiency" nillable="true" type="tns:HepaticInsufficiency" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="routeIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="checkNumberOfDoseForCommonNameGroupIdIndicationIdsRouteIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="posologyAlertList" nillable="true" type="tns:CommonNameGroupPosologyAlertList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchDoseUnitByCommonNameGroupId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfDoseUnit">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="DoseUnit" nillable="true" type="tns:DoseUnit" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchDoseUnitByCommonNameGroupIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="doseUnitList" nillable="true" type="tns:ArrayOfDoseUnit" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAmmPosologyByProductId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAmmPosologyByProductIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ammPosology" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchActivePrincipleDosesByProductId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="gender" nillable="true" type="tns:Gender" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="age" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="weight" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="height" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="creatinClearance" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="hepaticInsufficiency" nillable="true" type="tns:HepaticInsufficiency" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="routeIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="activePrincipleDoseRange">
+        <xsd:sequence>
+          <xsd:element name="max" nillable="true" type="tns:activePrincipleDose" />
+          <xsd:element name="min" nillable="true" type="tns:activePrincipleDose" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="activePrincipleDose">
+        <xsd:sequence>
+          <xsd:element name="type" nillable="true" type="tns:PosologyFrequencyType" />
+          <xsd:element name="unit" nillable="true" type="tns:DoseUnit" />
+          <xsd:element name="value" type="xsd:double" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchActivePrincipleDosesByProductIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="activePrincipleDosesList" nillable="true" type="ns2:ArrayOfActivePrincipleDoses" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchDoseUnitByProductId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchDoseUnitByProductIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="doseUnitList" nillable="true" type="tns:ArrayOfDoseUnit" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="checkTreatmentDurationByProductId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="durationValue" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="durationType" nillable="true" type="tns:DurationType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="gender" nillable="true" type="tns:Gender" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="age" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="weight" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="height" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="creatinClearance" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="hepaticInsufficiency" nillable="true" type="tns:HepaticInsufficiency" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="routeIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="checkTreatmentDurationByProductIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="posologyAlerts" nillable="true" type="tns:PosologyAlerts" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="checkNumberOfDoseForProductIdIndicationIdsRouteIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="dose" nillable="true" type="xsd:double" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="unitId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="administrationDividedPerTimeUnit" nillable="true" type="xsd:boolean" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="frequency" nillable="true" type="xsd:double" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="frequencyType" nillable="true" type="tns:PosologyFrequencyType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="frequencyTypeDetail" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="durationValue" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="durationType" nillable="true" type="tns:DurationType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="secondDurationValue" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="secondDurationType" nillable="true" type="tns:DurationType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="thirdDurationValue" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="thirdDurationType" nillable="true" type="tns:DurationType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="gender" nillable="true" type="tns:Gender" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="age" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="weight" type="xsd:float" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="height" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="creatinClearance" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="hepaticInsufficiency" nillable="true" type="tns:HepaticInsufficiency" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="routeIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="checkNumberOfDoseForProductIdIndicationIdsRouteIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="posologyAlertList" nillable="true" type="tns:ArrayOfPosologyAlert" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAllUnits">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageNumber" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageSize" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="pagedResultUnit">
+        <xsd:sequence>
+          <xsd:element name="pageNumber" type="xsd:int" />
+          <xsd:element name="pageSize" type="xsd:int" />
+          <xsd:element name="result" nillable="true" type="tns:ArrayOfPosologyUnit" />
+          <xsd:element name="rowCount" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getAllUnitsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="pagedResultUnit" nillable="true" type="tns:pagedResultUnit" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://utils.api.vidal.com">
+      <xsd:complexType name="ArrayOfMessage">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Message" nillable="true" type="ns1:Message" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Message">
+        <xsd:sequence>
+          <xsd:element name="messageType" nillable="true" type="xsd:string" />
+          <xsd:element name="text" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://posology.api.vidal.com">
+      <xsd:complexType name="ArrayOfNumberOfDoses">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="NumberOfDoses" nillable="true" type="ns2:NumberOfDoses" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NumberOfDoses">
+        <xsd:sequence>
+          <xsd:element name="absoluteDurationRange" nillable="true" type="tns:durationRange" />
+          <xsd:element name="alerts" nillable="true" type="tns:ArrayOfSimplePosologyAlert" />
+          <xsd:element name="maxAbsoluteNumberOfDose" nillable="true" type="tns:numberOfDose" />
+          <xsd:element name="routes" nillable="true" type="tns:ArrayOfRoute" />
+          <xsd:element name="usualDurationRange" nillable="true" type="tns:durationRange" />
+          <xsd:element name="usualNumberOfDoseRange" nillable="true" type="tns:numberOfDoseRange" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfActivePrincipleDoses">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ActivePrincipleDoses" nillable="true" type="ns2:ActivePrincipleDoses" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ActivePrincipleDoses">
+        <xsd:sequence>
+          <xsd:element name="absoluteDurationRange" nillable="true" type="tns:durationRange" />
+          <xsd:element name="alerts" nillable="true" type="tns:ArrayOfSimplePosologyAlert" />
+          <xsd:element name="maxAbsoluteActivePrincipleDose" nillable="true" type="tns:activePrincipleDose" />
+          <xsd:element name="routes" nillable="true" type="tns:ArrayOfRoute" />
+          <xsd:element name="usualActivePrincipleDoseRange" nillable="true" type="tns:activePrincipleDoseRange" />
+          <xsd:element name="usualDurationRange" nillable="true" type="tns:durationRange" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="checkDailyActivePrincipleDoseByProductIdRequest">
+    <wsdl:part name="parameters" element="tns:checkDailyActivePrincipleDoseByProductId" />
+  </wsdl:message>
+  <wsdl:message name="searchPosologyUnitByProductIdRequest">
+    <wsdl:part name="parameters" element="tns:searchPosologyUnitByProductId" />
+  </wsdl:message>
+  <wsdl:message name="checkNumberOfDoseForProductIdIndicationIdsRouteIdsResponse">
+    <wsdl:part name="parameters" element="tns:checkNumberOfDoseForProductIdIndicationIdsRouteIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkTreatmentDurationByProductIdRequest">
+    <wsdl:part name="parameters" element="tns:checkTreatmentDurationByProductId" />
+  </wsdl:message>
+  <wsdl:message name="searchPosologyUnitByUcdIdRequest">
+    <wsdl:part name="parameters" element="tns:searchPosologyUnitByUcdId" />
+  </wsdl:message>
+  <wsdl:message name="searchDoseUnitByProductIdResponse">
+    <wsdl:part name="parameters" element="tns:searchDoseUnitByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchPosologyUnitByUcdIdResponse">
+    <wsdl:part name="parameters" element="tns:searchPosologyUnitByUcdIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAmmPosologyByProductIdResponse">
+    <wsdl:part name="parameters" element="tns:getAmmPosologyByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchPosologyRouteByProductIdResponse">
+    <wsdl:part name="parameters" element="tns:searchPosologyRouteByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchDoseUnitByCommonNameGroupIdResponse">
+    <wsdl:part name="parameters" element="tns:searchDoseUnitByCommonNameGroupIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchActivePrincipleDosesByProductIdResponse">
+    <wsdl:part name="parameters" element="tns:searchActivePrincipleDosesByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkNumberOfDoseForCommonNameGroupIdIndicationIdsRouteIdsResponse">
+    <wsdl:part name="parameters" element="tns:checkNumberOfDoseForCommonNameGroupIdIndicationIdsRouteIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkTreatmentDurationByProductIdResponse">
+    <wsdl:part name="parameters" element="tns:checkTreatmentDurationByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkActivePrincipleDoseForProductIdIndicationIdsRouteIdsRequest">
+    <wsdl:part name="parameters" element="tns:checkActivePrincipleDoseForProductIdIndicationIdsRouteIds" />
+  </wsdl:message>
+  <wsdl:message name="checkActivePrincipleDoseForProductIdIndicationIdsRouteIdsResponse">
+    <wsdl:part name="parameters" element="tns:checkActivePrincipleDoseForProductIdIndicationIdsRouteIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchPosologyRouteByProductIdRequest">
+    <wsdl:part name="parameters" element="tns:searchPosologyRouteByProductId" />
+  </wsdl:message>
+  <wsdl:message name="searchPosologyRouteByCommonNameGroupIdResponse">
+    <wsdl:part name="parameters" element="tns:searchPosologyRouteByCommonNameGroupIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkDailyActivePrincipleDoseByProductIdResponse">
+    <wsdl:part name="parameters" element="tns:checkDailyActivePrincipleDoseByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkDailyDoseByProductIdResponse">
+    <wsdl:part name="parameters" element="tns:checkDailyDoseByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkActivePrincipleDoseForCommonNameGroupIdIndicationIdsRouteIdsResponse">
+    <wsdl:part name="parameters" element="tns:checkActivePrincipleDoseForCommonNameGroupIdIndicationIdsRouteIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchPosologyUnitByCommonNameGroupIdResponse">
+    <wsdl:part name="parameters" element="tns:searchPosologyUnitByCommonNameGroupIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchDosesByProductIdResponse">
+    <wsdl:part name="parameters" element="tns:searchDosesByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchDoseUnitByCommonNameGroupIdRequest">
+    <wsdl:part name="parameters" element="tns:searchDoseUnitByCommonNameGroupId" />
+  </wsdl:message>
+  <wsdl:message name="checkNumberOfDoseForProductIdIndicationIdsRouteIdsRequest">
+    <wsdl:part name="parameters" element="tns:checkNumberOfDoseForProductIdIndicationIdsRouteIds" />
+  </wsdl:message>
+  <wsdl:message name="getAllUnitsResponse">
+    <wsdl:part name="parameters" element="tns:getAllUnitsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchPosologyUnitByCommonNameGroupIdRequest">
+    <wsdl:part name="parameters" element="tns:searchPosologyUnitByCommonNameGroupId" />
+  </wsdl:message>
+  <wsdl:message name="searchPosologyRouteByCommonNameGroupIdRequest">
+    <wsdl:part name="parameters" element="tns:searchPosologyRouteByCommonNameGroupId" />
+  </wsdl:message>
+  <wsdl:message name="checkDailyDoseByProductIdRequest">
+    <wsdl:part name="parameters" element="tns:checkDailyDoseByProductId" />
+  </wsdl:message>
+  <wsdl:message name="searchDosesByProductIdRequest">
+    <wsdl:part name="parameters" element="tns:searchDosesByProductId" />
+  </wsdl:message>
+  <wsdl:message name="searchActivePrincipleDosesByProductIdRequest">
+    <wsdl:part name="parameters" element="tns:searchActivePrincipleDosesByProductId" />
+  </wsdl:message>
+  <wsdl:message name="searchPosologyUnitByProductIdResponse">
+    <wsdl:part name="parameters" element="tns:searchPosologyUnitByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchDoseUnitByProductIdRequest">
+    <wsdl:part name="parameters" element="tns:searchDoseUnitByProductId" />
+  </wsdl:message>
+  <wsdl:message name="getAllUnitsRequest">
+    <wsdl:part name="parameters" element="tns:getAllUnits" />
+  </wsdl:message>
+  <wsdl:message name="checkActivePrincipleDoseForCommonNameGroupIdIndicationIdsRouteIdsRequest">
+    <wsdl:part name="parameters" element="tns:checkActivePrincipleDoseForCommonNameGroupIdIndicationIdsRouteIds" />
+  </wsdl:message>
+  <wsdl:message name="checkNumberOfDoseForCommonNameGroupIdIndicationIdsRouteIdsRequest">
+    <wsdl:part name="parameters" element="tns:checkNumberOfDoseForCommonNameGroupIdIndicationIdsRouteIds" />
+  </wsdl:message>
+  <wsdl:message name="getAmmPosologyByProductIdRequest">
+    <wsdl:part name="parameters" element="tns:getAmmPosologyByProductId" />
+  </wsdl:message>
+  <wsdl:portType name="posologyService">
+    <wsdl:operation name="checkDailyActivePrincipleDoseByProductId">
+      <wsdl:input name="checkDailyActivePrincipleDoseByProductIdRequest" message="tns:checkDailyActivePrincipleDoseByProductIdRequest" />
+      <wsdl:output name="checkDailyActivePrincipleDoseByProductIdResponse" message="tns:checkDailyActivePrincipleDoseByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchPosologyRouteByCommonNameGroupId">
+      <wsdl:input name="searchPosologyRouteByCommonNameGroupIdRequest" message="tns:searchPosologyRouteByCommonNameGroupIdRequest" />
+      <wsdl:output name="searchPosologyRouteByCommonNameGroupIdResponse" message="tns:searchPosologyRouteByCommonNameGroupIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchPosologyUnitByCommonNameGroupId">
+      <wsdl:input name="searchPosologyUnitByCommonNameGroupIdRequest" message="tns:searchPosologyUnitByCommonNameGroupIdRequest" />
+      <wsdl:output name="searchPosologyUnitByCommonNameGroupIdResponse" message="tns:searchPosologyUnitByCommonNameGroupIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="checkActivePrincipleDoseForCommonNameGroupIdIndicationIdsRouteIds">
+      <wsdl:input name="checkActivePrincipleDoseForCommonNameGroupIdIndicationIdsRouteIdsRequest" message="tns:checkActivePrincipleDoseForCommonNameGroupIdIndicationIdsRouteIdsRequest" />
+      <wsdl:output name="checkActivePrincipleDoseForCommonNameGroupIdIndicationIdsRouteIdsResponse" message="tns:checkActivePrincipleDoseForCommonNameGroupIdIndicationIdsRouteIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchPosologyUnitByUcdId">
+      <wsdl:input name="searchPosologyUnitByUcdIdRequest" message="tns:searchPosologyUnitByUcdIdRequest" />
+      <wsdl:output name="searchPosologyUnitByUcdIdResponse" message="tns:searchPosologyUnitByUcdIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="checkActivePrincipleDoseForProductIdIndicationIdsRouteIds">
+      <wsdl:input name="checkActivePrincipleDoseForProductIdIndicationIdsRouteIdsRequest" message="tns:checkActivePrincipleDoseForProductIdIndicationIdsRouteIdsRequest" />
+      <wsdl:output name="checkActivePrincipleDoseForProductIdIndicationIdsRouteIdsResponse" message="tns:checkActivePrincipleDoseForProductIdIndicationIdsRouteIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchPosologyUnitByProductId">
+      <wsdl:input name="searchPosologyUnitByProductIdRequest" message="tns:searchPosologyUnitByProductIdRequest" />
+      <wsdl:output name="searchPosologyUnitByProductIdResponse" message="tns:searchPosologyUnitByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="checkDailyDoseByProductId">
+      <wsdl:input name="checkDailyDoseByProductIdRequest" message="tns:checkDailyDoseByProductIdRequest" />
+      <wsdl:output name="checkDailyDoseByProductIdResponse" message="tns:checkDailyDoseByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchDosesByProductId">
+      <wsdl:input name="searchDosesByProductIdRequest" message="tns:searchDosesByProductIdRequest" />
+      <wsdl:output name="searchDosesByProductIdResponse" message="tns:searchDosesByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchPosologyRouteByProductId">
+      <wsdl:input name="searchPosologyRouteByProductIdRequest" message="tns:searchPosologyRouteByProductIdRequest" />
+      <wsdl:output name="searchPosologyRouteByProductIdResponse" message="tns:searchPosologyRouteByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="checkNumberOfDoseForCommonNameGroupIdIndicationIdsRouteIds">
+      <wsdl:input name="checkNumberOfDoseForCommonNameGroupIdIndicationIdsRouteIdsRequest" message="tns:checkNumberOfDoseForCommonNameGroupIdIndicationIdsRouteIdsRequest" />
+      <wsdl:output name="checkNumberOfDoseForCommonNameGroupIdIndicationIdsRouteIdsResponse" message="tns:checkNumberOfDoseForCommonNameGroupIdIndicationIdsRouteIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchDoseUnitByCommonNameGroupId">
+      <wsdl:input name="searchDoseUnitByCommonNameGroupIdRequest" message="tns:searchDoseUnitByCommonNameGroupIdRequest" />
+      <wsdl:output name="searchDoseUnitByCommonNameGroupIdResponse" message="tns:searchDoseUnitByCommonNameGroupIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAmmPosologyByProductId">
+      <wsdl:input name="getAmmPosologyByProductIdRequest" message="tns:getAmmPosologyByProductIdRequest" />
+      <wsdl:output name="getAmmPosologyByProductIdResponse" message="tns:getAmmPosologyByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchActivePrincipleDosesByProductId">
+      <wsdl:input name="searchActivePrincipleDosesByProductIdRequest" message="tns:searchActivePrincipleDosesByProductIdRequest" />
+      <wsdl:output name="searchActivePrincipleDosesByProductIdResponse" message="tns:searchActivePrincipleDosesByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchDoseUnitByProductId">
+      <wsdl:input name="searchDoseUnitByProductIdRequest" message="tns:searchDoseUnitByProductIdRequest" />
+      <wsdl:output name="searchDoseUnitByProductIdResponse" message="tns:searchDoseUnitByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="checkTreatmentDurationByProductId">
+      <wsdl:input name="checkTreatmentDurationByProductIdRequest" message="tns:checkTreatmentDurationByProductIdRequest" />
+      <wsdl:output name="checkTreatmentDurationByProductIdResponse" message="tns:checkTreatmentDurationByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="checkNumberOfDoseForProductIdIndicationIdsRouteIds">
+      <wsdl:input name="checkNumberOfDoseForProductIdIndicationIdsRouteIdsRequest" message="tns:checkNumberOfDoseForProductIdIndicationIdsRouteIdsRequest" />
+      <wsdl:output name="checkNumberOfDoseForProductIdIndicationIdsRouteIdsResponse" message="tns:checkNumberOfDoseForProductIdIndicationIdsRouteIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllUnits">
+      <wsdl:input name="getAllUnitsRequest" message="tns:getAllUnitsRequest" />
+      <wsdl:output name="getAllUnitsResponse" message="tns:getAllUnitsResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PosologyServiceHttpBinding" type="tns:posologyService">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="checkDailyActivePrincipleDoseByProductId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="checkDailyActivePrincipleDoseByProductIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="checkDailyActivePrincipleDoseByProductIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchPosologyRouteByCommonNameGroupId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchPosologyRouteByCommonNameGroupIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchPosologyRouteByCommonNameGroupIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchPosologyUnitByCommonNameGroupId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchPosologyUnitByCommonNameGroupIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchPosologyUnitByCommonNameGroupIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkActivePrincipleDoseForCommonNameGroupIdIndicationIdsRouteIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="checkActivePrincipleDoseForCommonNameGroupIdIndicationIdsRouteIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="checkActivePrincipleDoseForCommonNameGroupIdIndicationIdsRouteIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchPosologyUnitByUcdId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchPosologyUnitByUcdIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchPosologyUnitByUcdIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkActivePrincipleDoseForProductIdIndicationIdsRouteIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="checkActivePrincipleDoseForProductIdIndicationIdsRouteIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="checkActivePrincipleDoseForProductIdIndicationIdsRouteIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchPosologyUnitByProductId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchPosologyUnitByProductIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchPosologyUnitByProductIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkDailyDoseByProductId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="checkDailyDoseByProductIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="checkDailyDoseByProductIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchDosesByProductId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchDosesByProductIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchDosesByProductIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchPosologyRouteByProductId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchPosologyRouteByProductIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchPosologyRouteByProductIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkNumberOfDoseForCommonNameGroupIdIndicationIdsRouteIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="checkNumberOfDoseForCommonNameGroupIdIndicationIdsRouteIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="checkNumberOfDoseForCommonNameGroupIdIndicationIdsRouteIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchDoseUnitByCommonNameGroupId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchDoseUnitByCommonNameGroupIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchDoseUnitByCommonNameGroupIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAmmPosologyByProductId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAmmPosologyByProductIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAmmPosologyByProductIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchActivePrincipleDosesByProductId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchActivePrincipleDosesByProductIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchActivePrincipleDosesByProductIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchDoseUnitByProductId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchDoseUnitByProductIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchDoseUnitByProductIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkTreatmentDurationByProductId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="checkTreatmentDurationByProductIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="checkTreatmentDurationByProductIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkNumberOfDoseForProductIdIndicationIdsRouteIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="checkNumberOfDoseForProductIdIndicationIdsRouteIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="checkNumberOfDoseForProductIdIndicationIdsRouteIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllUnits">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAllUnitsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAllUnitsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PosologyService">
+    <wsdl:port name="PosologyServiceHttpPort" binding="tns:PosologyServiceHttpBinding">
+      <wsdlsoap:address location="http://localhost:8011/merlin-service/services/PosologyService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

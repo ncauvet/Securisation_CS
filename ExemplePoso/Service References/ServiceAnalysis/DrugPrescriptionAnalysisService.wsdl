@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:ns2="http://summerizedAlert.merlin.vidal.com" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" xmlns:tns="urn:Vidal" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://prescriptionAnalysis.api.vidal.com" targetNamespace="urn:Vidal" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="urn:Vidal">
+      <xsd:complexType name="ArrayOfString">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getAlerts">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="patient" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="prescriptionLineList" nillable="true" type="tns:ArrayOfString" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="prescriptionAnalysis">
+        <xsd:sequence>
+          <xsd:element name="prescriptionLineAnalysisList" nillable="true" type="tns:ArrayOfPrescriptionLineAnalysis" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfPrescriptionLineAnalysis">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="prescriptionLineAnalysis" nillable="true" type="tns:prescriptionLineAnalysis" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="prescriptionLineAnalysis">
+        <xsd:sequence>
+          <xsd:element name="alertList" nillable="true" type="tns:ArrayOfAlert" />
+          <xsd:element name="dose" nillable="true" type="xsd:double" />
+          <xsd:element name="drug" nillable="true" type="tns:summarizedDrug" />
+          <xsd:element name="dur" nillable="true" type="xsd:int" />
+          <xsd:element name="durUnit" nillable="true" type="tns:DurationType" />
+          <xsd:element name="posologyFrequency" nillable="true" type="tns:PosologyFrequencyType" />
+          <xsd:element name="unit" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="DurationType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="MINUTE" />
+          <xsd:enumeration value="HOUR" />
+          <xsd:enumeration value="DAY" />
+          <xsd:enumeration value="WEEK" />
+          <xsd:enumeration value="MONTH" />
+          <xsd:enumeration value="YEAR" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="ArrayOfAlert">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="alert" nillable="true" type="tns:alert" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="alert">
+        <xsd:sequence>
+          <xsd:element name="comment" nillable="true" type="xsd:string" />
+          <xsd:element name="referenceList" nillable="true" type="tns:ArrayOfReference" />
+          <xsd:element name="relatedElementList" nillable="true" type="tns:ArrayOfRelatedElement" />
+          <xsd:element name="severity" nillable="true" type="tns:SeverityLevel" />
+          <xsd:element name="title" nillable="true" type="xsd:string" />
+          <xsd:element name="type" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfReference">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="reference" nillable="true" type="tns:reference" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="reference">
+        <xsd:sequence>
+          <xsd:element name="referenceDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element name="referenceName" nillable="true" type="xsd:string" />
+          <xsd:element name="referenceType" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfRelatedElement">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="relatedElement" nillable="true" type="tns:relatedElement" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="relatedElement">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="type" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="SeverityLevel">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="INFO" />
+          <xsd:enumeration value="LEVEL_1" />
+          <xsd:enumeration value="LEVEL_2" />
+          <xsd:enumeration value="LEVEL_3" />
+          <xsd:enumeration value="LEVEL_4" />
+          <xsd:enumeration value="UNKNOWN" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="summarizedDrug">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="safetyAlert" type="xsd:boolean" />
+          <xsd:element name="type" nillable="true" type="tns:DrugType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="DrugType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="COMMON_NAME_GROUP" />
+          <xsd:enumeration value="PRODUCT" />
+          <xsd:enumeration value="PACK" />
+          <xsd:enumeration value="UCD" />
+          <xsd:enumeration value="UNKNOWN" />
+          <xsd:enumeration value="ACCESSORY_RANGE" />
+          <xsd:enumeration value="BRANDED_PRESCRIBABLE" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="PosologyFrequencyType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="THIS_DAY" />
+          <xsd:enumeration value="PER_DAY" />
+          <xsd:enumeration value="PER_24_HOURS" />
+          <xsd:enumeration value="PER_WEEK" />
+          <xsd:enumeration value="PER_MONTH" />
+          <xsd:enumeration value="PER_YEAR" />
+          <xsd:enumeration value="PER_2_DAYS" />
+          <xsd:enumeration value="PER_N_HOURS" />
+          <xsd:enumeration value="PER_HOUR" />
+          <xsd:enumeration value="PER_MINUTE" />
+          <xsd:enumeration value="TYPE_66" />
+          <xsd:enumeration value="TYPE_46" />
+          <xsd:enumeration value="TYPE_44" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="getAlertsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="alerts" nillable="true" type="tns:prescriptionAnalysis" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchRecosByPrescriptions">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="patient" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="prescriptionLineList" nillable="true" type="tns:ArrayOfString" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfCodedReco">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="codedReco" nillable="true" type="tns:codedReco" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="codedReco">
+        <xsd:sequence>
+          <xsd:element name="drugs" nillable="true" type="tns:ArrayOfRelatedRecoSource" />
+          <xsd:element name="recommendation" nillable="true" type="tns:reco" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfRelatedRecoSource">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="relatedRecoSource" nillable="true" type="tns:relatedRecoSource" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="relatedRecoSource">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:int" />
+          <xsd:element name="type" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="reco">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchRecosByPrescriptionsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="recos" nillable="true" type="tns:ArrayOfCodedReco" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:simpleType name="DoseUnit">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="MG" />
+          <xsd:enumeration value="G" />
+          <xsd:enumeration value="ML" />
+          <xsd:enumeration value="MCG" />
+          <xsd:enumeration value="U" />
+          <xsd:enumeration value="KU" />
+          <xsd:enumeration value="MU" />
+          <xsd:enumeration value="MMOL" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="ArrayOfInt">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="int" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="prescriptionLineInActivePrincipleDosesFromObjToJson">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="dose" nillable="true" type="xsd:double" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="doseUnit" nillable="true" type="tns:DoseUnit" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="frequencyType" nillable="true" type="tns:PosologyFrequencyType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationIdList" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="routeIdList" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="drugId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="drugType" nillable="true" type="tns:DrugType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="duration" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="durationType" nillable="true" type="tns:DurationType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="prescriptionLineInActivePrincipleDosesFromObjToJsonResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="prescriptionLineInActivePrincipleDosesFromObjToJson" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfAlertType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="AlertType" nillable="true" type="tns:AlertType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="AlertType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="PRECAUTION" />
+          <xsd:enumeration value="CONTRA_INDICATION" />
+          <xsd:enumeration value="ALLERGY" />
+          <xsd:enumeration value="POSOLOGY" />
+          <xsd:enumeration value="PHYSICO_CHEMICAL_INTERACTION" />
+          <xsd:enumeration value="WARNING" />
+          <xsd:enumeration value="SIDE_EFFECT" />
+          <xsd:enumeration value="SURVEILLANCE" />
+          <xsd:enumeration value="REDUNDANT_ACTIVE_INGREDIENT" />
+          <xsd:enumeration value="DRUG_INTERACTION" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="getAlertsWithoutAlertTypes">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="patient" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="prescriptionLineList" nillable="true" type="tns:ArrayOfString" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="withoutAlertTypes" nillable="true" type="tns:ArrayOfAlertType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAlertsWithoutAlertTypesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="filteredAlerts" nillable="true" type="tns:prescriptionAnalysis" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAlertsAsHTML">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="patient" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="prescriptionLineList" nillable="true" type="tns:ArrayOfString" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAlertsAsHTMLResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="alertsAsHTML" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="prescriptionLineFromObjToJson">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="dose" nillable="true" type="xsd:double" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="unitId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="frequencyType" nillable="true" type="tns:PosologyFrequencyType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationIdList" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="routeIdList" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="drugId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="drugType" nillable="true" type="tns:DrugType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="prescriptionLineFromObjToJsonResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="prescriptionLineFromObjToJson" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:simpleType name="Gender">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="MALE" />
+          <xsd:enumeration value="FEMALE" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Breastfeeding">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="NONE" />
+          <xsd:enumeration value="LESS_THAN_ONE_MONTH" />
+          <xsd:enumeration value="MORE_THAN_ONE_MONTH" />
+          <xsd:enumeration value="ALL" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="HepaticInsufficiency">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="NONE" />
+          <xsd:enumeration value="MODERATE" />
+          <xsd:enumeration value="SEVERE" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="patientFromObjToJson">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="dateOfBirth" type="xsd:dateTime" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="gender" nillable="true" type="tns:Gender" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="weight" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="height" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="weeksOfAmenorrhea" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="breastFeeding" nillable="true" type="tns:Breastfeeding" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="creatin" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="hepaticInsufficiency" nillable="true" type="tns:HepaticInsufficiency" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="allergyIdList" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeIdList" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="pathologyCim10IdList" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="patientFromObjToJsonResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="patientFromObjToJson" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="prescriptionLineInDosesFromObjToJson">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="dose" nillable="true" type="xsd:double" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="unitId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="frequencyType" nillable="true" type="tns:PosologyFrequencyType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationIdList" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="routeIdList" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="drugId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="drugType" nillable="true" type="tns:DrugType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="duration" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="durationType" nillable="true" type="tns:DurationType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="prescriptionLineInDosesFromObjToJsonResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="prescriptionLineInDosesFromObjToJson" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getPrescriptionCostAnalysis">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="prescriptionLines" nillable="true" type="tns:ArrayOfString" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="prescriptionCostAnalysis">
+        <xsd:sequence>
+          <xsd:element name="evaluatedPrescriptionLineCount" type="xsd:int" />
+          <xsd:element name="ignoredPrescriptionLineCount" type="xsd:int" />
+          <xsd:element name="maxPrice" type="xsd:float" />
+          <xsd:element name="minPrice" type="xsd:float" />
+          <xsd:element name="prescriptionLineCostList" nillable="true" type="tns:ArrayOfPrescriptionLineCost" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfPrescriptionLineCost">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="prescriptionLineCost" nillable="true" type="tns:prescriptionLineCost" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="prescriptionLineCost">
+        <xsd:sequence>
+          <xsd:element name="dose" nillable="true" type="xsd:double" />
+          <xsd:element name="drug" nillable="true" type="tns:summarizedDrug" />
+          <xsd:element name="dur" nillable="true" type="xsd:int" />
+          <xsd:element name="durUnit" nillable="true" type="tns:DurationType" />
+          <xsd:element name="posologyFrequency" nillable="true" type="tns:PosologyFrequencyType" />
+          <xsd:element name="priceRange" nillable="true" type="tns:priceRange" />
+          <xsd:element name="unit" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="priceRange">
+        <xsd:sequence>
+          <xsd:element name="maxPrice" nillable="true" type="xsd:float" />
+          <xsd:element name="minPrice" nillable="true" type="xsd:float" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getPrescriptionCostAnalysisResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="prescriptionCostAnalysis" nillable="true" type="tns:prescriptionCostAnalysis" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getSummarizedAlert">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="patient" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="prescriptionLineList" nillable="true" type="tns:ArrayOfString" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="summarizedAlert">
+        <xsd:sequence>
+          <xsd:element name="allergiesAlert" nillable="true" type="ns2:SummarizedAllergyAlert" />
+          <xsd:element name="contraIndicationsAlert" nillable="true" type="tns:SummarizedContraIndicationAlert" />
+          <xsd:element name="interactionsAlert" nillable="true" type="ns2:SummarizedInteractionAlert" />
+          <xsd:element name="physicoChemicalAlert" nillable="true" type="tns:SummarizedPhysicoChemicalAlert" />
+          <xsd:element name="posologyAlert" nillable="true" type="ns2:SummarizedPosologyAlert" />
+          <xsd:element name="precautionsAlert" nillable="true" type="ns2:SummarizedPrecautionAlert" />
+          <xsd:element name="redundantInteractionsAlert" nillable="true" type="ns2:SummarizedRedundantInteractionAlert" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="SummarizedContraIndicationAlert">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="RELATIVE_ALERT" />
+          <xsd:enumeration value="ABSOLUTE_ALERT" />
+          <xsd:enumeration value="UNKNOWN_ALERT" />
+          <xsd:enumeration value="NO_ALERT" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="SummarizedPhysicoChemicalAlert">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="HAS_ALERT" />
+          <xsd:enumeration value="NO_ALERT" />
+          <xsd:enumeration value="UNKNOWN_ALERT" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="getSummarizedAlertResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="summarizedAlert" nillable="true" type="ns1:ArrayOfDrugSummarizedAlertCouple" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://prescriptionAnalysis.api.vidal.com">
+      <xsd:complexType name="ArrayOfDrugSummarizedAlertCouple">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="DrugSummarizedAlertCouple" nillable="true" type="ns1:DrugSummarizedAlertCouple" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DrugSummarizedAlertCouple">
+        <xsd:sequence>
+          <xsd:element name="summarizedAlert" nillable="true" type="tns:summarizedAlert" />
+          <xsd:element name="summarizedDrug" nillable="true" type="tns:summarizedDrug" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://summerizedAlert.merlin.vidal.com">
+      <xsd:simpleType name="SummarizedPrecautionAlert">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="HAS_ALERT" />
+          <xsd:enumeration value="NO_ALERT" />
+          <xsd:enumeration value="UNKNOWN_ALERT" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="SummarizedInteractionAlert">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="TAKE_INTO_ACCOUNT" />
+          <xsd:enumeration value="PRECAUTION_USE" />
+          <xsd:enumeration value="DISADVISES_ASSOCIATION" />
+          <xsd:enumeration value="CONTRAINDICATIONS" />
+          <xsd:enumeration value="NO_ALERT" />
+          <xsd:enumeration value="UNKNOWN_ALERT" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="SummarizedPosologyAlert">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="HAS_ALERT" />
+          <xsd:enumeration value="NO_ALERT" />
+          <xsd:enumeration value="UNKNOWN_ALERT" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="SummarizedRedundantInteractionAlert">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="HAS_ALERT" />
+          <xsd:enumeration value="NO_ALERT" />
+          <xsd:enumeration value="UNKNOWN_ALERT" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="SummarizedAllergyAlert">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="HAS_ALERT" />
+          <xsd:enumeration value="NO_ALERT" />
+          <xsd:enumeration value="UNKNOWN_ALERT" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getAlertsRequest">
+    <wsdl:part name="parameters" element="tns:getAlerts" />
+  </wsdl:message>
+  <wsdl:message name="getAlertsWithoutAlertTypesResponse">
+    <wsdl:part name="parameters" element="tns:getAlertsWithoutAlertTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAlertsResponse">
+    <wsdl:part name="parameters" element="tns:getAlertsResponse" />
+  </wsdl:message>
+  <wsdl:message name="prescriptionLineInDosesFromObjToJsonRequest">
+    <wsdl:part name="parameters" element="tns:prescriptionLineInDosesFromObjToJson" />
+  </wsdl:message>
+  <wsdl:message name="searchRecosByPrescriptionsRequest">
+    <wsdl:part name="parameters" element="tns:searchRecosByPrescriptions" />
+  </wsdl:message>
+  <wsdl:message name="prescriptionLineInDosesFromObjToJsonResponse">
+    <wsdl:part name="parameters" element="tns:prescriptionLineInDosesFromObjToJsonResponse" />
+  </wsdl:message>
+  <wsdl:message name="prescriptionLineFromObjToJsonRequest">
+    <wsdl:part name="parameters" element="tns:prescriptionLineFromObjToJson" />
+  </wsdl:message>
+  <wsdl:message name="searchRecosByPrescriptionsResponse">
+    <wsdl:part name="parameters" element="tns:searchRecosByPrescriptionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="prescriptionLineInActivePrincipleDosesFromObjToJsonRequest">
+    <wsdl:part name="parameters" element="tns:prescriptionLineInActivePrincipleDosesFromObjToJson" />
+  </wsdl:message>
+  <wsdl:message name="getPrescriptionCostAnalysisResponse">
+    <wsdl:part name="parameters" element="tns:getPrescriptionCostAnalysisResponse" />
+  </wsdl:message>
+  <wsdl:message name="prescriptionLineInActivePrincipleDosesFromObjToJsonResponse">
+    <wsdl:part name="parameters" element="tns:prescriptionLineInActivePrincipleDosesFromObjToJsonResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAlertsAsHTMLResponse">
+    <wsdl:part name="parameters" element="tns:getAlertsAsHTMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="getPrescriptionCostAnalysisRequest">
+    <wsdl:part name="parameters" element="tns:getPrescriptionCostAnalysis" />
+  </wsdl:message>
+  <wsdl:message name="getAlertsAsHTMLRequest">
+    <wsdl:part name="parameters" element="tns:getAlertsAsHTML" />
+  </wsdl:message>
+  <wsdl:message name="getSummarizedAlertResponse">
+    <wsdl:part name="parameters" element="tns:getSummarizedAlertResponse" />
+  </wsdl:message>
+  <wsdl:message name="patientFromObjToJsonResponse">
+    <wsdl:part name="parameters" element="tns:patientFromObjToJsonResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAlertsWithoutAlertTypesRequest">
+    <wsdl:part name="parameters" element="tns:getAlertsWithoutAlertTypes" />
+  </wsdl:message>
+  <wsdl:message name="prescriptionLineFromObjToJsonResponse">
+    <wsdl:part name="parameters" element="tns:prescriptionLineFromObjToJsonResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSummarizedAlertRequest">
+    <wsdl:part name="parameters" element="tns:getSummarizedAlert" />
+  </wsdl:message>
+  <wsdl:message name="patientFromObjToJsonRequest">
+    <wsdl:part name="parameters" element="tns:patientFromObjToJson" />
+  </wsdl:message>
+  <wsdl:portType name="drugPrescriptionAnalysisService">
+    <wsdl:operation name="getAlerts">
+      <wsdl:input name="getAlertsRequest" message="tns:getAlertsRequest" />
+      <wsdl:output name="getAlertsResponse" message="tns:getAlertsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchRecosByPrescriptions">
+      <wsdl:input name="searchRecosByPrescriptionsRequest" message="tns:searchRecosByPrescriptionsRequest" />
+      <wsdl:output name="searchRecosByPrescriptionsResponse" message="tns:searchRecosByPrescriptionsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="prescriptionLineInActivePrincipleDosesFromObjToJson">
+      <wsdl:input name="prescriptionLineInActivePrincipleDosesFromObjToJsonRequest" message="tns:prescriptionLineInActivePrincipleDosesFromObjToJsonRequest" />
+      <wsdl:output name="prescriptionLineInActivePrincipleDosesFromObjToJsonResponse" message="tns:prescriptionLineInActivePrincipleDosesFromObjToJsonResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAlertsWithoutAlertTypes">
+      <wsdl:input name="getAlertsWithoutAlertTypesRequest" message="tns:getAlertsWithoutAlertTypesRequest" />
+      <wsdl:output name="getAlertsWithoutAlertTypesResponse" message="tns:getAlertsWithoutAlertTypesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAlertsAsHTML">
+      <wsdl:input name="getAlertsAsHTMLRequest" message="tns:getAlertsAsHTMLRequest" />
+      <wsdl:output name="getAlertsAsHTMLResponse" message="tns:getAlertsAsHTMLResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="prescriptionLineFromObjToJson">
+      <wsdl:input name="prescriptionLineFromObjToJsonRequest" message="tns:prescriptionLineFromObjToJsonRequest" />
+      <wsdl:output name="prescriptionLineFromObjToJsonResponse" message="tns:prescriptionLineFromObjToJsonResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="patientFromObjToJson">
+      <wsdl:input name="patientFromObjToJsonRequest" message="tns:patientFromObjToJsonRequest" />
+      <wsdl:output name="patientFromObjToJsonResponse" message="tns:patientFromObjToJsonResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="prescriptionLineInDosesFromObjToJson">
+      <wsdl:input name="prescriptionLineInDosesFromObjToJsonRequest" message="tns:prescriptionLineInDosesFromObjToJsonRequest" />
+      <wsdl:output name="prescriptionLineInDosesFromObjToJsonResponse" message="tns:prescriptionLineInDosesFromObjToJsonResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getPrescriptionCostAnalysis">
+      <wsdl:input name="getPrescriptionCostAnalysisRequest" message="tns:getPrescriptionCostAnalysisRequest" />
+      <wsdl:output name="getPrescriptionCostAnalysisResponse" message="tns:getPrescriptionCostAnalysisResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getSummarizedAlert">
+      <wsdl:input name="getSummarizedAlertRequest" message="tns:getSummarizedAlertRequest" />
+      <wsdl:output name="getSummarizedAlertResponse" message="tns:getSummarizedAlertResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DrugPrescriptionAnalysisServiceHttpBinding" type="tns:drugPrescriptionAnalysisService">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getAlerts">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAlertsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAlertsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchRecosByPrescriptions">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchRecosByPrescriptionsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchRecosByPrescriptionsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="prescriptionLineInActivePrincipleDosesFromObjToJson">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="prescriptionLineInActivePrincipleDosesFromObjToJsonRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="prescriptionLineInActivePrincipleDosesFromObjToJsonResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAlertsWithoutAlertTypes">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAlertsWithoutAlertTypesRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAlertsWithoutAlertTypesResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAlertsAsHTML">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAlertsAsHTMLRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAlertsAsHTMLResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="prescriptionLineFromObjToJson">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="prescriptionLineFromObjToJsonRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="prescriptionLineFromObjToJsonResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="patientFromObjToJson">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="patientFromObjToJsonRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="patientFromObjToJsonResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="prescriptionLineInDosesFromObjToJson">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="prescriptionLineInDosesFromObjToJsonRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="prescriptionLineInDosesFromObjToJsonResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPrescriptionCostAnalysis">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getPrescriptionCostAnalysisRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getPrescriptionCostAnalysisResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSummarizedAlert">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getSummarizedAlertRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getSummarizedAlertResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DrugPrescriptionAnalysisService">
+    <wsdl:port name="DrugPrescriptionAnalysisServiceHttpPort" binding="tns:DrugPrescriptionAnalysisServiceHttpBinding">
+      <wsdlsoap:address location="http://172.16.31.70:9000/merlin-server/services/DrugPrescriptionAnalysisService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

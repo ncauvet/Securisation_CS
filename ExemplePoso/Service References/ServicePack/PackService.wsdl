@@ -1,0 +1,1172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" xmlns:tns="urn:Vidal" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://lppr.api.vidal.com" targetNamespace="urn:Vidal" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="urn:Vidal">
+      <xsd:complexType name="ArrayOfInt">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="int" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchByIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packageIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfPack">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="pack" nillable="true" type="tns:pack" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="pack">
+        <xsd:sequence>
+          <xsd:element name="actCode" nillable="true" type="tns:ActCode" />
+          <xsd:element name="actCodeValue" nillable="true" type="xsd:string" />
+          <xsd:element name="cip" nillable="true" type="xsd:string" />
+          <xsd:element name="cip13" nillable="true" type="xsd:string" />
+          <xsd:element name="cis" nillable="true" type="xsd:string" />
+          <xsd:element name="communityAgrement" type="xsd:boolean" />
+          <xsd:element name="dispensationPlace" nillable="true" type="tns:DispensationPlace" />
+          <xsd:element name="dose" nillable="true" type="xsd:string" />
+          <xsd:element name="doseUnit" nillable="true" type="xsd:string" />
+          <xsd:element name="ean" nillable="true" type="xsd:string" />
+          <xsd:element name="genericType" nillable="true" type="tns:GenericType" />
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="list" nillable="true" type="tns:ListType" />
+          <xsd:element name="listValue" nillable="true" type="xsd:string" />
+          <xsd:element name="manufacturerPrice" nillable="true" type="xsd:float" />
+          <xsd:element name="marketStatus" nillable="true" type="tns:MarketStatus" />
+          <xsd:element name="maxPrescriptionDuration" nillable="true" type="tns:PrescriptionDuration" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="narcoticPrescription" type="xsd:boolean" />
+          <xsd:element name="pharmacistPrice" nillable="true" type="xsd:float" />
+          <xsd:element name="pricePerDose" nillable="true" type="xsd:float" />
+          <xsd:element name="productId" nillable="true" type="xsd:int" />
+          <xsd:element name="publicPrice" nillable="true" type="xsd:float" />
+          <xsd:element name="refundingBase" nillable="true" type="xsd:float" />
+          <xsd:element name="refundingRate" nillable="true" type="tns:RefundRate" />
+          <xsd:element name="refundingRateValue" nillable="true" type="xsd:string" />
+          <xsd:element name="safetyAlert" type="xsd:boolean" />
+          <xsd:element name="shortName" nillable="true" type="xsd:string" />
+          <xsd:element name="tfr" type="xsd:boolean" />
+          <xsd:element name="type" nillable="true" type="tns:ProductType" />
+          <xsd:element name="ucdPrice" nillable="true" type="xsd:float" />
+          <xsd:element name="vatRate" nillable="true" type="tns:VatRate" />
+          <xsd:element name="vatRateValue" nillable="true" type="xsd:float" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="ActCode">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="AAD" />
+          <xsd:enumeration value="AAR" />
+          <xsd:enumeration value="MAC" />
+          <xsd:enumeration value="MAD" />
+          <xsd:enumeration value="OPT" />
+          <xsd:enumeration value="ORC" />
+          <xsd:enumeration value="PA" />
+          <xsd:enumeration value="PAN" />
+          <xsd:enumeration value="PEX" />
+          <xsd:enumeration value="PH1" />
+          <xsd:enumeration value="PH4" />
+          <xsd:enumeration value="PH7" />
+          <xsd:enumeration value="PHN" />
+          <xsd:enumeration value="PII" />
+          <xsd:enumeration value="VEH" />
+          <xsd:enumeration value="PMR" />
+          <xsd:enumeration value="ARO" />
+          <xsd:enumeration value="GLU" />
+          <xsd:enumeration value="PAU" />
+          <xsd:enumeration value="PH2" />
+          <xsd:enumeration value="PME" />
+          <xsd:enumeration value="TNS" />
+          <xsd:enumeration value="VER" />
+          <xsd:enumeration value="LEN" />
+          <xsd:enumeration value="LUN" />
+          <xsd:enumeration value="POC" />
+          <xsd:enumeration value="PG7" />
+          <xsd:enumeration value="PDM" />
+          <xsd:enumeration value="PMH" />
+          <xsd:enumeration value="DVO" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="PrescriptionDuration">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="FOURTEEN_DAYS" />
+          <xsd:enumeration value="TWENTY_EIGHT_DAYS" />
+          <xsd:enumeration value="SEVEN_DAYS" />
+          <xsd:enumeration value="EIGHTY_FOUR_DAYS" />
+          <xsd:enumeration value="TWENTY_EIGHT_SPLITTED_IN_SEVEN_DAYS" />
+          <xsd:enumeration value="TWENTY_EIGHT_SPLITTED_IN_FOURTEEN_DAYS" />
+          <xsd:enumeration value="FOURTEEN_SPLITTED_IN_SEVEN_DAYS" />
+          <xsd:enumeration value="NOT_HOMOGENEOUS" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="ListType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="I" />
+          <xsd:enumeration value="II" />
+          <xsd:enumeration value="NARCOTIC" />
+          <xsd:enumeration value="NULL" />
+          <xsd:enumeration value="NOT_HOMOGENEOUS" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="VatRate">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="NORMAL" />
+          <xsd:enumeration value="REDUCED" />
+          <xsd:enumeration value="SUPER_REDUCED" />
+          <xsd:enumeration value="HIGH" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="RefundRate">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="LPPR" />
+          <xsd:enumeration value="NR" />
+          <xsd:enumeration value="_15" />
+          <xsd:enumeration value="_35" />
+          <xsd:enumeration value="_65" />
+          <xsd:enumeration value="_100" />
+          <xsd:enumeration value="UNSPECIFIED" />
+          <xsd:enumeration value="NOT_HOMOGENEOUS" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="GenericType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="GENERIC" />
+          <xsd:enumeration value="REFERENT" />
+          <xsd:enumeration value="NULL" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="DispensationPlace">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="HOSPITAL" />
+          <xsd:enumeration value="PHARMACY" />
+          <xsd:enumeration value="NOT_HOMOGENEOUS" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="ProductType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="VIDAL" />
+          <xsd:enumeration value="DIETETIC" />
+          <xsd:enumeration value="VETERINARY" />
+          <xsd:enumeration value="NON_PHARMACEUTICAL" />
+          <xsd:enumeration value="ACCESSORY" />
+          <xsd:enumeration value="MISCELLANEOUS" />
+          <xsd:enumeration value="HOMEOPATHIC" />
+          <xsd:enumeration value="BALNEOLOGY" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="MarketStatus">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="AVAILABLE" />
+          <xsd:enumeration value="DELETED" />
+          <xsd:enumeration value="PHARMACO" />
+          <xsd:enumeration value="NEW" />
+          <xsd:enumeration value="DELETED_ONEYEAR" />
+          <xsd:enumeration value="PHARMACO_ONEYEAR" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="searchByIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packList" nillable="true" type="tns:ArrayOfPack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByProductRangeIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productRangeIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfProductRangePackCouple">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="productRangePackCouple" nillable="true" type="tns:productRangePackCouple" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="productRangePackCouple">
+        <xsd:sequence>
+          <xsd:element name="pack" nillable="true" type="tns:pack" />
+          <xsd:element name="productRange" nillable="true" type="tns:productRange" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="productRange">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchByProductRangeIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ProductRangePackCoupleList" nillable="true" type="tns:ArrayOfProductRangePackCouple" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByIndicationIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByIndicationIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packList" nillable="true" type="tns:ArrayOfPack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByIndicationId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByIndicationIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packList" nillable="true" type="tns:ArrayOfPack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByProductId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByProductIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packList" nillable="true" type="tns:ArrayOfPack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByLpprIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="lpprIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageNumber" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageSize" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="pagedResultPackLpprCouple">
+        <xsd:sequence>
+          <xsd:element name="pageNumber" type="xsd:int" />
+          <xsd:element name="pageSize" type="xsd:int" />
+          <xsd:element name="result" nillable="true" type="ns1:ArrayOfPackageLpprCouple" />
+          <xsd:element name="rowCount" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="lppr">
+        <xsd:sequence>
+          <xsd:element name="actCode" nillable="true" type="tns:ActCode" />
+          <xsd:element name="actCodeValue" nillable="true" type="xsd:string" />
+          <xsd:element name="code" nillable="true" type="xsd:string" />
+          <xsd:element name="ghsEffectiveDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="refundBase" type="xsd:double" />
+          <xsd:element name="refundRate" nillable="true" type="tns:RefundRate" />
+          <xsd:element name="refundRateValue" nillable="true" type="xsd:string" />
+          <xsd:element name="salePriceLimit" nillable="true" type="xsd:double" />
+          <xsd:element name="service" nillable="true" type="tns:LpprServiceType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="LpprServiceType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="BUYING" />
+          <xsd:enumeration value="RENTING" />
+          <xsd:enumeration value="MAINTENANCE" />
+          <xsd:enumeration value="REPAIR" />
+          <xsd:enumeration value="DELIVERY" />
+          <xsd:enumeration value="SERVICE" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="searchByLpprIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="PagedResultPackLpprCouple" nillable="true" type="tns:pagedResultPackLpprCouple" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfProductType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ProductType" nillable="true" type="tns:ProductType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfMarketStatus">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="MarketStatus" nillable="true" type="tns:MarketStatus" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchByNameTypesAndMarketStatuses">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="name" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="types" nillable="true" type="tns:ArrayOfProductType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="marketStatuses" nillable="true" type="tns:ArrayOfMarketStatus" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByNameTypesAndMarketStatusesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packList" nillable="true" type="tns:ArrayOfPack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:simpleType name="ReimbursementScheduleFilter">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="NONE" />
+          <xsd:enumeration value="ONLY_FUTURE_EVENTS" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="getReimbursementSchedule">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="reimbursementScheduleFilter" nillable="true" type="tns:ReimbursementScheduleFilter" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfPackageReimbursementCouple">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="packageReimbursementCouple" nillable="true" type="tns:packageReimbursementCouple" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="packageReimbursementCouple">
+        <xsd:sequence>
+          <xsd:element name="pack" nillable="true" type="tns:pack" />
+          <xsd:element name="priceScheduleItemList" nillable="true" type="tns:ArrayOfPackagePriceScheduleItem" />
+          <xsd:element name="reimbursementScheduleItemList" nillable="true" type="tns:ArrayOfPackageReimbursementScheduleItem" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfPackagePriceScheduleItem">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="packagePriceScheduleItem" nillable="true" type="tns:packagePriceScheduleItem" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="packagePriceScheduleItem">
+        <xsd:sequence>
+          <xsd:element name="endDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element name="manufacturerPrice" nillable="true" type="xsd:float" />
+          <xsd:element name="publicPrice" nillable="true" type="xsd:float" />
+          <xsd:element name="reference" nillable="true" type="tns:reference" />
+          <xsd:element name="refundBase" nillable="true" type="xsd:float" />
+          <xsd:element name="startDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element name="vatRate" nillable="true" type="tns:VatRate" />
+          <xsd:element name="vatRateValue" nillable="true" type="xsd:float" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="reference">
+        <xsd:sequence>
+          <xsd:element name="referenceDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element name="referenceName" nillable="true" type="xsd:string" />
+          <xsd:element name="referenceType" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfPackageReimbursementScheduleItem">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="packageReimbursementScheduleItem" nillable="true" type="tns:packageReimbursementScheduleItem" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="packageReimbursementScheduleItem">
+        <xsd:sequence>
+          <xsd:element name="actCode" nillable="true" type="tns:ActCode" />
+          <xsd:element name="actCodeValue" nillable="true" type="xsd:string" />
+          <xsd:element name="endDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element name="reference" nillable="true" type="tns:reference" />
+          <xsd:element name="refundingRate" nillable="true" type="tns:RefundRate" />
+          <xsd:element name="refundingRateValue" nillable="true" type="xsd:string" />
+          <xsd:element name="startDate" nillable="true" type="xsd:dateTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getReimbursementScheduleResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packageReimbursementCoupleList" nillable="true" type="tns:ArrayOfPackageReimbursementCouple" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchById">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="pack" nillable="true" type="tns:pack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfString">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchByCodes">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="cips" nillable="true" type="tns:ArrayOfString" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByCodesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packList" nillable="true" type="tns:ArrayOfPack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getRefundingRate">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getRefundingRateResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="refundingRate" nillable="true" type="tns:RefundRate" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchRefundingRateByIndicationId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchRefundingRateByIndicationIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="refundingRate" nillable="true" type="tns:RefundRate" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:simpleType name="CompanyType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="OWNER" />
+          <xsd:enumeration value="HOLDER" />
+          <xsd:enumeration value="DISTRIBUTOR" />
+          <xsd:enumeration value="SUBSCRIBER" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="searchByCompanyIdAndType">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="companyId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="type" nillable="true" type="tns:CompanyType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByCompanyIdAndTypeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packList" nillable="true" type="tns:ArrayOfPack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByUcdId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByUcdIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packList" nillable="true" type="tns:ArrayOfPack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByEphmraId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ephmraId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByEphmraIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packList" nillable="true" type="tns:ArrayOfPack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByCip">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="cip" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByCipResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="pack" nillable="true" type="tns:pack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchNewlyAvailablePacks">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="searchNewlyAvailablePacksResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packList" nillable="true" type="tns:ArrayOfPack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByProductIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageNumber" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageSize" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="pagedResultPack">
+        <xsd:sequence>
+          <xsd:element name="pageNumber" type="xsd:int" />
+          <xsd:element name="pageSize" type="xsd:int" />
+          <xsd:element name="result" nillable="true" type="tns:ArrayOfPack" />
+          <xsd:element name="rowCount" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchByProductIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="pagedResultPack" nillable="true" type="tns:pagedResultPack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:simpleType name="SearchPackCode">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="CIP7" />
+          <xsd:enumeration value="CIP13" />
+          <xsd:enumeration value="EAN" />
+          <xsd:enumeration value="NATIONAL_DRUG_CODE" />
+          <xsd:enumeration value="ALL" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="searchByTypedCodes">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="searchPackCode" nillable="true" type="tns:SearchPackCode" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="codes" nillable="true" type="tns:ArrayOfString" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByTypedCodesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packList" nillable="true" type="tns:ArrayOfPack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByName">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="name" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByNameResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packList" nillable="true" type="tns:ArrayOfPack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchPackIndicatorsByPackIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfPackIndicators">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="packIndicators" nillable="true" type="tns:packIndicators" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="packIndicators">
+        <xsd:sequence>
+          <xsd:element name="indicators" nillable="true" type="tns:ArrayOfIndicator" />
+          <xsd:element name="pack" nillable="true" type="tns:pack" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfIndicator">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="indicator" nillable="true" type="tns:indicator" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="indicator">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="indicatorValue" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchPackIndicatorsByPackIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packIndicatorsList" nillable="true" type="tns:ArrayOfPackIndicators" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:simpleType name="PackApiFilter">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ALL" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="getAllPackages">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packApiFilter" nillable="true" type="tns:PackApiFilter" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="types" nillable="true" type="tns:ArrayOfProductType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="marketStatuses" nillable="true" type="tns:ArrayOfMarketStatus" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageNumber" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageSize" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAllPackagesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="pagedResultPack" nillable="true" type="tns:pagedResultPack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByCompanyId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="companyId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByCompanyIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packList" nillable="true" type="tns:ArrayOfPack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByNameWithPagedResult">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="name" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="types" nillable="true" type="tns:ArrayOfProductType" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="marketStatuses" nillable="true" type="tns:ArrayOfMarketStatus" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageNumber" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageSize" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByNameWithPagedResultResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="pagedResultPack" nillable="true" type="tns:pagedResultPack" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://lppr.api.vidal.com">
+      <xsd:complexType name="ArrayOfPackageLpprCouple">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="PackageLpprCouple" nillable="true" type="ns1:PackageLpprCouple" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PackageLpprCouple">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="lppr" nillable="true" type="tns:lppr" />
+          <xsd:element name="nbLppr" type="xsd:int" />
+          <xsd:element name="pack" nillable="true" type="tns:pack" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="searchByProductRangeIdsResponse">
+    <wsdl:part name="parameters" element="tns:searchByProductRangeIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getReimbursementScheduleRequest">
+    <wsdl:part name="parameters" element="tns:getReimbursementSchedule" />
+  </wsdl:message>
+  <wsdl:message name="searchByProductIdsResponse">
+    <wsdl:part name="parameters" element="tns:searchByProductIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByProductIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByProductId" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdsRequest">
+    <wsdl:part name="parameters" element="tns:searchByIds" />
+  </wsdl:message>
+  <wsdl:message name="searchByCompanyIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByCompanyIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdsResponse">
+    <wsdl:part name="parameters" element="tns:searchByIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByProductRangeIdsRequest">
+    <wsdl:part name="parameters" element="tns:searchByProductRangeIds" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameWithPagedResultResponse">
+    <wsdl:part name="parameters" element="tns:searchByNameWithPagedResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByCompanyIdAndTypeRequest">
+    <wsdl:part name="parameters" element="tns:searchByCompanyIdAndType" />
+  </wsdl:message>
+  <wsdl:message name="getAllPackagesResponse">
+    <wsdl:part name="parameters" element="tns:getAllPackagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameWithPagedResultRequest">
+    <wsdl:part name="parameters" element="tns:searchByNameWithPagedResult" />
+  </wsdl:message>
+  <wsdl:message name="searchByUcdIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByUcdIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByLpprIdsResponse">
+    <wsdl:part name="parameters" element="tns:searchByLpprIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByIndicationIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByIndicationIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByTypedCodesResponse">
+    <wsdl:part name="parameters" element="tns:searchByTypedCodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByCodesResponse">
+    <wsdl:part name="parameters" element="tns:searchByCodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByLpprIdsRequest">
+    <wsdl:part name="parameters" element="tns:searchByLpprIds" />
+  </wsdl:message>
+  <wsdl:message name="getAllPackagesRequest">
+    <wsdl:part name="parameters" element="tns:getAllPackages" />
+  </wsdl:message>
+  <wsdl:message name="searchRefundingRateByIndicationIdResponse">
+    <wsdl:part name="parameters" element="tns:searchRefundingRateByIndicationIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByCipResponse">
+    <wsdl:part name="parameters" element="tns:searchByCipResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByCompanyIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByCompanyId" />
+  </wsdl:message>
+  <wsdl:message name="searchNewlyAvailablePacksResponse">
+    <wsdl:part name="parameters" element="tns:searchNewlyAvailablePacksResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByEphmraIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByEphmraIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByTypedCodesRequest">
+    <wsdl:part name="parameters" element="tns:searchByTypedCodes" />
+  </wsdl:message>
+  <wsdl:message name="searchPackIndicatorsByPackIdsRequest">
+    <wsdl:part name="parameters" element="tns:searchPackIndicatorsByPackIds" />
+  </wsdl:message>
+  <wsdl:message name="getRefundingRateRequest">
+    <wsdl:part name="parameters" element="tns:getRefundingRate" />
+  </wsdl:message>
+  <wsdl:message name="getReimbursementScheduleResponse">
+    <wsdl:part name="parameters" element="tns:getReimbursementScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByCompanyIdAndTypeResponse">
+    <wsdl:part name="parameters" element="tns:searchByCompanyIdAndTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameRequest">
+    <wsdl:part name="parameters" element="tns:searchByName" />
+  </wsdl:message>
+  <wsdl:message name="searchByCipRequest">
+    <wsdl:part name="parameters" element="tns:searchByCip" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchNewlyAvailablePacksRequest">
+    <wsdl:part name="parameters" element="tns:searchNewlyAvailablePacks" />
+  </wsdl:message>
+  <wsdl:message name="getRefundingRateResponse">
+    <wsdl:part name="parameters" element="tns:getRefundingRateResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByIndicationIdsRequest">
+    <wsdl:part name="parameters" element="tns:searchByIndicationIds" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameTypesAndMarketStatusesRequest">
+    <wsdl:part name="parameters" element="tns:searchByNameTypesAndMarketStatuses" />
+  </wsdl:message>
+  <wsdl:message name="searchByCodesRequest">
+    <wsdl:part name="parameters" element="tns:searchByCodes" />
+  </wsdl:message>
+  <wsdl:message name="searchByProductIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameResponse">
+    <wsdl:part name="parameters" element="tns:searchByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByProductIdsRequest">
+    <wsdl:part name="parameters" element="tns:searchByProductIds" />
+  </wsdl:message>
+  <wsdl:message name="searchByUcdIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByUcdId" />
+  </wsdl:message>
+  <wsdl:message name="searchByIndicationIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByIndicationId" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameTypesAndMarketStatusesResponse">
+    <wsdl:part name="parameters" element="tns:searchByNameTypesAndMarketStatusesResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchRefundingRateByIndicationIdRequest">
+    <wsdl:part name="parameters" element="tns:searchRefundingRateByIndicationId" />
+  </wsdl:message>
+  <wsdl:message name="searchByIndicationIdsResponse">
+    <wsdl:part name="parameters" element="tns:searchByIndicationIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchPackIndicatorsByPackIdsResponse">
+    <wsdl:part name="parameters" element="tns:searchPackIndicatorsByPackIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByEphmraIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByEphmraId" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdRequest">
+    <wsdl:part name="parameters" element="tns:searchById" />
+  </wsdl:message>
+  <wsdl:portType name="packService">
+    <wsdl:operation name="searchByIds">
+      <wsdl:input name="searchByIdsRequest" message="tns:searchByIdsRequest" />
+      <wsdl:output name="searchByIdsResponse" message="tns:searchByIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByProductRangeIds">
+      <wsdl:input name="searchByProductRangeIdsRequest" message="tns:searchByProductRangeIdsRequest" />
+      <wsdl:output name="searchByProductRangeIdsResponse" message="tns:searchByProductRangeIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByIndicationIds">
+      <wsdl:input name="searchByIndicationIdsRequest" message="tns:searchByIndicationIdsRequest" />
+      <wsdl:output name="searchByIndicationIdsResponse" message="tns:searchByIndicationIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByIndicationId">
+      <wsdl:input name="searchByIndicationIdRequest" message="tns:searchByIndicationIdRequest" />
+      <wsdl:output name="searchByIndicationIdResponse" message="tns:searchByIndicationIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByProductId">
+      <wsdl:input name="searchByProductIdRequest" message="tns:searchByProductIdRequest" />
+      <wsdl:output name="searchByProductIdResponse" message="tns:searchByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByLpprIds">
+      <wsdl:input name="searchByLpprIdsRequest" message="tns:searchByLpprIdsRequest" />
+      <wsdl:output name="searchByLpprIdsResponse" message="tns:searchByLpprIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByNameTypesAndMarketStatuses">
+      <wsdl:input name="searchByNameTypesAndMarketStatusesRequest" message="tns:searchByNameTypesAndMarketStatusesRequest" />
+      <wsdl:output name="searchByNameTypesAndMarketStatusesResponse" message="tns:searchByNameTypesAndMarketStatusesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getReimbursementSchedule">
+      <wsdl:input name="getReimbursementScheduleRequest" message="tns:getReimbursementScheduleRequest" />
+      <wsdl:output name="getReimbursementScheduleResponse" message="tns:getReimbursementScheduleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchById">
+      <wsdl:input name="searchByIdRequest" message="tns:searchByIdRequest" />
+      <wsdl:output name="searchByIdResponse" message="tns:searchByIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByCodes">
+      <wsdl:input name="searchByCodesRequest" message="tns:searchByCodesRequest" />
+      <wsdl:output name="searchByCodesResponse" message="tns:searchByCodesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getRefundingRate">
+      <wsdl:input name="getRefundingRateRequest" message="tns:getRefundingRateRequest" />
+      <wsdl:output name="getRefundingRateResponse" message="tns:getRefundingRateResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchRefundingRateByIndicationId">
+      <wsdl:input name="searchRefundingRateByIndicationIdRequest" message="tns:searchRefundingRateByIndicationIdRequest" />
+      <wsdl:output name="searchRefundingRateByIndicationIdResponse" message="tns:searchRefundingRateByIndicationIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByCompanyIdAndType">
+      <wsdl:input name="searchByCompanyIdAndTypeRequest" message="tns:searchByCompanyIdAndTypeRequest" />
+      <wsdl:output name="searchByCompanyIdAndTypeResponse" message="tns:searchByCompanyIdAndTypeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByUcdId">
+      <wsdl:input name="searchByUcdIdRequest" message="tns:searchByUcdIdRequest" />
+      <wsdl:output name="searchByUcdIdResponse" message="tns:searchByUcdIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByEphmraId">
+      <wsdl:input name="searchByEphmraIdRequest" message="tns:searchByEphmraIdRequest" />
+      <wsdl:output name="searchByEphmraIdResponse" message="tns:searchByEphmraIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByCip">
+      <wsdl:input name="searchByCipRequest" message="tns:searchByCipRequest" />
+      <wsdl:output name="searchByCipResponse" message="tns:searchByCipResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchNewlyAvailablePacks">
+      <wsdl:input name="searchNewlyAvailablePacksRequest" message="tns:searchNewlyAvailablePacksRequest" />
+      <wsdl:output name="searchNewlyAvailablePacksResponse" message="tns:searchNewlyAvailablePacksResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByProductIds">
+      <wsdl:input name="searchByProductIdsRequest" message="tns:searchByProductIdsRequest" />
+      <wsdl:output name="searchByProductIdsResponse" message="tns:searchByProductIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByTypedCodes">
+      <wsdl:input name="searchByTypedCodesRequest" message="tns:searchByTypedCodesRequest" />
+      <wsdl:output name="searchByTypedCodesResponse" message="tns:searchByTypedCodesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByName">
+      <wsdl:input name="searchByNameRequest" message="tns:searchByNameRequest" />
+      <wsdl:output name="searchByNameResponse" message="tns:searchByNameResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchPackIndicatorsByPackIds">
+      <wsdl:input name="searchPackIndicatorsByPackIdsRequest" message="tns:searchPackIndicatorsByPackIdsRequest" />
+      <wsdl:output name="searchPackIndicatorsByPackIdsResponse" message="tns:searchPackIndicatorsByPackIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllPackages">
+      <wsdl:input name="getAllPackagesRequest" message="tns:getAllPackagesRequest" />
+      <wsdl:output name="getAllPackagesResponse" message="tns:getAllPackagesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByCompanyId">
+      <wsdl:input name="searchByCompanyIdRequest" message="tns:searchByCompanyIdRequest" />
+      <wsdl:output name="searchByCompanyIdResponse" message="tns:searchByCompanyIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByNameWithPagedResult">
+      <wsdl:input name="searchByNameWithPagedResultRequest" message="tns:searchByNameWithPagedResultRequest" />
+      <wsdl:output name="searchByNameWithPagedResultResponse" message="tns:searchByNameWithPagedResultResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PackServiceHttpBinding" type="tns:packService">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="searchByIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByProductRangeIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByProductRangeIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByProductRangeIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByIndicationIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByIndicationIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByIndicationIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByIndicationId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByIndicationIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByIndicationIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByProductId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByProductIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByProductIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByLpprIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByLpprIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByLpprIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByNameTypesAndMarketStatuses">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByNameTypesAndMarketStatusesRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByNameTypesAndMarketStatusesResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReimbursementSchedule">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getReimbursementScheduleRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getReimbursementScheduleResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchById">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByCodes">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByCodesRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByCodesResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRefundingRate">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getRefundingRateRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getRefundingRateResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchRefundingRateByIndicationId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchRefundingRateByIndicationIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchRefundingRateByIndicationIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByCompanyIdAndType">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByCompanyIdAndTypeRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByCompanyIdAndTypeResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByUcdId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByUcdIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByUcdIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByEphmraId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByEphmraIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByEphmraIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByCip">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByCipRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByCipResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchNewlyAvailablePacks">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchNewlyAvailablePacksRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchNewlyAvailablePacksResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByProductIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByProductIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByProductIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByTypedCodes">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByTypedCodesRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByTypedCodesResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByName">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByNameRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByNameResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchPackIndicatorsByPackIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchPackIndicatorsByPackIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchPackIndicatorsByPackIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllPackages">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAllPackagesRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAllPackagesResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByCompanyId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByCompanyIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByCompanyIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByNameWithPagedResult">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByNameWithPagedResultRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByNameWithPagedResultResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PackService">
+    <wsdl:port name="PackServiceHttpPort" binding="tns:PackServiceHttpBinding">
+      <wsdlsoap:address location="http://localhost:8011/merlin-service/services/PackService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

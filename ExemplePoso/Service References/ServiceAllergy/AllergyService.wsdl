@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" xmlns:tns="urn:Vidal" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://constant.merlin.vidal.com" targetNamespace="urn:Vidal" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="urn:Vidal">
+      <xsd:complexType name="ArrayOfInt">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="int" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchCommonNameGroupAllergyMoleculeAlerts">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="commonNameGroupMoleculeCouples">
+        <xsd:sequence>
+          <xsd:element name="activeExcipientMoleculeAlerts" nillable="true" type="tns:ArrayOfCommonNameGroupMoleculeCouple" />
+          <xsd:element name="activePrincipleMoleculeAlerts" nillable="true" type="tns:ArrayOfCommonNameGroupMoleculeCouple" />
+          <xsd:element name="othersExcipientMoleculeAlerts" nillable="true" type="tns:ArrayOfCommonNameGroupMoleculeCouple" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfCommonNameGroupMoleculeCouple">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="commonNameGroupMoleculeCouple" nillable="true" type="tns:commonNameGroupMoleculeCouple" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="commonNameGroupMoleculeCouple">
+        <xsd:sequence>
+          <xsd:element name="allergy" nillable="true" type="tns:allergy" />
+          <xsd:element name="allergyLinked" nillable="true" type="tns:allergy" />
+          <xsd:element name="allergyPatient" nillable="true" type="tns:allergy" />
+          <xsd:element name="commonNameGroup" nillable="true" type="tns:commonNameGroup" />
+          <xsd:element name="molecule" nillable="true" type="tns:molecule" />
+          <xsd:element name="moleculePatient" nillable="true" type="tns:molecule" />
+          <xsd:element name="type" nillable="true" type="tns:SubstanceType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="molecule">
+        <xsd:sequence>
+          <xsd:element name="allergyAlert" type="xsd:boolean" />
+          <xsd:element name="homeopathy" type="xsd:boolean" />
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="role" nillable="true" type="tns:SubstanceRole" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="SubstanceRole">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ACTIVE_PRINCIPLE_OR_EXCIPIENT" />
+          <xsd:enumeration value="EXCIPIENT" />
+          <xsd:enumeration value="ACTIVE_PRINCIPLE" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="commonNameGroup">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="maxUcdRangePrice" nillable="true" type="xsd:float" />
+          <xsd:element name="minUcdRangePrice" nillable="true" type="xsd:float" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="notHomogeneousByInteractions" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="SubstanceType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ACTIVE_PRINCIPLE" />
+          <xsd:enumeration value="EXCIPIENT" />
+          <xsd:enumeration value="ACTIVE_EXCIPIENT" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="allergy">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchCommonNameGroupAllergyMoleculeAlertsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupMoleculeCouples" nillable="true" type="tns:commonNameGroupMoleculeCouples" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAlertsOnAllergiesMolecules">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfProductMoleculeCouple">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="productMoleculeCouple" nillable="true" type="tns:productMoleculeCouple" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="productMoleculeCouple">
+        <xsd:sequence>
+          <xsd:element name="allergy" nillable="true" type="tns:allergy" />
+          <xsd:element name="allergyLinked" nillable="true" type="tns:allergy" />
+          <xsd:element name="allergyPatient" nillable="true" type="tns:allergy" />
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="molecule" nillable="true" type="tns:molecule" />
+          <xsd:element name="moleculePatient" nillable="true" type="tns:molecule" />
+          <xsd:element name="product" nillable="true" type="tns:product" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="product">
+        <xsd:sequence>
+          <xsd:element name="ammType" nillable="true" type="ns1:AmmType" />
+          <xsd:element name="cis" nillable="true" type="xsd:string" />
+          <xsd:element name="commonNameGroupId" nillable="true" type="xsd:int" />
+          <xsd:element name="drugInSport" type="xsd:boolean" />
+          <xsd:element name="exceptional" type="xsd:boolean" />
+          <xsd:element name="flavor" nillable="true" type="xsd:string" />
+          <xsd:element name="genericType" nillable="true" type="tns:GenericType" />
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="list" nillable="true" type="tns:ListType" />
+          <xsd:element name="listValue" nillable="true" type="xsd:string" />
+          <xsd:element name="marketStatus" nillable="true" type="tns:MarketStatus" />
+          <xsd:element name="maxUcdRangePrice" nillable="true" type="xsd:float" />
+          <xsd:element name="midwife" type="xsd:boolean" />
+          <xsd:element name="minUcdRangePrice" nillable="true" type="xsd:float" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="perVolume" nillable="true" type="xsd:string" />
+          <xsd:element name="perVolumeUnit" nillable="true" type="xsd:string" />
+          <xsd:element name="refundingRate" nillable="true" type="tns:RefundRate" />
+          <xsd:element name="refundingRateValue" nillable="true" type="xsd:string" />
+          <xsd:element name="safetyAlert" type="xsd:boolean" />
+          <xsd:element name="type" nillable="true" type="tns:ProductType" />
+          <xsd:element name="vigilance" nillable="true" type="tns:Vigilance" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="ProductType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="VIDAL" />
+          <xsd:enumeration value="DIETETIC" />
+          <xsd:enumeration value="VETERINARY" />
+          <xsd:enumeration value="NON_PHARMACEUTICAL" />
+          <xsd:enumeration value="ACCESSORY" />
+          <xsd:enumeration value="MISCELLANEOUS" />
+          <xsd:enumeration value="HOMEOPATHIC" />
+          <xsd:enumeration value="BALNEOLOGY" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="ListType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="I" />
+          <xsd:enumeration value="II" />
+          <xsd:enumeration value="NARCOTIC" />
+          <xsd:enumeration value="NULL" />
+          <xsd:enumeration value="NOT_HOMOGENEOUS" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Vigilance">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="VIGILANCE_0" />
+          <xsd:enumeration value="VIGILANCE_1" />
+          <xsd:enumeration value="VIGILANCE_2" />
+          <xsd:enumeration value="VIGILANCE_3" />
+          <xsd:enumeration value="VIGILANCE_5" />
+          <xsd:enumeration value="UNSPECIFIED" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="MarketStatus">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="AVAILABLE" />
+          <xsd:enumeration value="DELETED" />
+          <xsd:enumeration value="PHARMACO" />
+          <xsd:enumeration value="NEW" />
+          <xsd:enumeration value="DELETED_ONEYEAR" />
+          <xsd:enumeration value="PHARMACO_ONEYEAR" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="RefundRate">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="LPPR" />
+          <xsd:enumeration value="NR" />
+          <xsd:enumeration value="_15" />
+          <xsd:enumeration value="_35" />
+          <xsd:enumeration value="_65" />
+          <xsd:enumeration value="_100" />
+          <xsd:enumeration value="UNSPECIFIED" />
+          <xsd:enumeration value="NOT_HOMOGENEOUS" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="GenericType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="GENERIC" />
+          <xsd:enumeration value="REFERENT" />
+          <xsd:enumeration value="NULL" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="getAlertsOnAllergiesMoleculesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productMoleculeCoupleList" nillable="true" type="tns:ArrayOfProductMoleculeCouple" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByMoleculeId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfAllergy">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="allergy" nillable="true" type="tns:allergy" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchByMoleculeIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="allergyList" nillable="true" type="tns:ArrayOfAllergy" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchLinkedAllergyByAllergyId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="allergyId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchLinkedAllergyByAllergyIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="allergyList" nillable="true" type="tns:ArrayOfAllergy" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAlertsOnCommonNameGroupActivePrincipleAllergiesClass">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="allergyIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfCommonNameGroupAllergyCouple">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="commonNameGroupAllergyCouple" nillable="true" type="tns:commonNameGroupAllergyCouple" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="commonNameGroupAllergyCouple">
+        <xsd:sequence>
+          <xsd:element name="allergy" nillable="true" type="tns:allergy" />
+          <xsd:element name="allergyLinked" nillable="true" type="tns:allergy" />
+          <xsd:element name="allergyPatient" nillable="true" type="tns:allergy" />
+          <xsd:element name="commonNameGroup" nillable="true" type="tns:commonNameGroup" />
+          <xsd:element name="molecule" nillable="true" type="tns:molecule" />
+          <xsd:element name="type" nillable="true" type="tns:SubstanceType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getAlertsOnCommonNameGroupActivePrincipleAllergiesClassResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupAllergyCoupleList" nillable="true" type="tns:ArrayOfCommonNameGroupAllergyCouple" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByProductId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByProductIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="allergyList" nillable="true" type="tns:ArrayOfAllergy" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByCommonNameGroupId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="CommonNameGroupAllergyList">
+        <xsd:sequence>
+          <xsd:element name="allergies" nillable="true" type="tns:ArrayOfAllergy" />
+          <xsd:element name="homogeneous" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchByCommonNameGroupIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="allergyList" nillable="true" type="tns:CommonNameGroupAllergyList" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchById">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="allergyId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="allergy" nillable="true" type="tns:allergy" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchCommonNameGroupAllergyClassAlerts">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="allergyIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="commonNameGroupAllergyCouples">
+        <xsd:sequence>
+          <xsd:element name="activeExcipientAllergyAlerts" nillable="true" type="tns:ArrayOfCommonNameGroupAllergyCouple" />
+          <xsd:element name="activePrincipleAllergyAlerts" nillable="true" type="tns:ArrayOfCommonNameGroupAllergyCouple" />
+          <xsd:element name="othersExcipientAllergyAlerts" nillable="true" type="tns:ArrayOfCommonNameGroupAllergyCouple" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchCommonNameGroupAllergyClassAlertsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupAllergyCouples" nillable="true" type="tns:commonNameGroupAllergyCouples" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAlertsOnAllergiesClass">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="allergyIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfProductAllergyCouple">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="productAllergyCouple" nillable="true" type="tns:productAllergyCouple" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="productAllergyCouple">
+        <xsd:sequence>
+          <xsd:element name="allergy" nillable="true" type="tns:allergy" />
+          <xsd:element name="allergyLinked" nillable="true" type="tns:allergy" />
+          <xsd:element name="allergyPatient" nillable="true" type="tns:allergy" />
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="molecule" nillable="true" type="tns:molecule" />
+          <xsd:element name="product" nillable="true" type="tns:product" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getAlertsOnAllergiesClassResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productAllergyCoupleList" nillable="true" type="tns:ArrayOfProductAllergyCouple" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByName">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="name" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByNameResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="allergyList" nillable="true" type="tns:ArrayOfAllergy" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAllAllergies">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageNumber" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageSize" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="pagedResultAllergy">
+        <xsd:sequence>
+          <xsd:element name="pageNumber" type="xsd:int" />
+          <xsd:element name="pageSize" type="xsd:int" />
+          <xsd:element name="result" nillable="true" type="tns:ArrayOfAllergy" />
+          <xsd:element name="rowCount" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getAllAllergiesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="pagedResultAllergy" nillable="true" type="tns:pagedResultAllergy" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAlertsOnCommonNameGroupActivePrincipleAllergiesMolecules">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupIds" nillable="true" type="tns:ArrayOfInt" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAlertsOnCommonNameGroupActivePrincipleAllergiesMoleculesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupMoleculeCoupleList" nillable="true" type="tns:ArrayOfCommonNameGroupMoleculeCouple" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://constant.merlin.vidal.com">
+      <xsd:simpleType name="AmmType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="AMM_EURO" />
+          <xsd:enumeration value="AMM_FRA" />
+          <xsd:enumeration value="ATU_COHORTE" />
+          <xsd:enumeration value="ATU_NOM" />
+          <xsd:enumeration value="IMPORT" />
+          <xsd:enumeration value="OTHER" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getAlertsOnAllergiesClassRequest">
+    <wsdl:part name="parameters" element="tns:getAlertsOnAllergiesClass" />
+  </wsdl:message>
+  <wsdl:message name="searchByProductIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByProductId" />
+  </wsdl:message>
+  <wsdl:message name="searchCommonNameGroupAllergyClassAlertsResponse">
+    <wsdl:part name="parameters" element="tns:searchCommonNameGroupAllergyClassAlertsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAlertsOnAllergiesMoleculesRequest">
+    <wsdl:part name="parameters" element="tns:getAlertsOnAllergiesMolecules" />
+  </wsdl:message>
+  <wsdl:message name="getAllAllergiesResponse">
+    <wsdl:part name="parameters" element="tns:getAllAllergiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByMoleculeIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByMoleculeId" />
+  </wsdl:message>
+  <wsdl:message name="searchCommonNameGroupAllergyClassAlertsRequest">
+    <wsdl:part name="parameters" element="tns:searchCommonNameGroupAllergyClassAlerts" />
+  </wsdl:message>
+  <wsdl:message name="getAlertsOnAllergiesClassResponse">
+    <wsdl:part name="parameters" element="tns:getAlertsOnAllergiesClassResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAlertsOnCommonNameGroupActivePrincipleAllergiesMoleculesResponse">
+    <wsdl:part name="parameters" element="tns:getAlertsOnCommonNameGroupActivePrincipleAllergiesMoleculesResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchLinkedAllergyByAllergyIdRequest">
+    <wsdl:part name="parameters" element="tns:searchLinkedAllergyByAllergyId" />
+  </wsdl:message>
+  <wsdl:message name="getAlertsOnCommonNameGroupActivePrincipleAllergiesMoleculesRequest">
+    <wsdl:part name="parameters" element="tns:getAlertsOnCommonNameGroupActivePrincipleAllergiesMolecules" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameRequest">
+    <wsdl:part name="parameters" element="tns:searchByName" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAllAllergiesRequest">
+    <wsdl:part name="parameters" element="tns:getAllAllergies" />
+  </wsdl:message>
+  <wsdl:message name="getAlertsOnAllergiesMoleculesResponse">
+    <wsdl:part name="parameters" element="tns:getAlertsOnAllergiesMoleculesResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByProductIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchCommonNameGroupAllergyMoleculeAlertsRequest">
+    <wsdl:part name="parameters" element="tns:searchCommonNameGroupAllergyMoleculeAlerts" />
+  </wsdl:message>
+  <wsdl:message name="getAlertsOnCommonNameGroupActivePrincipleAllergiesClassRequest">
+    <wsdl:part name="parameters" element="tns:getAlertsOnCommonNameGroupActivePrincipleAllergiesClass" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameResponse">
+    <wsdl:part name="parameters" element="tns:searchByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByMoleculeIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByMoleculeIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByCommonNameGroupIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByCommonNameGroupIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchLinkedAllergyByAllergyIdResponse">
+    <wsdl:part name="parameters" element="tns:searchLinkedAllergyByAllergyIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAlertsOnCommonNameGroupActivePrincipleAllergiesClassResponse">
+    <wsdl:part name="parameters" element="tns:getAlertsOnCommonNameGroupActivePrincipleAllergiesClassResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByCommonNameGroupIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByCommonNameGroupId" />
+  </wsdl:message>
+  <wsdl:message name="searchCommonNameGroupAllergyMoleculeAlertsResponse">
+    <wsdl:part name="parameters" element="tns:searchCommonNameGroupAllergyMoleculeAlertsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdRequest">
+    <wsdl:part name="parameters" element="tns:searchById" />
+  </wsdl:message>
+  <wsdl:portType name="allergyService">
+    <wsdl:operation name="searchCommonNameGroupAllergyMoleculeAlerts">
+      <wsdl:input name="searchCommonNameGroupAllergyMoleculeAlertsRequest" message="tns:searchCommonNameGroupAllergyMoleculeAlertsRequest" />
+      <wsdl:output name="searchCommonNameGroupAllergyMoleculeAlertsResponse" message="tns:searchCommonNameGroupAllergyMoleculeAlertsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAlertsOnAllergiesMolecules">
+      <wsdl:input name="getAlertsOnAllergiesMoleculesRequest" message="tns:getAlertsOnAllergiesMoleculesRequest" />
+      <wsdl:output name="getAlertsOnAllergiesMoleculesResponse" message="tns:getAlertsOnAllergiesMoleculesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByMoleculeId">
+      <wsdl:input name="searchByMoleculeIdRequest" message="tns:searchByMoleculeIdRequest" />
+      <wsdl:output name="searchByMoleculeIdResponse" message="tns:searchByMoleculeIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchLinkedAllergyByAllergyId">
+      <wsdl:input name="searchLinkedAllergyByAllergyIdRequest" message="tns:searchLinkedAllergyByAllergyIdRequest" />
+      <wsdl:output name="searchLinkedAllergyByAllergyIdResponse" message="tns:searchLinkedAllergyByAllergyIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAlertsOnCommonNameGroupActivePrincipleAllergiesClass">
+      <wsdl:input name="getAlertsOnCommonNameGroupActivePrincipleAllergiesClassRequest" message="tns:getAlertsOnCommonNameGroupActivePrincipleAllergiesClassRequest" />
+      <wsdl:output name="getAlertsOnCommonNameGroupActivePrincipleAllergiesClassResponse" message="tns:getAlertsOnCommonNameGroupActivePrincipleAllergiesClassResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByProductId">
+      <wsdl:input name="searchByProductIdRequest" message="tns:searchByProductIdRequest" />
+      <wsdl:output name="searchByProductIdResponse" message="tns:searchByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByCommonNameGroupId">
+      <wsdl:input name="searchByCommonNameGroupIdRequest" message="tns:searchByCommonNameGroupIdRequest" />
+      <wsdl:output name="searchByCommonNameGroupIdResponse" message="tns:searchByCommonNameGroupIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchById">
+      <wsdl:input name="searchByIdRequest" message="tns:searchByIdRequest" />
+      <wsdl:output name="searchByIdResponse" message="tns:searchByIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchCommonNameGroupAllergyClassAlerts">
+      <wsdl:input name="searchCommonNameGroupAllergyClassAlertsRequest" message="tns:searchCommonNameGroupAllergyClassAlertsRequest" />
+      <wsdl:output name="searchCommonNameGroupAllergyClassAlertsResponse" message="tns:searchCommonNameGroupAllergyClassAlertsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAlertsOnAllergiesClass">
+      <wsdl:input name="getAlertsOnAllergiesClassRequest" message="tns:getAlertsOnAllergiesClassRequest" />
+      <wsdl:output name="getAlertsOnAllergiesClassResponse" message="tns:getAlertsOnAllergiesClassResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByName">
+      <wsdl:input name="searchByNameRequest" message="tns:searchByNameRequest" />
+      <wsdl:output name="searchByNameResponse" message="tns:searchByNameResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllAllergies">
+      <wsdl:input name="getAllAllergiesRequest" message="tns:getAllAllergiesRequest" />
+      <wsdl:output name="getAllAllergiesResponse" message="tns:getAllAllergiesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAlertsOnCommonNameGroupActivePrincipleAllergiesMolecules">
+      <wsdl:input name="getAlertsOnCommonNameGroupActivePrincipleAllergiesMoleculesRequest" message="tns:getAlertsOnCommonNameGroupActivePrincipleAllergiesMoleculesRequest" />
+      <wsdl:output name="getAlertsOnCommonNameGroupActivePrincipleAllergiesMoleculesResponse" message="tns:getAlertsOnCommonNameGroupActivePrincipleAllergiesMoleculesResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AllergyServiceHttpBinding" type="tns:allergyService">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="searchCommonNameGroupAllergyMoleculeAlerts">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchCommonNameGroupAllergyMoleculeAlertsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchCommonNameGroupAllergyMoleculeAlertsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAlertsOnAllergiesMolecules">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAlertsOnAllergiesMoleculesRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAlertsOnAllergiesMoleculesResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByMoleculeId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByMoleculeIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByMoleculeIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchLinkedAllergyByAllergyId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchLinkedAllergyByAllergyIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchLinkedAllergyByAllergyIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAlertsOnCommonNameGroupActivePrincipleAllergiesClass">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAlertsOnCommonNameGroupActivePrincipleAllergiesClassRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAlertsOnCommonNameGroupActivePrincipleAllergiesClassResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByProductId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByProductIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByProductIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByCommonNameGroupId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByCommonNameGroupIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByCommonNameGroupIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchById">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchCommonNameGroupAllergyClassAlerts">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchCommonNameGroupAllergyClassAlertsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchCommonNameGroupAllergyClassAlertsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAlertsOnAllergiesClass">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAlertsOnAllergiesClassRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAlertsOnAllergiesClassResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByName">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByNameRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByNameResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllAllergies">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAllAllergiesRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAllAllergiesResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAlertsOnCommonNameGroupActivePrincipleAllergiesMolecules">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAlertsOnCommonNameGroupActivePrincipleAllergiesMoleculesRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAlertsOnCommonNameGroupActivePrincipleAllergiesMoleculesResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AllergyService">
+    <wsdl:port name="AllergyServiceHttpPort" binding="tns:AllergyServiceHttpBinding">
+      <wsdlsoap:address location="http://localhost:8011/merlin-service/services/AllergyService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

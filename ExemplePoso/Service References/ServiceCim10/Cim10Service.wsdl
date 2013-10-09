@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" xmlns:tns="urn:Vidal" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" targetNamespace="urn:Vidal" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="urn:Vidal">
+      <xsd:element name="searchByIndicationGroupId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationGroupId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfCim10">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="cim10" nillable="true" type="tns:cim10" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="cim10">
+        <xsd:sequence>
+          <xsd:element name="code" nillable="true" type="xsd:string" />
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchByIndicationGroupIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="cim10List" nillable="true" type="tns:ArrayOfCim10" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByCode">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="code" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByCodeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="cim10List" nillable="true" type="tns:ArrayOfCim10" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getRootNode">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="getRootNodeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="cim10" nillable="true" type="tns:cim10" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getParent">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="cim10Id" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getParentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="cim10" nillable="true" type="tns:cim10" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getIndicationGroup">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="cim10Id" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfIndicationGroup">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="indicationGroup" nillable="true" type="tns:indicationGroup" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="indicationGroup">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getIndicationGroupResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="indicationGroupList" nillable="true" type="tns:ArrayOfIndicationGroup" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByName">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="name" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByNameResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="cim10List" nillable="true" type="tns:ArrayOfCim10" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchById">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="cim10Id" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="cim10" nillable="true" type="tns:cim10" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getChildren">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="cim10Id" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getChildrenResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="cim10List" nillable="true" type="tns:ArrayOfCim10" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByContraIndicationId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="contraIndicationId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByContraIndicationIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="cim10List" nillable="true" type="tns:ArrayOfCim10" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getContraIndication">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="cim10Id" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfContraIndication">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="contraIndication" nillable="true" type="tns:contraIndication" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="contraIndication">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getContraIndicationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="contraIndicationList" nillable="true" type="tns:ArrayOfContraIndication" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getContraIndicationResponse">
+    <wsdl:part name="parameters" element="tns:getContraIndicationResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByContraIndicationIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByContraIndicationIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getParentRequest">
+    <wsdl:part name="parameters" element="tns:getParent" />
+  </wsdl:message>
+  <wsdl:message name="searchByContraIndicationIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByContraIndicationId" />
+  </wsdl:message>
+  <wsdl:message name="getRootNodeRequest">
+    <wsdl:part name="parameters" element="tns:getRootNode" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameRequest">
+    <wsdl:part name="parameters" element="tns:searchByName" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByIndicationGroupIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByIndicationGroupIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getRootNodeResponse">
+    <wsdl:part name="parameters" element="tns:getRootNodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByIndicationGroupIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByIndicationGroupId" />
+  </wsdl:message>
+  <wsdl:message name="searchByCodeRequest">
+    <wsdl:part name="parameters" element="tns:searchByCode" />
+  </wsdl:message>
+  <wsdl:message name="getIndicationGroupResponse">
+    <wsdl:part name="parameters" element="tns:getIndicationGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="getChildrenResponse">
+    <wsdl:part name="parameters" element="tns:getChildrenResponse" />
+  </wsdl:message>
+  <wsdl:message name="getChildrenRequest">
+    <wsdl:part name="parameters" element="tns:getChildren" />
+  </wsdl:message>
+  <wsdl:message name="getIndicationGroupRequest">
+    <wsdl:part name="parameters" element="tns:getIndicationGroup" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameResponse">
+    <wsdl:part name="parameters" element="tns:searchByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="getParentResponse">
+    <wsdl:part name="parameters" element="tns:getParentResponse" />
+  </wsdl:message>
+  <wsdl:message name="getContraIndicationRequest">
+    <wsdl:part name="parameters" element="tns:getContraIndication" />
+  </wsdl:message>
+  <wsdl:message name="searchByCodeResponse">
+    <wsdl:part name="parameters" element="tns:searchByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdRequest">
+    <wsdl:part name="parameters" element="tns:searchById" />
+  </wsdl:message>
+  <wsdl:portType name="cim10Service">
+    <wsdl:operation name="searchByIndicationGroupId">
+      <wsdl:input name="searchByIndicationGroupIdRequest" message="tns:searchByIndicationGroupIdRequest" />
+      <wsdl:output name="searchByIndicationGroupIdResponse" message="tns:searchByIndicationGroupIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByCode">
+      <wsdl:input name="searchByCodeRequest" message="tns:searchByCodeRequest" />
+      <wsdl:output name="searchByCodeResponse" message="tns:searchByCodeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getRootNode">
+      <wsdl:input name="getRootNodeRequest" message="tns:getRootNodeRequest" />
+      <wsdl:output name="getRootNodeResponse" message="tns:getRootNodeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getParent">
+      <wsdl:input name="getParentRequest" message="tns:getParentRequest" />
+      <wsdl:output name="getParentResponse" message="tns:getParentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getIndicationGroup">
+      <wsdl:input name="getIndicationGroupRequest" message="tns:getIndicationGroupRequest" />
+      <wsdl:output name="getIndicationGroupResponse" message="tns:getIndicationGroupResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByName">
+      <wsdl:input name="searchByNameRequest" message="tns:searchByNameRequest" />
+      <wsdl:output name="searchByNameResponse" message="tns:searchByNameResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchById">
+      <wsdl:input name="searchByIdRequest" message="tns:searchByIdRequest" />
+      <wsdl:output name="searchByIdResponse" message="tns:searchByIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getChildren">
+      <wsdl:input name="getChildrenRequest" message="tns:getChildrenRequest" />
+      <wsdl:output name="getChildrenResponse" message="tns:getChildrenResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByContraIndicationId">
+      <wsdl:input name="searchByContraIndicationIdRequest" message="tns:searchByContraIndicationIdRequest" />
+      <wsdl:output name="searchByContraIndicationIdResponse" message="tns:searchByContraIndicationIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getContraIndication">
+      <wsdl:input name="getContraIndicationRequest" message="tns:getContraIndicationRequest" />
+      <wsdl:output name="getContraIndicationResponse" message="tns:getContraIndicationResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Cim10ServiceHttpBinding" type="tns:cim10Service">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="searchByIndicationGroupId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByIndicationGroupIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByIndicationGroupIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByCode">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByCodeRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByCodeResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRootNode">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getRootNodeRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getRootNodeResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getParent">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getParentRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getParentResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIndicationGroup">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getIndicationGroupRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getIndicationGroupResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByName">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByNameRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByNameResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchById">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getChildren">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getChildrenRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getChildrenResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByContraIndicationId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByContraIndicationIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByContraIndicationIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getContraIndication">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getContraIndicationRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getContraIndicationResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Cim10Service">
+    <wsdl:port name="Cim10ServiceHttpPort" binding="tns:Cim10ServiceHttpBinding">
+      <wsdlsoap:address location="http://localhost:8011/merlin-service/services/Cim10Service" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" xmlns:tns="urn:Vidal" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" targetNamespace="urn:Vidal" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="urn:Vidal">
+      <xsd:complexType name="ArrayOfInt">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="int" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchByIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfMolecule">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="molecule" nillable="true" type="tns:molecule" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="molecule">
+        <xsd:sequence>
+          <xsd:element name="allergyAlert" type="xsd:boolean" />
+          <xsd:element name="homeopathy" type="xsd:boolean" />
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="role" nillable="true" type="tns:SubstanceRole" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="SubstanceRole">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ACTIVE_PRINCIPLE_OR_EXCIPIENT" />
+          <xsd:enumeration value="EXCIPIENT" />
+          <xsd:enumeration value="ACTIVE_PRINCIPLE" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="searchByIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeList" nillable="true" type="tns:ArrayOfMolecule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getChildrenById">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getChildrenByIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeList" nillable="true" type="tns:ArrayOfMolecule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByProductId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByProductIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeList" nillable="true" type="tns:ArrayOfMolecule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchById">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="molecule" nillable="true" type="tns:molecule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByNameAndRoleWithIndexedVidalWithUsedInComposition">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="name" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="role" nillable="true" type="tns:SubstanceRole" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByNameAndRoleWithIndexedVidalWithUsedInCompositionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeList" nillable="true" type="tns:ArrayOfMolecule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchOnlySecuredMoleculeByIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchOnlySecuredMoleculeByIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeList" nillable="true" type="tns:ArrayOfMolecule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByAllergyId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="allergyId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByAllergyIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeList" nillable="true" type="tns:ArrayOfMolecule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getParentsById">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getParentsByIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeList" nillable="true" type="tns:ArrayOfMolecule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchOnlySecuredMoleculeByName">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="name" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchOnlySecuredMoleculeByNameResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeList" nillable="true" type="tns:ArrayOfMolecule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchActivePrincipleByProductId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchActivePrincipleByProductIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeList" nillable="true" type="tns:ArrayOfMolecule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchActivePrincipleByUcdId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchActivePrincipleByUcdIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeList" nillable="true" type="tns:ArrayOfMolecule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAllMolecules">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="role" nillable="true" type="tns:SubstanceRole" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageNumber" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageSize" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="pagedResultMolecule">
+        <xsd:sequence>
+          <xsd:element name="pageNumber" type="xsd:int" />
+          <xsd:element name="pageSize" type="xsd:int" />
+          <xsd:element name="result" nillable="true" type="tns:ArrayOfMolecule" />
+          <xsd:element name="rowCount" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getAllMoleculesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="pagedResultMolecule" nillable="true" type="tns:pagedResultMolecule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByName">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="name" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByNameResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeList" nillable="true" type="tns:ArrayOfMolecule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchActivePrincipleByCommonNameGroupId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchActivePrincipleByCommonNameGroupIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeList" nillable="true" type="tns:ArrayOfMolecule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="searchByProductIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByProductId" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameAndRoleWithIndexedVidalWithUsedInCompositionResponse">
+    <wsdl:part name="parameters" element="tns:searchByNameAndRoleWithIndexedVidalWithUsedInCompositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdsRequest">
+    <wsdl:part name="parameters" element="tns:searchByIds" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdsResponse">
+    <wsdl:part name="parameters" element="tns:searchByIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getParentsByIdRequest">
+    <wsdl:part name="parameters" element="tns:getParentsById" />
+  </wsdl:message>
+  <wsdl:message name="getChildrenByIdRequest">
+    <wsdl:part name="parameters" element="tns:getChildrenById" />
+  </wsdl:message>
+  <wsdl:message name="searchActivePrincipleByProductIdResponse">
+    <wsdl:part name="parameters" element="tns:searchActivePrincipleByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchOnlySecuredMoleculeByNameResponse">
+    <wsdl:part name="parameters" element="tns:searchOnlySecuredMoleculeByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByAllergyIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByAllergyIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchActivePrincipleByProductIdRequest">
+    <wsdl:part name="parameters" element="tns:searchActivePrincipleByProductId" />
+  </wsdl:message>
+  <wsdl:message name="searchByAllergyIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByAllergyId" />
+  </wsdl:message>
+  <wsdl:message name="searchActivePrincipleByUcdIdResponse">
+    <wsdl:part name="parameters" element="tns:searchActivePrincipleByUcdIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchActivePrincipleByCommonNameGroupIdResponse">
+    <wsdl:part name="parameters" element="tns:searchActivePrincipleByCommonNameGroupIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchOnlySecuredMoleculeByIdsResponse">
+    <wsdl:part name="parameters" element="tns:searchOnlySecuredMoleculeByIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchActivePrincipleByCommonNameGroupIdRequest">
+    <wsdl:part name="parameters" element="tns:searchActivePrincipleByCommonNameGroupId" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameRequest">
+    <wsdl:part name="parameters" element="tns:searchByName" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getParentsByIdResponse">
+    <wsdl:part name="parameters" element="tns:getParentsByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchOnlySecuredMoleculeByIdsRequest">
+    <wsdl:part name="parameters" element="tns:searchOnlySecuredMoleculeByIds" />
+  </wsdl:message>
+  <wsdl:message name="searchByProductIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameAndRoleWithIndexedVidalWithUsedInCompositionRequest">
+    <wsdl:part name="parameters" element="tns:searchByNameAndRoleWithIndexedVidalWithUsedInComposition" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameResponse">
+    <wsdl:part name="parameters" element="tns:searchByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchOnlySecuredMoleculeByNameRequest">
+    <wsdl:part name="parameters" element="tns:searchOnlySecuredMoleculeByName" />
+  </wsdl:message>
+  <wsdl:message name="getChildrenByIdResponse">
+    <wsdl:part name="parameters" element="tns:getChildrenByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAllMoleculesResponse">
+    <wsdl:part name="parameters" element="tns:getAllMoleculesResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchActivePrincipleByUcdIdRequest">
+    <wsdl:part name="parameters" element="tns:searchActivePrincipleByUcdId" />
+  </wsdl:message>
+  <wsdl:message name="getAllMoleculesRequest">
+    <wsdl:part name="parameters" element="tns:getAllMolecules" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdRequest">
+    <wsdl:part name="parameters" element="tns:searchById" />
+  </wsdl:message>
+  <wsdl:portType name="moleculeService">
+    <wsdl:operation name="searchByIds">
+      <wsdl:input name="searchByIdsRequest" message="tns:searchByIdsRequest" />
+      <wsdl:output name="searchByIdsResponse" message="tns:searchByIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getChildrenById">
+      <wsdl:input name="getChildrenByIdRequest" message="tns:getChildrenByIdRequest" />
+      <wsdl:output name="getChildrenByIdResponse" message="tns:getChildrenByIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByProductId">
+      <wsdl:input name="searchByProductIdRequest" message="tns:searchByProductIdRequest" />
+      <wsdl:output name="searchByProductIdResponse" message="tns:searchByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchById">
+      <wsdl:input name="searchByIdRequest" message="tns:searchByIdRequest" />
+      <wsdl:output name="searchByIdResponse" message="tns:searchByIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByNameAndRoleWithIndexedVidalWithUsedInComposition">
+      <wsdl:input name="searchByNameAndRoleWithIndexedVidalWithUsedInCompositionRequest" message="tns:searchByNameAndRoleWithIndexedVidalWithUsedInCompositionRequest" />
+      <wsdl:output name="searchByNameAndRoleWithIndexedVidalWithUsedInCompositionResponse" message="tns:searchByNameAndRoleWithIndexedVidalWithUsedInCompositionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchOnlySecuredMoleculeByIds">
+      <wsdl:input name="searchOnlySecuredMoleculeByIdsRequest" message="tns:searchOnlySecuredMoleculeByIdsRequest" />
+      <wsdl:output name="searchOnlySecuredMoleculeByIdsResponse" message="tns:searchOnlySecuredMoleculeByIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByAllergyId">
+      <wsdl:input name="searchByAllergyIdRequest" message="tns:searchByAllergyIdRequest" />
+      <wsdl:output name="searchByAllergyIdResponse" message="tns:searchByAllergyIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getParentsById">
+      <wsdl:input name="getParentsByIdRequest" message="tns:getParentsByIdRequest" />
+      <wsdl:output name="getParentsByIdResponse" message="tns:getParentsByIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchOnlySecuredMoleculeByName">
+      <wsdl:input name="searchOnlySecuredMoleculeByNameRequest" message="tns:searchOnlySecuredMoleculeByNameRequest" />
+      <wsdl:output name="searchOnlySecuredMoleculeByNameResponse" message="tns:searchOnlySecuredMoleculeByNameResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchActivePrincipleByProductId">
+      <wsdl:input name="searchActivePrincipleByProductIdRequest" message="tns:searchActivePrincipleByProductIdRequest" />
+      <wsdl:output name="searchActivePrincipleByProductIdResponse" message="tns:searchActivePrincipleByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchActivePrincipleByUcdId">
+      <wsdl:input name="searchActivePrincipleByUcdIdRequest" message="tns:searchActivePrincipleByUcdIdRequest" />
+      <wsdl:output name="searchActivePrincipleByUcdIdResponse" message="tns:searchActivePrincipleByUcdIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllMolecules">
+      <wsdl:input name="getAllMoleculesRequest" message="tns:getAllMoleculesRequest" />
+      <wsdl:output name="getAllMoleculesResponse" message="tns:getAllMoleculesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByName">
+      <wsdl:input name="searchByNameRequest" message="tns:searchByNameRequest" />
+      <wsdl:output name="searchByNameResponse" message="tns:searchByNameResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchActivePrincipleByCommonNameGroupId">
+      <wsdl:input name="searchActivePrincipleByCommonNameGroupIdRequest" message="tns:searchActivePrincipleByCommonNameGroupIdRequest" />
+      <wsdl:output name="searchActivePrincipleByCommonNameGroupIdResponse" message="tns:searchActivePrincipleByCommonNameGroupIdResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MoleculeServiceHttpBinding" type="tns:moleculeService">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="searchByIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getChildrenById">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getChildrenByIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getChildrenByIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByProductId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByProductIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByProductIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchById">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByNameAndRoleWithIndexedVidalWithUsedInComposition">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByNameAndRoleWithIndexedVidalWithUsedInCompositionRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByNameAndRoleWithIndexedVidalWithUsedInCompositionResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchOnlySecuredMoleculeByIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchOnlySecuredMoleculeByIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchOnlySecuredMoleculeByIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByAllergyId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByAllergyIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByAllergyIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getParentsById">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getParentsByIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getParentsByIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchOnlySecuredMoleculeByName">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchOnlySecuredMoleculeByNameRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchOnlySecuredMoleculeByNameResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchActivePrincipleByProductId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchActivePrincipleByProductIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchActivePrincipleByProductIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchActivePrincipleByUcdId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchActivePrincipleByUcdIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchActivePrincipleByUcdIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllMolecules">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAllMoleculesRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAllMoleculesResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByName">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByNameRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByNameResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchActivePrincipleByCommonNameGroupId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchActivePrincipleByCommonNameGroupIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchActivePrincipleByCommonNameGroupIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MoleculeService">
+    <wsdl:port name="MoleculeServiceHttpPort" binding="tns:MoleculeServiceHttpBinding">
+      <wsdlsoap:address location="http://localhost:8011/merlin-service/services/MoleculeService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,727 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3A68A404-5ACF-4F1C-9376-6BD5650D1D03}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ExemplePoso</RootNamespace>
+    <AssemblyName>ExemplePoso</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>http://localhost/ExemplePoso/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="vidalapi-dotnet, Version=1.13.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Vidal Expert\api\lib\vidalapi-dotnet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnalyseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnalyseForm.Designer.cs">
+      <DependentUpon>AnalyseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CircuitMedic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CircuitMedic.Designer.cs">
+      <DependentUpon>CircuitMedic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dto\RelatedElementDto.cs" />
+    <Compile Include="enum\GenericTypeDto.cs" />
+    <Compile Include="enum\VigilanceDto.cs" />
+    <EmbeddedResource Include="CircuitMedic.resx">
+      <DependentUpon>CircuitMedic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientControl.resx">
+      <DependentUpon>PatientControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="PatientControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PatientControl.Designer.cs">
+      <DependentUpon>PatientControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecosForm.Designer.cs">
+      <DependentUpon>RecosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VidalHelperNative.cs" />
+    <Compile Include="dto\AlertDto.cs" />
+    <Compile Include="dto\CNGDto.cs" />
+    <Compile Include="dto\Cim10Dto.cs" />
+    <Compile Include="dto\AllergyDto.cs" />
+    <Compile Include="dto\BrandedDPrescribableDto.cs" />
+    <Compile Include="dto\DrugSummarizedAlertCoupleDto.cs" />
+    <Compile Include="dto\poso\IndicationDto.cs" />
+    <Compile Include="dto\poso\MessageDto.cs" />
+    <Compile Include="dto\poso\NumberOfDoseDto.cs" />
+    <Compile Include="dto\poso\PosologyDurationDto.cs" />
+    <Compile Include="dto\poso\PosologyUnitDto.cs" />
+    <Compile Include="dto\poso\PrescriptionAnalysisDto.cs" />
+    <Compile Include="dto\poso\PrescriptionLineAnalysisDto.cs" />
+    <Compile Include="dto\poso\RouteDto.cs" />
+    <Compile Include="dto\MoleculeDto.cs" />
+    <Compile Include="dto\poso\NumberOfDosesDto.cs" />
+    <Compile Include="dto\poso\SimplePosologyAlertDto.cs" />
+    <Compile Include="dto\ReferenceDto.cs" />
+    <Compile Include="dto\SummarizedDrugDto.cs" />
+    <Compile Include="dto\UcdDto.cs" />
+    <Compile Include="dto\PackDto.cs" />
+    <Compile Include="dto\ProductDto.cs" />
+    <Compile Include="enum\BreastFeedingDto.cs" />
+    <Compile Include="enum\GenderDto.cs" />
+    <Compile Include="enum\SeverityLevelDto.cs" />
+    <Compile Include="enum\DrugTypeDto.cs" />
+    <Compile Include="enum\PosologyFrequencyTypeDto.cs" />
+    <Compile Include="enum\DurationTypeDto.cs" />
+    <Compile Include="enum\HepaticInsufficiencyDto.cs" />
+    <Compile Include="enum\DoseUnitDto.cs" />
+    <Compile Include="enum\SummarizedAlert\SummarizedRedundantInteractionAlertDto.cs" />
+    <Compile Include="enum\SummarizedAlert\SummarizedPrecautionAlertDto.cs" />
+    <Compile Include="enum\SummarizedAlert\SummarizedPosologyAlertDto.cs" />
+    <Compile Include="enum\SummarizedAlert\SummarizedPhysicoChemicalAlertDto.cs" />
+    <Compile Include="enum\SummarizedAlert\SummarizedInteractionAletDto.cs" />
+    <Compile Include="enum\SummarizedAlert\SummarizedContraIndicationAletDto.cs" />
+    <Compile Include="enum\SummarizedAlert\SummarizedAllergyAletDto.cs" />
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form3.Designer.cs">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IVidalHelper.cs" />
+    <Compile Include="Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceAllergy\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceAnalysis\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceCim10\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceCNG\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceMolecule\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServicePack\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServicePoso\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServicePrescribable\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceProduct\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceSmr\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceSurveillances\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceUcd\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="SmrForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SmrForm.Designer.cs">
+      <DependentUpon>SmrForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VidalHelperWS.cs" />
+    <Compile Include="ViewHelper.cs" />
+    <EmbeddedResource Include="AnalyseForm.resx">
+      <DependentUpon>AnalyseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form3.resx">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecosForm.resx">
+      <DependentUpon>RecosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource1.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmrForm.resx">
+      <DependentUpon>SmrForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\VidalAPI.Domain.Composition.datasource" />
+    <None Include="Properties\DataSources\VidalAPI.Domain.CompositionList.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Service References\ServiceAllergy\AllergyService.wsdl" />
+    <None Include="Service References\ServiceAllergy\ExemplePoso.ServiceAllergy.allergy.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceAllergy\ExemplePoso.ServiceAllergy.ArrayOfAllergy.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceAllergy\ExemplePoso.ServiceAllergy.ArrayOfCommonNameGroupAllergyCouple.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceAllergy\ExemplePoso.ServiceAllergy.ArrayOfCommonNameGroupMoleculeCouple.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceAllergy\ExemplePoso.ServiceAllergy.ArrayOfProductAllergyCouple.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceAllergy\ExemplePoso.ServiceAllergy.ArrayOfProductMoleculeCouple.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceAllergy\ExemplePoso.ServiceAllergy.commonNameGroupAllergyCouples.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceAllergy\ExemplePoso.ServiceAllergy.CommonNameGroupAllergyList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceAllergy\ExemplePoso.ServiceAllergy.commonNameGroupMoleculeCouples.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceAllergy\ExemplePoso.ServiceAllergy.pagedResultAllergy.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceAnalysis\DrugPrescriptionAnalysisService.wsdl" />
+    <None Include="Service References\ServiceAnalysis\ExemplePoso.ServiceAnalysis.ArrayOfCodedReco.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceAnalysis\ExemplePoso.ServiceAnalysis.DrugSummarizedAlertCouple.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceAnalysis\ExemplePoso.ServiceAnalysis.prescriptionAnalysis.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceAnalysis\ExemplePoso.ServiceAnalysis.prescriptionCostAnalysis.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceCim10\Cim10Service.wsdl" />
+    <None Include="Service References\ServiceCim10\ExemplePoso.ServiceCim10.ArrayOfCim10.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceCim10\ExemplePoso.ServiceCim10.ArrayOfContraIndication.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceCim10\ExemplePoso.ServiceCim10.ArrayOfIndicationGroup.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceCim10\ExemplePoso.ServiceCim10.cim10.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceCNG\CommonNameGroupService.wsdl" />
+    <None Include="Service References\ServiceCNG\ExemplePoso.ServiceCNG.ArrayOfCommonNameGroup.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceCNG\ExemplePoso.ServiceCNG.ArrayOfCommonNameGroupIndicators.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceCNG\ExemplePoso.ServiceCNG.ArrayOfRoute.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceCNG\ExemplePoso.ServiceCNG.commonNameGroup.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceCNG\ExemplePoso.ServiceCNG.GalenicForm.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceMolecule\ExemplePoso.ServiceMolecule.ArrayOfMolecule.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceMolecule\ExemplePoso.ServiceMolecule.molecule.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceMolecule\ExemplePoso.ServiceMolecule.pagedResultMolecule.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceMolecule\MoleculeService.wsdl" />
+    <None Include="Service References\ServicePack\ExemplePoso.ServicePack.ArrayOfPack.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePack\ExemplePoso.ServicePack.ArrayOfPackageReimbursementCouple.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePack\ExemplePoso.ServicePack.ArrayOfPackIndicators.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePack\ExemplePoso.ServicePack.ArrayOfProductRangePackCouple.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePack\ExemplePoso.ServicePack.pack.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePack\ExemplePoso.ServicePack.pagedResultPack.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePack\ExemplePoso.ServicePack.pagedResultPackLpprCouple.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePack\ExemplePoso.ServicePack.RefundRate.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePack\PackService.wsdl" />
+    <None Include="Service References\ServicePoso\ExemplePoso.ServicePoso.ActivePrincipleDoses.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePoso\ExemplePoso.ServicePoso.ArrayOfDoseUnit.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePoso\ExemplePoso.ServicePoso.ArrayOfPosologyAlert.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePoso\ExemplePoso.ServicePoso.ArrayOfPosologyUnit.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePoso\ExemplePoso.ServicePoso.ArrayOfRoute.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePoso\ExemplePoso.ServicePoso.CommonNameGroupPosologyAlertList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePoso\ExemplePoso.ServicePoso.CommonNameGroupPosologyRouteList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePoso\ExemplePoso.ServicePoso.CommonNameGroupPosologyUnitList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePoso\ExemplePoso.ServicePoso.NumberOfDoses.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePoso\ExemplePoso.ServicePoso.pagedResultUnit.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePoso\ExemplePoso.ServicePoso.PosologyAlerts.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePoso\PosologyService.wsdl" />
+    <None Include="Service References\ServicePrescribable\ExemplePoso.ServicePrescribable.ArrayOfBrandedPrescribable.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePrescribable\ExemplePoso.ServicePrescribable.ArrayOfUcdBrandedPrescribables.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicePrescribable\PrescribableService.wsdl" />
+    <None Include="Service References\ServiceProduct\ExemplePoso.ServiceProduct.ArrayOfAsmr.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceProduct\ExemplePoso.ServiceProduct.ArrayOfProduct.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceProduct\ExemplePoso.ServiceProduct.ArrayOfProductIndicators.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceProduct\ExemplePoso.ServiceProduct.ArrayOfProductRangeProductCouple.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceProduct\ExemplePoso.ServiceProduct.ArrayOfProductRouteListCouple.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceProduct\ExemplePoso.ServiceProduct.ArrayOfRoute.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceProduct\ExemplePoso.ServiceProduct.ArrayOfSmr.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceProduct\ExemplePoso.ServiceProduct.GalenicForm.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceProduct\ExemplePoso.ServiceProduct.pagedResultProduct.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceProduct\ExemplePoso.ServiceProduct.PrescriptionMode.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceProduct\ExemplePoso.ServiceProduct.product.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceProduct\ExemplePoso.ServiceProduct.SafetyAlertStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceProduct\ProductService.wsdl" />
+    <None Include="Service References\ServiceSmr\ExemplePoso.ServiceSmr.ArrayOfSmr.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceSmr\SmrService.wsdl" />
+    <None Include="Service References\ServiceSurveillances\ExemplePoso.ServiceSurveillances.ArrayOfProductRangeUcdCouple.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceSurveillances\ExemplePoso.ServiceSurveillances.ArrayOfUcd.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceSurveillances\ExemplePoso.ServiceSurveillances.ArrayOfUcdIndicators.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceSurveillances\ExemplePoso.ServiceSurveillances.ArrayOfUcdPosologyUnitsAndItemsConcentrations.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceSurveillances\ExemplePoso.ServiceSurveillances.pagedResultUcd.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceSurveillances\ExemplePoso.ServiceSurveillances.ucd.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceSurveillances\UcdService.wsdl" />
+    <None Include="Service References\ServiceUcd\ExemplePoso.ServiceUcd.ArrayOfProductRangeUcdCouple.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceUcd\ExemplePoso.ServiceUcd.ArrayOfUcd.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceUcd\ExemplePoso.ServiceUcd.ArrayOfUcdIndicators.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceUcd\ExemplePoso.ServiceUcd.ArrayOfUcdPosologyUnitsAndItemsConcentrations.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceUcd\ExemplePoso.ServiceUcd.pagedResultUcd.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceUcd\ExemplePoso.ServiceUcd.ucd.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceUcd\UcdService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceAllergy\" />
+    <WCFMetadataStorage Include="Service References\ServiceAnalysis\" />
+    <WCFMetadataStorage Include="Service References\ServiceCim10\" />
+    <WCFMetadataStorage Include="Service References\ServiceCNG\" />
+    <WCFMetadataStorage Include="Service References\ServiceMolecule\" />
+    <WCFMetadataStorage Include="Service References\ServicePack\" />
+    <WCFMetadataStorage Include="Service References\ServicePoso\" />
+    <WCFMetadataStorage Include="Service References\ServicePrescribable\" />
+    <WCFMetadataStorage Include="Service References\ServiceProduct\" />
+    <WCFMetadataStorage Include="Service References\ServiceSmr\" />
+    <WCFMetadataStorage Include="Service References\ServiceSurveillances\" />
+    <WCFMetadataStorage Include="Service References\ServiceUcd\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceAllergy\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceAllergy\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceAllergy\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceCim10\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceCim10\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceCim10\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceCNG\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceCNG\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceCNG\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceAnalysis\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceAnalysis\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceAnalysis\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceMolecule\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceMolecule\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceMolecule\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicePack\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicePack\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicePack\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicePoso\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicePoso\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicePoso\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicePrescribable\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicePrescribable\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicePrescribable\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceSurveillances\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceSurveillances\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceSurveillances\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceUcd\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceUcd\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceUcd\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceSmr\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceSmr\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceSmr\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="helper\" />
+    <Folder Include="NewFolder1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="img\allergy.png" />
+    <Content Include="img\iam.png" />
+    <Content Include="img\interaction10.png" />
+    <Content Include="img\interaction20.png" />
+    <Content Include="img\interaction30.png" />
+    <Content Include="img\interaction40.png" />
+    <Content Include="img\pci.png" />
+    <Content Include="img\unknownType.png" />
+    <None Include="Resources\genericReferenceLarge.png" />
+    <None Include="Resources\genericLarge.png" />
+    <None Include="Resources\downloaded1.png" />
+    <None Include="Resources\removed-drugs-pharmaco.png" />
+    <None Include="Resources\removed-drugs.png" />
+    <None Include="Resources\withoutPrescriptionOff.png" />
+    <None Include="Resources\withoutPrescription.png" />
+    <None Include="Resources\vigilanceOff.png" />
+    <None Include="Resources\restrictedPrescLargeOff.png" />
+    <None Include="Resources\genericLargeOff.png" />
+    <None Include="Resources\dopingLargeOff.png" />
+    <None Include="Resources\dopingLarge.png" />
+    <None Include="Resources\restrictedPrescLarge.png" />
+    <None Include="Resources\vigilance4.png" />
+    <None Include="Resources\vigilance3.png" />
+    <None Include="Resources\vigilance2.png" />
+    <None Include="Resources\vigilance1.png" />
+    <None Include="Resources\vigilance0.png" />
+    <None Include="Resources\unknownIam.png" />
+    <None Include="Service References\ServiceProduct\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ServiceProduct\configuration.svcinfo" />
+    <None Include="Service References\ServiceProduct\configuration91.svcinfo" />
+    <None Include="Resources\downloaded.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" xmlns:tns="urn:Vidal" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" targetNamespace="urn:Vidal" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="urn:Vidal">
+      <xsd:complexType name="ArrayOfInt">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="int" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchByIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfUcd">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ucd" nillable="true" type="tns:ucd" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ucd">
+        <xsd:sequence>
+          <xsd:element name="code" nillable="true" type="xsd:string" />
+          <xsd:element name="code13" nillable="true" type="xsd:string" />
+          <xsd:element name="ghs" type="xsd:boolean" />
+          <xsd:element name="ghsPrice" nillable="true" type="xsd:float" />
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="marketStatus" nillable="true" type="tns:MarketStatus" />
+          <xsd:element name="maxUcdRangePrice" nillable="true" type="xsd:float" />
+          <xsd:element name="minUcdRangePrice" nillable="true" type="xsd:float" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="retrocession" type="xsd:boolean" />
+          <xsd:element name="retrocessionPrice" nillable="true" type="xsd:float" />
+          <xsd:element name="safetyAlert" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="MarketStatus">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="AVAILABLE" />
+          <xsd:enumeration value="DELETED" />
+          <xsd:enumeration value="PHARMACO" />
+          <xsd:enumeration value="NEW" />
+          <xsd:enumeration value="DELETED_ONEYEAR" />
+          <xsd:enumeration value="PHARMACO_ONEYEAR" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="searchByIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdList" nillable="true" type="tns:ArrayOfUcd" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:simpleType name="UcdApiFilter">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ALL" />
+          <xsd:enumeration value="HORSGHS" />
+          <xsd:enumeration value="RETROCESSION" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="ArrayOfMarketStatus">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="MarketStatus" nillable="true" type="tns:MarketStatus" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getAllUcds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdApiFilter" nillable="true" type="tns:UcdApiFilter" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="marketStatuses" nillable="true" type="tns:ArrayOfMarketStatus" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageNumber" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageSize" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="pagedResultUcd">
+        <xsd:sequence>
+          <xsd:element name="pageNumber" type="xsd:int" />
+          <xsd:element name="pageSize" type="xsd:int" />
+          <xsd:element name="result" nillable="true" type="tns:ArrayOfUcd" />
+          <xsd:element name="rowCount" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getAllUcdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="pagedResultUcd" nillable="true" type="tns:pagedResultUcd" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByProductRangeIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productRangeIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfProductRangeUcdCouple">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="productRangeUcdCouple" nillable="true" type="tns:productRangeUcdCouple" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="productRangeUcdCouple">
+        <xsd:sequence>
+          <xsd:element name="productRange" nillable="true" type="tns:productRange" />
+          <xsd:element name="ucd" nillable="true" type="tns:ucd" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="productRange">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchByProductRangeIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ProductRangeUcdCoupleList" nillable="true" type="tns:ArrayOfProductRangeUcdCouple" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByProductId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByProductIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdList" nillable="true" type="tns:ArrayOfUcd" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByCommonNameGroupId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByCommonNameGroupIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdList" nillable="true" type="tns:ArrayOfUcd" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchById">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucd" nillable="true" type="tns:ucd" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfString">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchByCodes">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="codes" nillable="true" type="tns:ArrayOfString" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByCodesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdList" nillable="true" type="tns:ArrayOfUcd" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchNewlyAvailableUcds">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="searchNewlyAvailableUcdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdList" nillable="true" type="tns:ArrayOfUcd" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByCode">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="code" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByCodeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucd" nillable="true" type="tns:ucd" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:simpleType name="CompanyType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="OWNER" />
+          <xsd:enumeration value="HOLDER" />
+          <xsd:enumeration value="DISTRIBUTOR" />
+          <xsd:enumeration value="SUBSCRIBER" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="searchByCompanyIdAndType">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="companyId" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="type" nillable="true" type="tns:CompanyType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByCompanyIdAndTypeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdList" nillable="true" type="tns:ArrayOfUcd" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByName">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="name" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByNameResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdList" nillable="true" type="tns:ArrayOfUcd" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchUcdIndicatorsByUcdIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfUcdIndicators">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ucdIndicators" nillable="true" type="tns:ucdIndicators" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ucdIndicators">
+        <xsd:sequence>
+          <xsd:element name="code" nillable="true" type="xsd:string" />
+          <xsd:element name="code13" nillable="true" type="xsd:string" />
+          <xsd:element name="ghs" type="xsd:boolean" />
+          <xsd:element name="ghsPrice" nillable="true" type="xsd:float" />
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="indicators" nillable="true" type="tns:ArrayOfIndicator" />
+          <xsd:element name="marketStatus" nillable="true" type="tns:MarketStatus" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="retrocession" type="xsd:boolean" />
+          <xsd:element name="retrocessionPrice" nillable="true" type="xsd:float" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfIndicator">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="indicator" nillable="true" type="tns:indicator" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="indicator">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="indicatorValue" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchUcdIndicatorsByUcdIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdIndicatorsList" nillable="true" type="tns:ArrayOfUcdIndicators" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByPackId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByPackIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucd" nillable="true" type="tns:ucd" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByCompanyId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="companyId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByCompanyIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdList" nillable="true" type="tns:ArrayOfUcd" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUcdsPosologyUnitsAndItemsConcentrationsByUcdIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfUcdPosologyUnitsAndItemsConcentrations">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ucdPosologyUnitsAndItemsConcentrations" nillable="true" type="tns:ucdPosologyUnitsAndItemsConcentrations" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ucdPosologyUnitsAndItemsConcentrations">
+        <xsd:sequence>
+          <xsd:element name="code" nillable="true" type="xsd:string" />
+          <xsd:element name="code13" nillable="true" type="xsd:string" />
+          <xsd:element name="ghs" type="xsd:boolean" />
+          <xsd:element name="ghsEffectiveDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element name="ghsPrice" nillable="true" type="xsd:float" />
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="marketStatus" nillable="true" type="tns:MarketStatus" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="retrocession" type="xsd:boolean" />
+          <xsd:element name="retrocessionEffectiveDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element name="retrocessionPrice" nillable="true" type="xsd:float" />
+          <xsd:element name="ucdItems" nillable="true" type="tns:ArrayOfUcdItem" />
+          <xsd:element name="ucdPosologyUnits" nillable="true" type="tns:ArrayOfUcdPosologyUnit" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfUcdItem">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ucdItem" nillable="true" type="tns:ucdItem" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ucdItem">
+        <xsd:sequence>
+          <xsd:element name="activeSubstanceInformations" nillable="true" type="tns:ArrayOfActiveSubstanceInformation" />
+          <xsd:element name="fullName" nillable="true" type="xsd:string" />
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfActiveSubstanceInformation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="activeSubstanceInformation" nillable="true" type="tns:activeSubstanceInformation" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="activeSubstanceInformation">
+        <xsd:sequence>
+          <xsd:element name="concentrationUnit" nillable="true" type="tns:posologyUnit" />
+          <xsd:element name="concentrationValue" nillable="true" type="xsd:float" />
+          <xsd:element name="molecule" nillable="true" type="tns:molecule" />
+          <xsd:element name="quantity" nillable="true" type="xsd:float" />
+          <xsd:element name="quantityUnit" nillable="true" type="tns:posologyUnit" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="molecule">
+        <xsd:sequence>
+          <xsd:element name="allergyAlert" type="xsd:boolean" />
+          <xsd:element name="homeopathy" type="xsd:boolean" />
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="role" nillable="true" type="tns:SubstanceRole" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="SubstanceRole">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ACTIVE_PRINCIPLE_OR_EXCIPIENT" />
+          <xsd:enumeration value="EXCIPIENT" />
+          <xsd:enumeration value="ACTIVE_PRINCIPLE" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="posologyUnit">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfUcdPosologyUnit">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ucdPosologyUnit" nillable="true" type="tns:ucdPosologyUnit" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ucdPosologyUnit">
+        <xsd:sequence>
+          <xsd:element name="dispensingUnit" nillable="true" type="tns:posologyUnit" />
+          <xsd:element name="posologyUnit" nillable="true" type="tns:posologyUnit" />
+          <xsd:element name="ratioOfPosologyUnitOverDispensingUnit" nillable="true" type="xsd:float" />
+          <xsd:element name="ucdItemQuantity" nillable="true" type="xsd:float" />
+          <xsd:element name="ucdItemQuantityUnit" nillable="true" type="tns:posologyUnit" />
+          <xsd:element name="ucdItemVolume" nillable="true" type="xsd:float" />
+          <xsd:element name="ucdItemVolumeUnit" nillable="true" type="tns:posologyUnit" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getUcdsPosologyUnitsAndItemsConcentrationsByUcdIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdPosologyUnitsAndItemsConcentrationsList" nillable="true" type="tns:ArrayOfUcdPosologyUnitsAndItemsConcentrations" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByNameWithPagedResult">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="name" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="marketStatuses" nillable="true" type="tns:ArrayOfMarketStatus" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageNumber" nillable="true" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="pageSize" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByNameWithPagedResultResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="pagedResultUcd" nillable="true" type="tns:pagedResultUcd" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="searchByProductRangeIdsResponse">
+    <wsdl:part name="parameters" element="tns:searchByProductRangeIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByProductIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByProductId" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdsRequest">
+    <wsdl:part name="parameters" element="tns:searchByIds" />
+  </wsdl:message>
+  <wsdl:message name="searchByCompanyIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByCompanyIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdsResponse">
+    <wsdl:part name="parameters" element="tns:searchByIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByProductRangeIdsRequest">
+    <wsdl:part name="parameters" element="tns:searchByProductRangeIds" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameWithPagedResultResponse">
+    <wsdl:part name="parameters" element="tns:searchByNameWithPagedResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByCompanyIdAndTypeRequest">
+    <wsdl:part name="parameters" element="tns:searchByCompanyIdAndType" />
+  </wsdl:message>
+  <wsdl:message name="getUcdsPosologyUnitsAndItemsConcentrationsByUcdIdsResponse">
+    <wsdl:part name="parameters" element="tns:getUcdsPosologyUnitsAndItemsConcentrationsByUcdIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameWithPagedResultRequest">
+    <wsdl:part name="parameters" element="tns:searchByNameWithPagedResult" />
+  </wsdl:message>
+  <wsdl:message name="searchByCodeRequest">
+    <wsdl:part name="parameters" element="tns:searchByCode" />
+  </wsdl:message>
+  <wsdl:message name="searchUcdIndicatorsByUcdIdsRequest">
+    <wsdl:part name="parameters" element="tns:searchUcdIndicatorsByUcdIds" />
+  </wsdl:message>
+  <wsdl:message name="searchByCodesResponse">
+    <wsdl:part name="parameters" element="tns:searchByCodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByPackIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByPackIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchNewlyAvailableUcdsRequest">
+    <wsdl:part name="parameters" element="tns:searchNewlyAvailableUcds" />
+  </wsdl:message>
+  <wsdl:message name="getUcdsPosologyUnitsAndItemsConcentrationsByUcdIdsRequest">
+    <wsdl:part name="parameters" element="tns:getUcdsPosologyUnitsAndItemsConcentrationsByUcdIds" />
+  </wsdl:message>
+  <wsdl:message name="searchByCompanyIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByCompanyId" />
+  </wsdl:message>
+  <wsdl:message name="searchByPackIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByPackId" />
+  </wsdl:message>
+  <wsdl:message name="searchByCodeResponse">
+    <wsdl:part name="parameters" element="tns:searchByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByCompanyIdAndTypeResponse">
+    <wsdl:part name="parameters" element="tns:searchByCompanyIdAndTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameRequest">
+    <wsdl:part name="parameters" element="tns:searchByName" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByCodesRequest">
+    <wsdl:part name="parameters" element="tns:searchByCodes" />
+  </wsdl:message>
+  <wsdl:message name="searchByProductIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAllUcdsResponse">
+    <wsdl:part name="parameters" element="tns:getAllUcdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameResponse">
+    <wsdl:part name="parameters" element="tns:searchByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByCommonNameGroupIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByCommonNameGroupIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchNewlyAvailableUcdsResponse">
+    <wsdl:part name="parameters" element="tns:searchNewlyAvailableUcdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByCommonNameGroupIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByCommonNameGroupId" />
+  </wsdl:message>
+  <wsdl:message name="searchUcdIndicatorsByUcdIdsResponse">
+    <wsdl:part name="parameters" element="tns:searchUcdIndicatorsByUcdIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAllUcdsRequest">
+    <wsdl:part name="parameters" element="tns:getAllUcds" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdRequest">
+    <wsdl:part name="parameters" element="tns:searchById" />
+  </wsdl:message>
+  <wsdl:portType name="ucdService">
+    <wsdl:operation name="searchByIds">
+      <wsdl:input name="searchByIdsRequest" message="tns:searchByIdsRequest" />
+      <wsdl:output name="searchByIdsResponse" message="tns:searchByIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllUcds">
+      <wsdl:input name="getAllUcdsRequest" message="tns:getAllUcdsRequest" />
+      <wsdl:output name="getAllUcdsResponse" message="tns:getAllUcdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByProductRangeIds">
+      <wsdl:input name="searchByProductRangeIdsRequest" message="tns:searchByProductRangeIdsRequest" />
+      <wsdl:output name="searchByProductRangeIdsResponse" message="tns:searchByProductRangeIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByProductId">
+      <wsdl:input name="searchByProductIdRequest" message="tns:searchByProductIdRequest" />
+      <wsdl:output name="searchByProductIdResponse" message="tns:searchByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByCommonNameGroupId">
+      <wsdl:input name="searchByCommonNameGroupIdRequest" message="tns:searchByCommonNameGroupIdRequest" />
+      <wsdl:output name="searchByCommonNameGroupIdResponse" message="tns:searchByCommonNameGroupIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchById">
+      <wsdl:input name="searchByIdRequest" message="tns:searchByIdRequest" />
+      <wsdl:output name="searchByIdResponse" message="tns:searchByIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByCodes">
+      <wsdl:input name="searchByCodesRequest" message="tns:searchByCodesRequest" />
+      <wsdl:output name="searchByCodesResponse" message="tns:searchByCodesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchNewlyAvailableUcds">
+      <wsdl:input name="searchNewlyAvailableUcdsRequest" message="tns:searchNewlyAvailableUcdsRequest" />
+      <wsdl:output name="searchNewlyAvailableUcdsResponse" message="tns:searchNewlyAvailableUcdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByCode">
+      <wsdl:input name="searchByCodeRequest" message="tns:searchByCodeRequest" />
+      <wsdl:output name="searchByCodeResponse" message="tns:searchByCodeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByCompanyIdAndType">
+      <wsdl:input name="searchByCompanyIdAndTypeRequest" message="tns:searchByCompanyIdAndTypeRequest" />
+      <wsdl:output name="searchByCompanyIdAndTypeResponse" message="tns:searchByCompanyIdAndTypeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByName">
+      <wsdl:input name="searchByNameRequest" message="tns:searchByNameRequest" />
+      <wsdl:output name="searchByNameResponse" message="tns:searchByNameResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchUcdIndicatorsByUcdIds">
+      <wsdl:input name="searchUcdIndicatorsByUcdIdsRequest" message="tns:searchUcdIndicatorsByUcdIdsRequest" />
+      <wsdl:output name="searchUcdIndicatorsByUcdIdsResponse" message="tns:searchUcdIndicatorsByUcdIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByPackId">
+      <wsdl:input name="searchByPackIdRequest" message="tns:searchByPackIdRequest" />
+      <wsdl:output name="searchByPackIdResponse" message="tns:searchByPackIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByCompanyId">
+      <wsdl:input name="searchByCompanyIdRequest" message="tns:searchByCompanyIdRequest" />
+      <wsdl:output name="searchByCompanyIdResponse" message="tns:searchByCompanyIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getUcdsPosologyUnitsAndItemsConcentrationsByUcdIds">
+      <wsdl:input name="getUcdsPosologyUnitsAndItemsConcentrationsByUcdIdsRequest" message="tns:getUcdsPosologyUnitsAndItemsConcentrationsByUcdIdsRequest" />
+      <wsdl:output name="getUcdsPosologyUnitsAndItemsConcentrationsByUcdIdsResponse" message="tns:getUcdsPosologyUnitsAndItemsConcentrationsByUcdIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByNameWithPagedResult">
+      <wsdl:input name="searchByNameWithPagedResultRequest" message="tns:searchByNameWithPagedResultRequest" />
+      <wsdl:output name="searchByNameWithPagedResultResponse" message="tns:searchByNameWithPagedResultResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UcdServiceHttpBinding" type="tns:ucdService">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="searchByIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllUcds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAllUcdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAllUcdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByProductRangeIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByProductRangeIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByProductRangeIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByProductId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByProductIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByProductIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByCommonNameGroupId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByCommonNameGroupIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByCommonNameGroupIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchById">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByCodes">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByCodesRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByCodesResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchNewlyAvailableUcds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchNewlyAvailableUcdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchNewlyAvailableUcdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByCode">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByCodeRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByCodeResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByCompanyIdAndType">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByCompanyIdAndTypeRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByCompanyIdAndTypeResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByName">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByNameRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByNameResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchUcdIndicatorsByUcdIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchUcdIndicatorsByUcdIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchUcdIndicatorsByUcdIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByPackId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByPackIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByPackIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByCompanyId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByCompanyIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByCompanyIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUcdsPosologyUnitsAndItemsConcentrationsByUcdIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getUcdsPosologyUnitsAndItemsConcentrationsByUcdIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUcdsPosologyUnitsAndItemsConcentrationsByUcdIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByNameWithPagedResult">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByNameWithPagedResultRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByNameWithPagedResultResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UcdService">
+    <wsdl:port name="UcdServiceHttpPort" binding="tns:UcdServiceHttpBinding">
+      <wsdlsoap:address location="http://localhost:8011/merlin-service/services/UcdService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

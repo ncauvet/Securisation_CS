@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" xmlns:tns="urn:Vidal" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" targetNamespace="urn:Vidal" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="urn:Vidal">
+      <xsd:element name="searchByProductId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfSmr">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="smr" nillable="true" type="tns:smr" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="smr">
+        <xsd:sequence>
+          <xsd:element name="comment" nillable="true" type="xsd:string" />
+          <xsd:element name="date" type="xsd:dateTime" />
+          <xsd:element name="degree" nillable="true" type="tns:SmrDegree" />
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="url" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="SmrDegree">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="UNDEFINED" />
+          <xsd:enumeration value="INSUFFICIENT" />
+          <xsd:enumeration value="LOW" />
+          <xsd:enumeration value="MODERATE" />
+          <xsd:enumeration value="IMPORTANT" />
+          <xsd:enumeration value="MAJOR" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="searchByProductIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="smrList" nillable="true" type="tns:ArrayOfSmr" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getSmrAsmrAsHTML">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getSmrAsmrAsHTMLResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="smrAsmrAsHTML" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getSmrAsmrAsHTMLResponse">
+    <wsdl:part name="parameters" element="tns:getSmrAsmrAsHTMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByProductIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByProductId" />
+  </wsdl:message>
+  <wsdl:message name="getSmrAsmrAsHTMLRequest">
+    <wsdl:part name="parameters" element="tns:getSmrAsmrAsHTML" />
+  </wsdl:message>
+  <wsdl:message name="searchByProductIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="smrService">
+    <wsdl:operation name="searchByProductId">
+      <wsdl:input name="searchByProductIdRequest" message="tns:searchByProductIdRequest" />
+      <wsdl:output name="searchByProductIdResponse" message="tns:searchByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getSmrAsmrAsHTML">
+      <wsdl:input name="getSmrAsmrAsHTMLRequest" message="tns:getSmrAsmrAsHTMLRequest" />
+      <wsdl:output name="getSmrAsmrAsHTMLResponse" message="tns:getSmrAsmrAsHTMLResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SmrServiceHttpBinding" type="tns:smrService">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="searchByProductId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByProductIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByProductIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSmrAsmrAsHTML">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getSmrAsmrAsHTMLRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getSmrAsmrAsHTMLResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SmrService">
+    <wsdl:port name="SmrServiceHttpPort" binding="tns:SmrServiceHttpBinding">
+      <wsdlsoap:address location="http://localhost:8011/merlin-service/services/SmrService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

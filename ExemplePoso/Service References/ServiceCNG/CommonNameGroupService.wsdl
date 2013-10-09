@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" xmlns:tns="urn:Vidal" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" targetNamespace="urn:Vidal" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="urn:Vidal">
+      <xsd:complexType name="ArrayOfInt">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="int" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchCommonNameGroupIndicatorsByCommonNameGroupIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfCommonNameGroupIndicators">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="commonNameGroupIndicators" nillable="true" type="tns:commonNameGroupIndicators" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="commonNameGroupIndicators">
+        <xsd:sequence>
+          <xsd:element name="commonNameGroup" nillable="true" type="tns:commonNameGroup" />
+          <xsd:element name="indicators" nillable="true" type="tns:ArrayOfIndicator" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="commonNameGroup">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="maxUcdRangePrice" nillable="true" type="xsd:float" />
+          <xsd:element name="minUcdRangePrice" nillable="true" type="xsd:float" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="notHomogeneousByInteractions" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfIndicator">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="indicator" nillable="true" type="tns:indicator" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="indicator">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="indicatorValue" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchCommonNameGroupIndicatorsByCommonNameGroupIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupIndicatorsList" nillable="true" type="tns:ArrayOfCommonNameGroupIndicators" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfCommonNameGroup">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="commonNameGroup" nillable="true" type="tns:commonNameGroup" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="searchByIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupList" nillable="true" type="tns:ArrayOfCommonNameGroup" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByUcdId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ucdId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByUcdIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupList" nillable="true" type="tns:ArrayOfCommonNameGroup" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByAtcIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="atcIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByAtcIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupList" nillable="true" type="tns:ArrayOfCommonNameGroup" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByProductId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="productId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByProductIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroup" nillable="true" type="tns:commonNameGroup" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByActivePrincipleIds">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="moleculeIds" nillable="true" type="tns:ArrayOfInt" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByActivePrincipleIdsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupList" nillable="true" type="tns:ArrayOfCommonNameGroup" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getGalenicForm">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="GalenicForm">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="parentId" nillable="true" type="xsd:int" />
+          <xsd:element name="search" type="xsd:boolean" />
+          <xsd:element name="shortName" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getGalenicFormResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="galenicForm" nillable="true" type="tns:GalenicForm" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByName">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="name" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByNameResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupList" nillable="true" type="tns:ArrayOfCommonNameGroup" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchById">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroup" nillable="true" type="tns:commonNameGroup" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByPackId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="packId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByPackIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroup" nillable="true" type="tns:commonNameGroup" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByAtcId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="atcId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchByAtcIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupList" nillable="true" type="tns:ArrayOfCommonNameGroup" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getRoute">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="commonNameGroupId" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfRoute">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="route" nillable="true" type="tns:route" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="route">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="parentId" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getRouteResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="routeList" nillable="true" type="tns:ArrayOfRoute" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="searchByAtcIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByAtcId" />
+  </wsdl:message>
+  <wsdl:message name="searchCommonNameGroupIndicatorsByCommonNameGroupIdsRequest">
+    <wsdl:part name="parameters" element="tns:searchCommonNameGroupIndicatorsByCommonNameGroupIds" />
+  </wsdl:message>
+  <wsdl:message name="searchByProductIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByProductId" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdsRequest">
+    <wsdl:part name="parameters" element="tns:searchByIds" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdsResponse">
+    <wsdl:part name="parameters" element="tns:searchByIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByAtcIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByAtcIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameRequest">
+    <wsdl:part name="parameters" element="tns:searchByName" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByUcdIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByUcdIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getRouteRequest">
+    <wsdl:part name="parameters" element="tns:getRoute" />
+  </wsdl:message>
+  <wsdl:message name="searchByProductIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByProductIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByActivePrincipleIdsResponse">
+    <wsdl:part name="parameters" element="tns:searchByActivePrincipleIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByActivePrincipleIdsRequest">
+    <wsdl:part name="parameters" element="tns:searchByActivePrincipleIds" />
+  </wsdl:message>
+  <wsdl:message name="searchByPackIdResponse">
+    <wsdl:part name="parameters" element="tns:searchByPackIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByNameResponse">
+    <wsdl:part name="parameters" element="tns:searchByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="getGalenicFormRequest">
+    <wsdl:part name="parameters" element="tns:getGalenicForm" />
+  </wsdl:message>
+  <wsdl:message name="searchCommonNameGroupIndicatorsByCommonNameGroupIdsResponse">
+    <wsdl:part name="parameters" element="tns:searchCommonNameGroupIndicatorsByCommonNameGroupIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByUcdIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByUcdId" />
+  </wsdl:message>
+  <wsdl:message name="searchByPackIdRequest">
+    <wsdl:part name="parameters" element="tns:searchByPackId" />
+  </wsdl:message>
+  <wsdl:message name="searchByAtcIdsResponse">
+    <wsdl:part name="parameters" element="tns:searchByAtcIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getRouteResponse">
+    <wsdl:part name="parameters" element="tns:getRouteResponse" />
+  </wsdl:message>
+  <wsdl:message name="getGalenicFormResponse">
+    <wsdl:part name="parameters" element="tns:getGalenicFormResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchByAtcIdsRequest">
+    <wsdl:part name="parameters" element="tns:searchByAtcIds" />
+  </wsdl:message>
+  <wsdl:message name="searchByIdRequest">
+    <wsdl:part name="parameters" element="tns:searchById" />
+  </wsdl:message>
+  <wsdl:portType name="commonNameGroupService">
+    <wsdl:operation name="searchCommonNameGroupIndicatorsByCommonNameGroupIds">
+      <wsdl:input name="searchCommonNameGroupIndicatorsByCommonNameGroupIdsRequest" message="tns:searchCommonNameGroupIndicatorsByCommonNameGroupIdsRequest" />
+      <wsdl:output name="searchCommonNameGroupIndicatorsByCommonNameGroupIdsResponse" message="tns:searchCommonNameGroupIndicatorsByCommonNameGroupIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByIds">
+      <wsdl:input name="searchByIdsRequest" message="tns:searchByIdsRequest" />
+      <wsdl:output name="searchByIdsResponse" message="tns:searchByIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByUcdId">
+      <wsdl:input name="searchByUcdIdRequest" message="tns:searchByUcdIdRequest" />
+      <wsdl:output name="searchByUcdIdResponse" message="tns:searchByUcdIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByAtcIds">
+      <wsdl:input name="searchByAtcIdsRequest" message="tns:searchByAtcIdsRequest" />
+      <wsdl:output name="searchByAtcIdsResponse" message="tns:searchByAtcIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByProductId">
+      <wsdl:input name="searchByProductIdRequest" message="tns:searchByProductIdRequest" />
+      <wsdl:output name="searchByProductIdResponse" message="tns:searchByProductIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByActivePrincipleIds">
+      <wsdl:input name="searchByActivePrincipleIdsRequest" message="tns:searchByActivePrincipleIdsRequest" />
+      <wsdl:output name="searchByActivePrincipleIdsResponse" message="tns:searchByActivePrincipleIdsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getGalenicForm">
+      <wsdl:input name="getGalenicFormRequest" message="tns:getGalenicFormRequest" />
+      <wsdl:output name="getGalenicFormResponse" message="tns:getGalenicFormResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByName">
+      <wsdl:input name="searchByNameRequest" message="tns:searchByNameRequest" />
+      <wsdl:output name="searchByNameResponse" message="tns:searchByNameResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchById">
+      <wsdl:input name="searchByIdRequest" message="tns:searchByIdRequest" />
+      <wsdl:output name="searchByIdResponse" message="tns:searchByIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByPackId">
+      <wsdl:input name="searchByPackIdRequest" message="tns:searchByPackIdRequest" />
+      <wsdl:output name="searchByPackIdResponse" message="tns:searchByPackIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchByAtcId">
+      <wsdl:input name="searchByAtcIdRequest" message="tns:searchByAtcIdRequest" />
+      <wsdl:output name="searchByAtcIdResponse" message="tns:searchByAtcIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getRoute">
+      <wsdl:input name="getRouteRequest" message="tns:getRouteRequest" />
+      <wsdl:output name="getRouteResponse" message="tns:getRouteResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CommonNameGroupServiceHttpBinding" type="tns:commonNameGroupService">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="searchCommonNameGroupIndicatorsByCommonNameGroupIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchCommonNameGroupIndicatorsByCommonNameGroupIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchCommonNameGroupIndicatorsByCommonNameGroupIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByUcdId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByUcdIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByUcdIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByAtcIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByAtcIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByAtcIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByProductId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByProductIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByProductIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByActivePrincipleIds">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByActivePrincipleIdsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByActivePrincipleIdsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGalenicForm">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getGalenicFormRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getGalenicFormResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByName">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByNameRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByNameResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchById">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByPackId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByPackIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByPackIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchByAtcId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="searchByAtcIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchByAtcIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRoute">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getRouteRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getRouteResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommonNameGroupService">
+    <wsdl:port name="CommonNameGroupServiceHttpPort" binding="tns:CommonNameGroupServiceHttpBinding">
+      <wsdlsoap:address location="http://localhost:8011/merlin-service/services/CommonNameGroupService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
