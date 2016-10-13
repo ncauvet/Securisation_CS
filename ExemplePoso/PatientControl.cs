@@ -49,7 +49,6 @@ namespace ExemplePoso
             breathFeedingBox.Items.Add(BreastFeedingDto.MORE_THAN_ONE_MONTH);
             //breathFeedingBox.Items.Add(ServiceAnalysis..Breastfeeding.BREASTFEEDING_JNULL);
             breathFeedingBox.SelectedIndex = 0;
-
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -109,11 +108,9 @@ namespace ExemplePoso
                 amen = (int)amenBox.Value;
             }
 
-
             GenderDto? gender = null;
             BreastFeedingDto? breathFeeding = null;
             HepaticInsufficiencyDto? hepatic = null;
-
 
             return helper.AnalysisService_patientFromObjToJson(
                  monthCalendar1.SelectionStart,
@@ -128,8 +125,6 @@ namespace ExemplePoso
                  molecules,
                  cims);
             //return "{\"allergyIds\":null,\"breastFeeding\":null,\"creatin\":null,\"dateOfBirth\":63068400000,\"gender\":\"MALE\",\"height\":null,\"hepaticInsufficiency\":null,\"moleculeIds\":[],\"pathologyCim10Ids\":[],\"weeksOfAmenorrhea\":null,\"weight\":null}";
-
-
         }
         
        
@@ -194,6 +189,7 @@ namespace ExemplePoso
                 amenBox.Visible = true;
             }
         }
+
         private void creatinCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (creatinCheckBox.Checked)
@@ -218,19 +214,25 @@ namespace ExemplePoso
             }
         }
 
-
         internal string getPatientJson()
         {
-            if (patientJson != null && patientJson.Items.Count >= 0)
+            if (patientJson != null && patientJson.Items.Count > 0)
             {
                 return patientJson.Items[0].ToString();
             }
-            return "";
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Veuillez définir le patient", "Erreur",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "";
+            }
         }
+
         private void patientLabel_Click(object sender, EventArgs e)
         {
             MessageBox.Show(patientJson.Items[0].ToString());
         }
+
         //ALLERGY PANEL
         private void allergieButton_Click(object sender, EventArgs e)
         {

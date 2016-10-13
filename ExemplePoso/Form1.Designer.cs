@@ -90,7 +90,7 @@
             this.enDoseButton = new System.Windows.Forms.RadioButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Prix = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GridView1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrescriptionLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label8 = new System.Windows.Forms.Label();
             this.dureeNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -108,6 +108,8 @@
             this.tabAnt = new System.Windows.Forms.TabPage();
             this.patientJson = new System.Windows.Forms.ListBox();
             this.smrButton = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.weightBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.heightBox)).BeginInit();
@@ -219,7 +221,7 @@
             // 
             // weightBox
             // 
-            this.weightBox.Location = new System.Drawing.Point(634, 87);
+            this.weightBox.Location = new System.Drawing.Point(676, 93);
             this.weightBox.Name = "weightBox";
             this.weightBox.Size = new System.Drawing.Size(123, 20);
             this.weightBox.TabIndex = 13;
@@ -231,7 +233,7 @@
             // 
             // heightBox
             // 
-            this.heightBox.Location = new System.Drawing.Point(579, 16);
+            this.heightBox.Location = new System.Drawing.Point(621, 17);
             this.heightBox.Maximum = new decimal(new int[] {
             999,
             0,
@@ -248,14 +250,14 @@
             // 
             // amenBox
             // 
-            this.amenBox.Location = new System.Drawing.Point(634, 42);
+            this.amenBox.Location = new System.Drawing.Point(676, 43);
             this.amenBox.Name = "amenBox";
             this.amenBox.Size = new System.Drawing.Size(123, 20);
             this.amenBox.TabIndex = 15;
             // 
             // creatinBox
             // 
-            this.creatinBox.Location = new System.Drawing.Point(634, 61);
+            this.creatinBox.Location = new System.Drawing.Point(676, 67);
             this.creatinBox.Name = "creatinBox";
             this.creatinBox.Size = new System.Drawing.Size(123, 20);
             this.creatinBox.TabIndex = 16;
@@ -268,7 +270,7 @@
             // genderBox
             // 
             this.genderBox.FormattingEnabled = true;
-            this.genderBox.Location = new System.Drawing.Point(265, 19);
+            this.genderBox.Location = new System.Drawing.Point(307, 20);
             this.genderBox.Name = "genderBox";
             this.genderBox.Size = new System.Drawing.Size(178, 21);
             this.genderBox.TabIndex = 17;
@@ -276,7 +278,7 @@
             // breathFeedingBox
             // 
             this.breathFeedingBox.FormattingEnabled = true;
-            this.breathFeedingBox.Location = new System.Drawing.Point(265, 45);
+            this.breathFeedingBox.Location = new System.Drawing.Point(307, 46);
             this.breathFeedingBox.Name = "breathFeedingBox";
             this.breathFeedingBox.Size = new System.Drawing.Size(178, 21);
             this.breathFeedingBox.TabIndex = 18;
@@ -284,7 +286,7 @@
             // hepaticBox
             // 
             this.hepaticBox.FormattingEnabled = true;
-            this.hepaticBox.Location = new System.Drawing.Point(265, 72);
+            this.hepaticBox.Location = new System.Drawing.Point(307, 73);
             this.hepaticBox.Name = "hepaticBox";
             this.hepaticBox.Size = new System.Drawing.Size(178, 21);
             this.hepaticBox.TabIndex = 19;
@@ -292,7 +294,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(517, 90);
+            this.label1.Location = new System.Drawing.Point(551, 99);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 20;
@@ -310,25 +312,25 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(516, 16);
+            this.label3.Location = new System.Drawing.Point(551, 20);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 13);
+            this.label3.Size = new System.Drawing.Size(55, 13);
             this.label3.TabIndex = 22;
-            this.label3.Text = "taille (cm)";
+            this.label3.Text = "Taille (cm)";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(510, 42);
+            this.label4.Location = new System.Drawing.Point(551, 46);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(118, 13);
+            this.label4.Size = new System.Drawing.Size(120, 13);
             this.label4.TabIndex = 23;
-            this.label4.Text = "semaines d\'amenorrhée";
+            this.label4.Text = "Semaines d\'aménorrhée";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(202, 48);
+            this.label5.Location = new System.Drawing.Point(244, 49);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 24;
@@ -337,11 +339,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(510, 63);
+            this.label6.Location = new System.Drawing.Point(551, 75);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 13);
+            this.label6.Size = new System.Drawing.Size(62, 13);
             this.label6.TabIndex = 25;
-            this.label6.Text = "créatinémie";
+            this.label6.Text = "Créatinémie";
             // 
             // label7
             // 
@@ -354,6 +356,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.hepatCheckBox);
             this.groupBox1.Controls.Add(this.creatinCheckBox);
             this.groupBox1.Controls.Add(this.amenCheckBox);
@@ -387,7 +391,7 @@
             // hepatCheckBox
             // 
             this.hepatCheckBox.AutoSize = true;
-            this.hepatCheckBox.Location = new System.Drawing.Point(449, 76);
+            this.hepatCheckBox.Location = new System.Drawing.Point(491, 77);
             this.hepatCheckBox.Name = "hepatCheckBox";
             this.hepatCheckBox.Size = new System.Drawing.Size(15, 14);
             this.hepatCheckBox.TabIndex = 36;
@@ -397,7 +401,7 @@
             // creatinCheckBox
             // 
             this.creatinCheckBox.AutoSize = true;
-            this.creatinCheckBox.Location = new System.Drawing.Point(763, 66);
+            this.creatinCheckBox.Location = new System.Drawing.Point(805, 72);
             this.creatinCheckBox.Name = "creatinCheckBox";
             this.creatinCheckBox.Size = new System.Drawing.Size(15, 14);
             this.creatinCheckBox.TabIndex = 35;
@@ -407,7 +411,7 @@
             // amenCheckBox
             // 
             this.amenCheckBox.AutoSize = true;
-            this.amenCheckBox.Location = new System.Drawing.Point(763, 44);
+            this.amenCheckBox.Location = new System.Drawing.Point(805, 45);
             this.amenCheckBox.Name = "amenCheckBox";
             this.amenCheckBox.Size = new System.Drawing.Size(15, 14);
             this.amenCheckBox.TabIndex = 34;
@@ -417,7 +421,7 @@
             // TailleCheckBox
             // 
             this.TailleCheckBox.AutoSize = true;
-            this.TailleCheckBox.Location = new System.Drawing.Point(763, 16);
+            this.TailleCheckBox.Location = new System.Drawing.Point(805, 17);
             this.TailleCheckBox.Name = "TailleCheckBox";
             this.TailleCheckBox.Size = new System.Drawing.Size(15, 14);
             this.TailleCheckBox.TabIndex = 33;
@@ -427,7 +431,7 @@
             // poidCheckBox
             // 
             this.poidCheckBox.AutoSize = true;
-            this.poidCheckBox.Location = new System.Drawing.Point(763, 90);
+            this.poidCheckBox.Location = new System.Drawing.Point(805, 96);
             this.poidCheckBox.Name = "poidCheckBox";
             this.poidCheckBox.Size = new System.Drawing.Size(15, 14);
             this.poidCheckBox.TabIndex = 32;
@@ -437,7 +441,7 @@
             // allaitCheckBox
             // 
             this.allaitCheckBox.AutoSize = true;
-            this.allaitCheckBox.Location = new System.Drawing.Point(449, 48);
+            this.allaitCheckBox.Location = new System.Drawing.Point(491, 49);
             this.allaitCheckBox.Name = "allaitCheckBox";
             this.allaitCheckBox.Size = new System.Drawing.Size(15, 14);
             this.allaitCheckBox.TabIndex = 31;
@@ -447,7 +451,7 @@
             // genderCheckBox
             // 
             this.genderCheckBox.AutoSize = true;
-            this.genderCheckBox.Location = new System.Drawing.Point(449, 19);
+            this.genderCheckBox.Location = new System.Drawing.Point(491, 20);
             this.genderCheckBox.Name = "genderCheckBox";
             this.genderCheckBox.Size = new System.Drawing.Size(15, 14);
             this.genderCheckBox.TabIndex = 30;
@@ -757,7 +761,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Prix,
-            this.Name,
+            this.GridView1,
             this.PrescriptionLine});
             this.dataGridView1.Location = new System.Drawing.Point(314, 112);
             this.dataGridView1.Name = "dataGridView1";
@@ -769,11 +773,11 @@
             this.Prix.HeaderText = "Prix";
             this.Prix.Name = "Prix";
             // 
-            // Name
+            // GridView1
             // 
-            this.Name.HeaderText = "Name";
-            this.Name.Name = "Name";
-            this.Name.Width = 300;
+            this.GridView1.HeaderText = "Name";
+            this.GridView1.Name = "GridView1";
+            this.GridView1.Width = 300;
             // 
             // PrescriptionLine
             // 
@@ -948,6 +952,24 @@
             this.smrButton.UseVisualStyleBackColor = true;
             this.smrButton.Click += new System.EventHandler(this.smrButton_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(243, 23);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(31, 13);
+            this.label9.TabIndex = 37;
+            this.label9.Text = "Sexe";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(244, 78);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(60, 13);
+            this.label10.TabIndex = 38;
+            this.label10.Text = "Insuff. hép.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -967,7 +989,7 @@
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
-            
+            this.Name = "Form1";
             this.Text = "DrugPrescriptionAnalysis v0.2";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
@@ -1068,7 +1090,7 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Prix;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrescriptionLine;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -1081,6 +1103,8 @@
         private System.Windows.Forms.Button smrButton;
         private System.Windows.Forms.RadioButton ucdRadioButton;
         private System.Windows.Forms.RadioButton packRadioButton;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
     }
 }
 
