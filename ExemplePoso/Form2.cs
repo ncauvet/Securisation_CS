@@ -36,8 +36,6 @@ namespace ExemplePoso
             this.helper = helper;
             InitializeComponent();
             
-     
-            
             //Initialisation de la boîte de sélection des fréquence posologiques
             freqComboBox.Items.Add(PosologyFrequencyTypeDto.PER_2_DAYS);
             freqComboBox.Items.Add(PosologyFrequencyTypeDto.PER_24_HOURS);
@@ -52,7 +50,7 @@ namespace ExemplePoso
             //freqComboBox.Items.Add(PosologyFrequencyTypeDto.TYPE_44);
             //freqComboBox.Items.Add(PosologyFrequencyTypeDto.TYPE_46);
             //freqComboBox.Items.Add(PosologyFrequencyTypeDto.TYPE_66);
-           // freqComboBox.Items.Add(null);
+            //freqComboBox.Items.Add(null);
             
             freqComboBox.SelectedIndex = 2;
 
@@ -64,7 +62,7 @@ namespace ExemplePoso
             dureeComboBox.Items.Add(DurationTypeDto.WEEK);
             dureeComboBox.Items.Add(DurationTypeDto.YEAR);
             dureeComboBox.Items.Add(DurationTypeDto.NULL);
-        //    dureeComboBox.Items.Add(null);
+            //dureeComboBox.Items.Add(null);
 
             dureeComboBox.SelectedIndex = 0;
 
@@ -77,13 +75,11 @@ namespace ExemplePoso
             activeDosecomboBox.Items.Add(DoseUnitDto.MU);
             activeDosecomboBox.Items.Add(DoseUnitDto.ML);
             activeDosecomboBox.Items.Add(DoseUnitDto.MMOL);
-           // activeDosecomboBox.Items.Add(null);
+            //activeDosecomboBox.Items.Add(null);
 
             activeDosecomboBox.SelectedIndex = 0;
 
         }
-
-        
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -136,17 +132,13 @@ namespace ExemplePoso
             drugSelecr();
         }
 
-      
-
         private void initPosoForm(PosologyUnitDto unit, PosologyFrequencyTypeDto? type)
         {
             unitComboBox.Items.Add(unit);
             unitComboBox.SelectedIndex=0;
             freqComboBox.SelectedItem = type;
-            
         }
     
-
         private void button2_Click(object sender, EventArgs e)
         {
             List<int> indications = new List<int>();
@@ -260,14 +252,10 @@ namespace ExemplePoso
             indicListBox.Items.Clear();
             listBoxCI.Items.Clear();
             listBoxPE.Items.Clear();
-           
         }
-
-     
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -486,13 +474,24 @@ namespace ExemplePoso
                         usualMaxDose.Text = "Posologie Usuelle Max";
 
                         TreeNode usualMinDoseLeaf = new TreeNode();
-                        usualMinDoseLeaf.Text = numOfDoses.UsualNumberOfDoseRange.Min.Value + " " + numOfDoses.UsualNumberOfDoseRange.Min.Unit.Name + " " + numOfDoses.UsualNumberOfDoseRange.Min.Type;
+                        if (numOfDoses.UsualNumberOfDoseRange.Min != null)
+                            usualMinDoseLeaf.Text = numOfDoses.UsualNumberOfDoseRange.Min.Value + " " + numOfDoses.UsualNumberOfDoseRange.Min.Unit.Name + " " + numOfDoses.UsualNumberOfDoseRange.Min.Type;
+                        else
+                            usualMinDoseLeaf.Text = "NC";
                         usualMinDose.Nodes.Add(usualMinDoseLeaf);
-                        //Se baser sur ... pour initialiser le formulaire de saisie de la posologie afin de prescrire dans les bonnes unitées
-                        initPosoForm(numOfDoses.UsualNumberOfDoseRange.Min.Unit, numOfDoses.UsualNumberOfDoseRange.Min.Type);
+
+                        //Se baser sur ... pour initialiser le formulaire de saisie de la posologie afin de prescrire dans les bonnes unités
+                        if (numOfDoses.UsualNumberOfDoseRange.Min != null)
+                            initPosoForm(numOfDoses.UsualNumberOfDoseRange.Min.Unit, numOfDoses.UsualNumberOfDoseRange.Min.Type);
+                        else if (numOfDoses.UsualNumberOfDoseRange.Max != null)
+                            initPosoForm(numOfDoses.UsualNumberOfDoseRange.Max.Unit, numOfDoses.UsualNumberOfDoseRange.Max.Type);
+                        //TODO else ...
 
                         TreeNode usualMaxDoseLeaf = new TreeNode();
-                        usualMaxDoseLeaf.Text = numOfDoses.UsualNumberOfDoseRange.Max.Value + " " + numOfDoses.UsualNumberOfDoseRange.Max.Unit.Name + " " + numOfDoses.UsualNumberOfDoseRange.Max.Type;
+                        if (numOfDoses.UsualNumberOfDoseRange.Max != null)
+                            usualMaxDoseLeaf.Text = numOfDoses.UsualNumberOfDoseRange.Max.Value + " " + numOfDoses.UsualNumberOfDoseRange.Max.Unit.Name + " " + numOfDoses.UsualNumberOfDoseRange.Max.Type;
+                        else
+                            usualMaxDoseLeaf.Text = "NC";
                         usualMaxDose.Nodes.Add(usualMaxDoseLeaf);
 
                         usualDoses.Nodes.Add(usualMaxDose);

@@ -114,7 +114,7 @@ namespace ExemplePoso
                         itemUcdSub.Text = pa.Molecule.Name;
 
                         TreeNode itemUcdQunatity = new TreeNode();
-                        if (pa.Quantity != null && pa.QuantityUnit!=null)
+                        if (pa.Quantity != 0 && pa.QuantityUnit!=null)
                         {
                             itemUcdQunatity.Text = "Quantity : " + pa.Quantity + " " + pa.QuantityUnit.Name;
                         }
@@ -125,7 +125,7 @@ namespace ExemplePoso
                         
 
                         TreeNode itemUcdC = new TreeNode();
-                        if (pa.ConcentrationValue != null && pa.ConcentrationUnit !=null)
+                        if (pa.ConcentrationValue != 0 && pa.ConcentrationUnit !=null)
                         {
                             itemUcdC.Text = "[c]: "+pa.ConcentrationValue + " " + pa.ConcentrationUnit.Name;
                         }
@@ -175,7 +175,7 @@ namespace ExemplePoso
                     posoLeaf.Nodes.Add(posoUnit);
                      
                     TreeNode ratio = new TreeNode();
-                    if (unit.RatioOfPosologyUnitOverDispensingUnit != null)
+                    if (unit.RatioOfPosologyUnitOverDispensingUnit != 0)
                     {
                         ratio.Text = "ration : " + unit.RatioOfPosologyUnitOverDispensingUnit;
                     }
@@ -187,7 +187,7 @@ namespace ExemplePoso
                     posoLeaf.Nodes.Add(ratio);
 
                     TreeNode quantity = new TreeNode();
-                    if (unit.UcdItemQuantity != null && unit.UcdItemQuantity!=null)
+                    if (unit.UcdItemQuantity != 0 && unit.UcdItemQuantityUnit != null)
                     {
                         quantity.Text = "quantity : " + unit.UcdItemQuantity + " " + unit.UcdItemQuantityUnit;
                     }
@@ -199,7 +199,7 @@ namespace ExemplePoso
                     posoLeaf.Nodes.Add(quantity);
 
                     TreeNode volume = new TreeNode();
-                    if (unit.UcdItemVolume != null && unit.UcdItemVolumeUnit!=null)
+                    if (unit.UcdItemVolume != 0 && unit.UcdItemVolumeUnit != null)
                     {
                         volume.Text = "volume : " + unit.UcdItemVolume + " " + unit.UcdItemVolumeUnit.Name;
                     }

@@ -45,7 +45,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(193, 90);
             this.button1.TabIndex = 0;
-            this.button1.Text = "natif";
+            this.button1.Text = "Natif";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -69,38 +69,38 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(29, 233);
+            this.button3.Location = new System.Drawing.Point(29, 228);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(139, 23);
             this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
+            this.button3.Text = "Nouvelle prescription";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(416, 220);
+            this.button4.Location = new System.Drawing.Point(376, 228);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(151, 23);
             this.button4.TabIndex = 4;
-            this.button4.Text = "button4";
+            this.button4.Text = "Démarrer Vidal Expert";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 142);
+            this.label1.Location = new System.Drawing.Point(26, 146);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.Size = new System.Drawing.Size(72, 13);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Version VXP:";
+            this.label1.Text = "Version VXP :";
             // 
             // labelVersion
             // 
             this.labelVersion.AutoSize = true;
-            this.labelVersion.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.labelVersion.Location = new System.Drawing.Point(101, 141);
+            this.labelVersion.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.labelVersion.Location = new System.Drawing.Point(101, 146);
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.Size = new System.Drawing.Size(31, 13);
             this.labelVersion.TabIndex = 6;
@@ -109,7 +109,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 155);
+            this.label2.Location = new System.Drawing.Point(26, 163);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 13);
             this.label2.TabIndex = 7;
@@ -118,7 +118,7 @@
             // vxpPath
             // 
             this.vxpPath.AutoSize = true;
-            this.vxpPath.Location = new System.Drawing.Point(104, 158);
+            this.vxpPath.Location = new System.Drawing.Point(101, 163);
             this.vxpPath.Name = "vxpPath";
             this.vxpPath.Size = new System.Drawing.Size(46, 13);
             this.vxpPath.TabIndex = 8;
@@ -140,7 +140,7 @@
             this.Controls.Add(this.button1);
             this.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Name = "Form3";
-            this.Text = "Form3";
+            this.Text = "DrugPrescriptionAnalysis";
             this.ResumeLayout(false);
             this.PerformLayout();
 

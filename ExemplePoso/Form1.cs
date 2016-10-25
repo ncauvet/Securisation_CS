@@ -798,11 +798,11 @@ namespace ExemplePoso
 
             public void RequestStop()
             {
-                _shouldStop = true;
+                //_shouldStop = true;
             }
             // Volatile is used as hint to the compiler that this data
             // member will be accessed by multiple threads.
-            private volatile bool _shouldStop;
+            //private volatile bool _shouldStop;
         }
 
         private void smrButton_Click(object sender, EventArgs e)
