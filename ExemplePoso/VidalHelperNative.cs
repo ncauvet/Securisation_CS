@@ -88,7 +88,6 @@ namespace ExemplePoso
 		public string AnalysisService_prescriptionLineInActivePrincipleDosesFromObjToJson(double dose, DoseUnitDto doseUnit, PosologyFrequencyTypeDto freq, List<int> indications, List<int> routes, int id, DrugTypeDto type, int p, DurationTypeDto durationType)
 		{
 			return vidalProduct.GetService<VidalAPI.Services.DrugPrescriptionAnalysisService>().PrescriptionLineInActivePrincipleDosesFromObjToJson(dose, DoseUnitDtoHelper.dtoToNative(doseUnit), PosologyFrequencyTypeDtoHelper.dtoToNative(freq), indications, routes, id, DrugTypeDtoHelper.dtoToNative(type), p, DurationTypeDtoHelper.dtoToNative(durationType));
-
 		}
 
 		public ProductDto ProductService_searchByUcdId(int ucdId)
@@ -100,6 +99,7 @@ namespace ExemplePoso
 		{
 			return vidalProduct.GetService<VidalAPI.Services.DrugPrescriptionAnalysisService>().GetAlertsAsHTML(patient, prescr);
 		}
+
 		public string SmrService_getSmrAsmrAsHTML(int nullable)
 		{
 			return vidalProduct.GetService<VidalAPI.Services.SmrService>().GetSmrAsmrAsHTML(nullable);

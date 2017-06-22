@@ -22,14 +22,12 @@ namespace ExemplePoso
 			InitializeComponent();
 
 			//Initialisation de la boîte du choix du sexe
-
 			genderBox.Items.Add(VidalAPI.Domain.Gender.GENDER_FEMALE);
 			genderBox.Items.Add(VidalAPI.Domain.Gender.GENDER_MALE);
 
 			genderBox.SelectedIndex = 0;
 
 			//Initialisation des insuffisances hépatique :
-
 			hepaticBox.Items.Add(VidalAPI.Domain.HepaticInsufficiency.HEPATICINSUFFICIENCY_NONE);
 			hepaticBox.Items.Add(VidalAPI.Domain.HepaticInsufficiency.HEPATICINSUFFICIENCY_MODERATE);
 			hepaticBox.Items.Add(VidalAPI.Domain.HepaticInsufficiency.HEPATICINSUFFICIENCY_SEVERE);
@@ -539,7 +537,6 @@ namespace ExemplePoso
 			else
 			{
 				breathFeedingBox.Visible = true;
-
 			}
 		}
 
@@ -552,7 +549,6 @@ namespace ExemplePoso
 			else
 			{
 				weightBox.Visible = true;
-
 			}
 		}
 

@@ -42,7 +42,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(58, 45);
+			this.button1.Location = new System.Drawing.Point(58, 49);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(193, 90);
 			this.button1.TabIndex = 0;
@@ -52,7 +52,7 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(346, 45);
+			this.button2.Location = new System.Drawing.Point(346, 49);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(193, 90);
 			this.button2.TabIndex = 1;
@@ -76,6 +76,7 @@
 			this.button3.TabIndex = 3;
 			this.button3.Text = "Nouvelle fenêtre";
 			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Visible = false;
 			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// button4
