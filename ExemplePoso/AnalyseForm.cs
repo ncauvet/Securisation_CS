@@ -15,7 +15,6 @@ namespace ExemplePoso
         {
             InitializeComponent();
             webBrowser1.DocumentText = html;
-
         }
     }
 }

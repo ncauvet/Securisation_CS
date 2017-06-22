@@ -187,7 +187,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(432, 85);
+            this.button2.Location = new System.Drawing.Point(432, 83);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(335, 23);
             this.button2.TabIndex = 8;
@@ -226,15 +226,15 @@
             this.groupBox2.Size = new System.Drawing.Size(1208, 485);
             this.groupBox2.TabIndex = 29;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "prescription En Doses";
+            this.groupBox2.Text = "Prescription en Doses";
             // 
             // exportButton
             // 
-            this.exportButton.Location = new System.Drawing.Point(1104, 125);
+            this.exportButton.Location = new System.Drawing.Point(1089, 125);
             this.exportButton.Name = "exportButton";
-            this.exportButton.Size = new System.Drawing.Size(75, 23);
+            this.exportButton.Size = new System.Drawing.Size(105, 23);
             this.exportButton.TabIndex = 33;
-            this.exportButton.Text = "export";
+            this.exportButton.Text = "Exporter JSON";
             this.exportButton.UseVisualStyleBackColor = true;
             this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
             // 
@@ -254,10 +254,10 @@
             this.groupBox7.Controls.Add(this.unitComboBox);
             this.groupBox7.Location = new System.Drawing.Point(408, 7);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(194, 77);
+            this.groupBox7.Size = new System.Drawing.Size(194, 68);
             this.groupBox7.TabIndex = 31;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "groupBox7";
+            this.groupBox7.Text = "Unité";
             // 
             // enPaButton
             // 
@@ -437,7 +437,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 1;
-            this.button5.Text = "delete";
+            this.button5.Text = "Delete";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -452,7 +452,7 @@
             // 
             this.productButton.AutoSize = true;
             this.productButton.Checked = true;
-            this.productButton.Location = new System.Drawing.Point(7, 11);
+            this.productButton.Location = new System.Drawing.Point(7, 13);
             this.productButton.Name = "productButton";
             this.productButton.Size = new System.Drawing.Size(61, 17);
             this.productButton.TabIndex = 32;
@@ -482,7 +482,7 @@
             this.groupBox6.Size = new System.Drawing.Size(302, 36);
             this.groupBox6.TabIndex = 34;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "drugType";
+            this.groupBox6.Text = "Drug type";
             // 
             // prescRadioButton
             // 
@@ -673,11 +673,11 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(258, 205);
+            this.button4.Location = new System.Drawing.Point(258, 202);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(57, 23);
             this.button4.TabIndex = 69;
-            this.button4.Text = "détail";
+            this.button4.Text = "Détail";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
