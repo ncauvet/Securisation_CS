@@ -187,8 +187,11 @@ namespace ExemplePoso
 		public List<string> getDocumentsByProductId(int? nullable)
 		{
 			int productId = (int)nullable;
-			DocumentType[] docTypeArray = { DocumentType.DOCUMENTTYPE_MONO, DocumentType.DOCUMENTTYPE_VDF,
-				DocumentType.DOCUMENTTYPE_PGR, DocumentType.DOCUMENTTYPE_FIT, DocumentType.DOCUMENTTYPE_BUM };
+			DocumentType[] docTypeArray =
+			{
+				DocumentType.DOCUMENTTYPE_MONO, DocumentType.DOCUMENTTYPE_MONO_SUPP, DocumentType.DOCUMENTTYPE_BUM,
+				DocumentType.DOCUMENTTYPE_VDF, DocumentType.DOCUMENTTYPE_PGR, DocumentType.DOCUMENTTYPE_FIT
+			};
 
 			DocumentList documents = vidalProduct.GetService<VidalAPI.Services.DocumentService>()
 				.GetDocumentsByDocumentTypesForProductId(docTypeArray, productId);
