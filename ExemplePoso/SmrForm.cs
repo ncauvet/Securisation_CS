@@ -9,13 +9,12 @@ using System.Windows.Forms;
 
 namespace ExemplePoso
 {
-    public partial class SmrForm : Form
-    {
-        
-        public SmrForm(String html)
-        {
-            InitializeComponent();
-            webBrowser1.DocumentText = html;
-        }
-    }
+	public partial class SmrForm : Form
+	{
+		public SmrForm(String html)
+		{
+			InitializeComponent();
+			webBrowser1.DocumentText = html;
+		}
+	}
 }
