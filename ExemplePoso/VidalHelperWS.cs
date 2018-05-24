@@ -20,9 +20,11 @@ namespace ExemplePoso
 		private static ServicePrescribable.prescribableServiceClient prescribableService;
 		private static ServiceUcd.ucdServiceClient ucdService;
 		private static ServiceSmr.smrServiceClient smrService;
+		bool initDone;
 
 		public VidalHelperWS(string p)
 		{
+			initDone = false;
 			productService = new ServiceProduct.productServiceClient("ProductServiceHttpPort", p + "ProductService");
 			allergyService = new ServiceAllergy.allergyServiceClient("AllergyServiceHttpPort", p + "AllergyService");
 			analysisService = new ServiceAnalysis.drugPrescriptionAnalysisServiceClient("DrugPrescriptionAnalysisServiceHttpPort", p + "DrugPrescriptionAnalysisService"); ;
@@ -34,6 +36,7 @@ namespace ExemplePoso
 			prescribableService = new ServicePrescribable.prescribableServiceClient("PrescribableServiceHttpPort", p + "PrescribableService");
 			ucdService = new ServiceUcd.ucdServiceClient("UcdServiceHttpPort1", p + "UcdService");
 			smrService = new ServiceSmr.smrServiceClient("SmrServiceHttpPort", p + "SmrService"); ;
+			initDone = true;
 		}
 
 		public List<ProductDto> ProductService_searchByName(string p)
@@ -180,6 +183,16 @@ namespace ExemplePoso
 			return PosologyUnitDtoHelper.vidalToDtoList(posoService.searchPosologyUnitByCommonNameGroupId(drugId).posologyUnits);
 		}
 
+		public List<PosologyUnitDto> PosoService_searchPrescriptionUnitsByProductId(int productId)
+		{
+			return PosologyUnitDtoHelper.vidalToDtoList(posoService.searchPosologyUnitByProductId(productId)); // A faire !
+		}
+
+		public List<PosologyUnitDto> PosoService_searchPrescriptionUnitsByCommonNameGroupId(int cngId)
+		{
+			return PosologyUnitDtoHelper.vidalToDtoList(posoService.searchPosologyUnitByCommonNameGroupId(cngId).posologyUnits); // A faire !
+		}
+
 		public PrescriptionAnalysisDto AnalysisService_getAlerts(string patient, List<string> prescr)
 		{
 			if (prescr != null && prescr.Count > 0)
@@ -272,6 +285,11 @@ namespace ExemplePoso
 		{
 			ServiceAnalysis.ArrayOfString strings = stringListToServiceAnalysisStringList(prescription);
 			return analysisService.searchRecosByPrescriptions(patient, strings);
+		}
+
+		public bool InitDone()
+		{
+			return initDone;
 		}
 	}
 }

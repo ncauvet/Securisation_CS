@@ -21,28 +21,28 @@ namespace ExemplePoso
 			labelVersion.Text = getVxpVersion();
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void button1_Click(object sender, EventArgs e) // (Interfacer avec) "Vidal Expert"
 		{
+			button3.Visible = false;
 			// Form1 f = new Form1();
 			FormEPPWS f = new FormEPPWS(new VidalHelperNative());
 			f.Show();
 		}
 
-		private void button2_Click(object sender, EventArgs e)
+		private void button2_Click(object sender, EventArgs e) // (Interfacer avec) "Web Services"
 		{
 			FormEPPWS f2 = new FormEPPWS(new VidalHelperWS(textBox1.Text));
 			f2.Show();
 		}
 
-		private void button3_Click(object sender, EventArgs e)
+		private void button3_Click(object sender, EventArgs e) // "Nouvelle fenêtre WS"
 		{
 			Form1 f1 = new Form1();
 			f1.Show();
 		}
 
-		private void button4_Click(object sender, EventArgs e)
+		private void button4_Click(object sender, EventArgs e) // "Ouvrir Vidal Expert"
 		{
-			//   lancer VXP
 			System.Diagnostics.ProcessStartInfo vxp = new System.Diagnostics.ProcessStartInfo();
 			vxp.FileName = getVxpPath();
 			System.Diagnostics.Process.Start(vxp);
@@ -51,7 +51,6 @@ namespace ExemplePoso
 		public string getVxpPath()
 		{
 			StringBuilder path = new StringBuilder(256);
-			//ProductLine vidalProduct = new ProductLine(productId);
 			VidalHelper_getVidalAppPath(ProductLineID.VIDALEXPERT_PRODUCTID, path, 256);
 			return path.ToString();
 		}
@@ -59,7 +58,6 @@ namespace ExemplePoso
 		public string getVxpVersion()
 		{
 			StringBuilder path = new StringBuilder(256);
-			//ProductLine vidalProduct = new ProductLine(productId);
 			VidalHelper_getVidalAppVersion(ProductLineID.VIDALEXPERT_PRODUCTID, path, 256);
 			return path.ToString();
 		}

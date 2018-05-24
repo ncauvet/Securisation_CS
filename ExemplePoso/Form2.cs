@@ -30,10 +30,20 @@ namespace ExemplePoso
 
 		public IVidalHelper helper;
 
+		private PatientControl patientControl2;
+
 		public FormEPPWS(IVidalHelper helper)
 		{
 			this.helper = helper;
 			InitializeComponent();
+
+			//Initialisation du profil Patient
+			patientControl2 = new ExemplePoso.PatientControl(helper);
+			patientControl2.Location = new System.Drawing.Point(331, 5);
+			patientControl2.Name = "patientControl2";
+			patientControl2.Size = new System.Drawing.Size(901, 250);
+			patientControl2.TabIndex = 66;
+			Controls.Add(patientControl2);
 
 			//Initialisation de la boîte de sélection des fréquence posologiques
 			freqComboBox.Items.Add(PosologyFrequencyTypeDto.PER_2_DAYS);
@@ -50,7 +60,6 @@ namespace ExemplePoso
 			//freqComboBox.Items.Add(PosologyFrequencyTypeDto.TYPE_46);
 			//freqComboBox.Items.Add(PosologyFrequencyTypeDto.TYPE_66);
 			//freqComboBox.Items.Add(null);
-
 			freqComboBox.SelectedIndex = 2;
 
 			//Initialisation de la boîte de sélection des durées
@@ -61,8 +70,6 @@ namespace ExemplePoso
 			dureeComboBox.Items.Add(DurationTypeDto.WEEK);
 			dureeComboBox.Items.Add(DurationTypeDto.YEAR);
 			dureeComboBox.Items.Add(DurationTypeDto.NULL);
-			//dureeComboBox.Items.Add(null);
-
 			dureeComboBox.SelectedIndex = 0;
 
 			//Initialisation de la boîte de ActiveDose
@@ -74,12 +81,12 @@ namespace ExemplePoso
 			activeDosecomboBox.Items.Add(DoseUnitDto.MU);
 			activeDosecomboBox.Items.Add(DoseUnitDto.ML);
 			activeDosecomboBox.Items.Add(DoseUnitDto.MMOL);
-			//activeDosecomboBox.Items.Add(null);
-
 			activeDosecomboBox.SelectedIndex = 0;
+
+			timerInit.Enabled = true;
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void button1_Click(object sender, EventArgs e) // "Search" (drug)
 		{
 			listBox1.Items.Clear();
 			if (productButton.Checked)
@@ -125,7 +132,7 @@ namespace ExemplePoso
 			}
 		}
 
-		private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+		private void listBox1_SelectedIndexChanged(object sender, EventArgs e) // Drugs list
 		{
 			drugSelecr();
 		}
@@ -137,7 +144,7 @@ namespace ExemplePoso
 			freqComboBox.SelectedItem = type;
 		}
 
-		private void button2_Click(object sender, EventArgs e)
+		private void button2_Click(object sender, EventArgs e) // "Add Prescription Line"
 		{
 			List<int> indications = new List<int>();
 			List<int> routes = new List<int>();
@@ -184,6 +191,7 @@ namespace ExemplePoso
 			{
 				dose = (double)numericUpDown1.Value;
 			}
+
 			if (unitComboBox.Visible && enDoseButton.Checked)
 			{
 				if ((PosologyUnitDto)unitComboBox.SelectedItem != null)
@@ -195,6 +203,19 @@ namespace ExemplePoso
 					unit = -1;
 				}
 			}
+
+			if (prescUnitComboBox.Visible && enPuButton.Checked)
+			{
+				if ((PosologyUnitDto)prescUnitComboBox.SelectedItem != null)
+				{
+					unit = (int)((PosologyUnitDto)prescUnitComboBox.SelectedItem).Id;
+				}
+				else
+				{
+					unit = -1;
+				}
+			}
+
 			if (freqComboBox.Visible)
 			{
 				freq = (PosologyFrequencyTypeDto)freqComboBox.SelectedItem;
@@ -202,7 +223,7 @@ namespace ExemplePoso
 
 			//VidalAPI.Domain.PosologyAlerts result = vidalProduct.GetService<VidalAPI.Services.PosologyService>().CheckDailyDoseByProductId(((VidalAPI.Domain.Product)listBox1.SelectedItem).Id, dose, ((VidalAPI.Domain.PosologyUnit)unitComboBox.SelectedItem).Id, (VidalAPI.Domain.PosologyFrequencyType)freqComboBox.SelectedItem, (VidalAPI.Domain.Gender)genderBox.SelectedItem, 40f, (float)weightBox.Value, (int)heightBox.Value, (int)creatinBox.Value, (VidalAPI.Domain.HepaticInsufficiency)hepaticBox.SelectedItem, indications, routes);
 			string prescrLine = "";
-			if (enDoseButton.Checked)
+			if (enDoseButton.Checked || enPuButton.Checked)
 			{
 				prescrLine = helper.AnalysisService_prescriptionLineInDosesFromObjToJson(
 					dose,
@@ -231,11 +252,9 @@ namespace ExemplePoso
 					);
 			}
 
-			//string prescrLine2 = "{\"dose\":null,\"drug\":null,\"drugId\":15070,\"drugType\":\"PRODUCT\",\"frequencyType\":null,\"indicationIds\":null,\"posologyUnit\":null,\"routeIds\":[],\"unitId\":null}";
-
 			dataGridView1.Rows.Add(null, null, null, null, null, null, null, null, null, null, name);
 
-			//           dataGridView1[GRID_NAME, (dataGridView1.Rows.Count + 1)].Value = name;
+			//dataGridView1[GRID_NAME, (dataGridView1.Rows.Count + 1)].Value = name;
 			dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[GRID_NAME].ToolTipText = prescrLine;
 
 			analysePrescription();
@@ -245,17 +264,14 @@ namespace ExemplePoso
 		{
 			treeView1.Nodes.Clear();
 			unitComboBox.Items.Clear();
+			prescUnitComboBox.Items.Clear();
 			freqComboBox.SelectedIndex = 0;
 			indicListBox.Items.Clear();
 			listBoxCI.Items.Clear();
 			listBoxPE.Items.Clear();
 		}
 
-		private void groupBox1_Enter(object sender, EventArgs e)
-		{
-		}
-
-		private void button3_Click(object sender, EventArgs e)
+		private void button3_Click(object sender, EventArgs e) // "Choose" (the selected drug)
 		{
 			drugSelecr();
 		}
@@ -263,6 +279,7 @@ namespace ExemplePoso
 		private void drugSelecr()
 		{
 			resetForm();
+
 			//compute CI/PE
 			int weight = -1;
 
@@ -285,6 +302,7 @@ namespace ExemplePoso
 
 			if (patientControl2.getGenderCheckBoxChecked() == false)
 			{ gender = patientControl2.getGenderBoxSelectedItem(); }
+
 			DateTime age = patientControl2.getMonthCalendar1SelectionStart();
 
 			if (listBox1.SelectedItem != null)
@@ -357,38 +375,31 @@ namespace ExemplePoso
 			}
 			else
 			{
-				MessageBox.Show("select a Drug");
+				MessageBox.Show("Sélectionnez un médicament");
 			}
-		}
-
-		private void label8_Click(object sender, EventArgs e)
-		{
-
 		}
 
 		private void searchPosologieDescription(int productId)
 		{
-			unitComboBox.Visible = true;
-			freqComboBox.Visible = true;
-			numericUpDown1.Visible = true;
-
 			List<int> indications = new List<int>();
 			List<int> routes = new List<int>();
 
 			float weight = -1;
 			int height = -1;
 			int creatin = -1;
-
 			GenderDto? gender = null;
 			HepaticInsufficiencyDto? hepatic = null;
+
 			if (patientControl2.getPoidCheckBox() == false)
 			{
 				weight = patientControl2.getWeightBoxValue();
 			}
+
 			if (patientControl2.getTailleCheckBoxChecked() == false)
 			{
 				height = patientControl2.getHeightBoxValue();
 			}
+
 			if (patientControl2.getCreatinCheckBoxChecked() == false)
 			{
 				creatin = patientControl2.getCreatinBoxValue();
@@ -403,6 +414,7 @@ namespace ExemplePoso
 			{
 				hepatic = patientControl2.getHepaticBoxSelectedItem();
 			}
+
 			DateTime age = patientControl2.getMonthCalendar1SelectionStart();
 			float ageF = (DateTime.Now.Year - age.Year) + (((DateTime.Now.Month - age.Month) * 10) * (1 / 12));
 
@@ -416,7 +428,7 @@ namespace ExemplePoso
 				creatin,
 				hepatic,
 				indications, routes);
-			//Ici on travaille en Dose : comprimé, géllule ... nous pouvons aussi travailler en dosage du Principe Actif, dans ce cas utiliser l'API :
+			//Ici on travaille en Dose : comprimé, géllule... Nous pouvons aussi travailler en dosage du principe actif, dans ce cas utiliser l'API :
 			//vidalProduct.GetService<VidalAPI.Services.PosologyService>().SearchActivePrincipleDosesByProductId
 
 			if (result != null && result.Count > 0)
@@ -436,8 +448,8 @@ namespace ExemplePoso
 
 					//Posology Max Absolue
 					TreeNode maxAbs = new TreeNode();
-					maxAbs.Name = "Posologie Maximum Absolu";
-					maxAbs.Text = "Posologie Maximum Absolu";
+					maxAbs.Name = "Posologie Maximum Absolue";
+					maxAbs.Text = "Posologie Maximum Absolue";
 					TreeNode maxAbsLeaf = new TreeNode();
 					if (numOfDoses.MaxAbsoluteNumberOfDose != null)
 					{
@@ -445,7 +457,7 @@ namespace ExemplePoso
 					}
 					else
 					{
-						maxAbsLeaf.Text = " Pas de Posologie Maximale Absolue";
+						maxAbsLeaf.Text = " Pas de posologie maximale absolue";
 					}
 					maxAbs.Nodes.Add(maxAbsLeaf);
 
@@ -485,6 +497,10 @@ namespace ExemplePoso
 
 						usualDoses.Nodes.Add(usualMaxDose);
 						usualDoses.Nodes.Add(usualMinDose);
+
+						List<PosologyUnitDto> unitList = helper.PosoService_searchPrescriptionUnitsByProductId(productId);
+						prescUnitComboBox.Items.AddRange(unitList.ToArray<PosologyUnitDto>());
+						prescUnitComboBox.SelectedIndex = 0;
 					}
 					else
 					{
@@ -493,8 +509,8 @@ namespace ExemplePoso
 
 					//Voies d'administrations
 					TreeNode routesNode = new TreeNode();
-					routesNode.Name = "Voies d'administrations";
-					routesNode.Text = "Voies d'administrations";
+					routesNode.Name = "Voies d'administration";
+					routesNode.Text = "Voies d'administration";
 					if (numOfDoses.Routes != null)
 					{
 						foreach (RouteDto route in numOfDoses.Routes)
@@ -506,7 +522,7 @@ namespace ExemplePoso
 						}
 					}
 
-					//durées
+					//Durées
 					TreeNode durationNode = new TreeNode();
 					durationNode.Name = "Durées";
 					durationNode.Text = "Durées";
@@ -543,29 +559,27 @@ namespace ExemplePoso
 
 		private void initUnitNoPoso(int drugId)
 		{
-			treeView1.Nodes.Add("Pas de Posologie Structurée Disponible");
-			//Si il n'y a pas de posologies structurées => il ne peut y avoir de contrôle sur la posologie faits par VIDAL.
-			//Toutefois vous pouvez proposer les chmaps suivant à vtre prescripteur:
+			//S'il n'y a pas de posologie structurée, il ne peut y avoir de contrôle sur la posologie fait par VIDAL.
+			//Toutefois vous pouvez proposer les champs suivants à votre prescripteur :
 			//la liste des unités de dispensation connues
-			//VidalAPI.Domain.PosologyUnitList units = vidalProduct.GetService<VidalAPI.Services.PosologyService>().SearchPosologyUnitByProductId(productId);
-			//unitComboBox.Items.AddRange(units.ToArray<VidalAPI.Domain.PosologyUnit>());
-			//unitComboBox.SelectedIndex = 0;
 
-			treeView1.Nodes.Add("Pas de Posologie Structurée Disponible");
-
-			unitComboBox.Visible = true;
-			freqComboBox.Visible = true;
-			numericUpDown1.Visible = true;
+			treeView1.Nodes.Add("Pas de posologie structurée disponible");
+			treeView1.Nodes.Add("Pas de posologie structurée disponible");
 
 			if (vmpButton2.Checked)
 			{
 				List<PosologyUnitDto> unitList = helper.PosoService_searchPosologyUnitByCommonNameGroupId(drugId);
 				unitComboBox.Items.AddRange(unitList.ToArray<PosologyUnitDto>());
 				unitComboBox.SelectedIndex = 0;
+
+				unitList = helper.PosoService_searchPrescriptionUnitsByCommonNameGroupId(drugId);
+				prescUnitComboBox.Items.AddRange(unitList.ToArray<PosologyUnitDto>());
+				prescUnitComboBox.SelectedIndex = 0;
 			}
 			else if (prescRadioButton.Checked)
 			{
 				unitComboBox.Items.Clear();
+				prescUnitComboBox.Items.Clear();
 			}
 			else
 			{
@@ -575,10 +589,17 @@ namespace ExemplePoso
 				{
 					unitComboBox.SelectedIndex = 0;
 				}
+
+				unitList = helper.PosoService_searchPrescriptionUnitsByProductId(drugId);
+				prescUnitComboBox.Items.AddRange(unitList.ToArray<PosologyUnitDto>());
+				if (prescUnitComboBox.Items.Count > 0)
+				{
+					prescUnitComboBox.SelectedIndex = 0;
+				}
 			}
 		}
 
-		private void button5_Click(object sender, EventArgs e)
+		private void button5_Click(object sender, EventArgs e) // "Delete"
 		{
 			if (dataGridView1.SelectedRows != null && dataGridView1.SelectedRows.Count > 0)
 			{
@@ -587,7 +608,7 @@ namespace ExemplePoso
 			}
 			else
 			{
-				MessageBox.Show("select a prescription line");
+				MessageBox.Show("Sélectionnez une ligne");
 			}
 		}
 
@@ -687,7 +708,7 @@ namespace ExemplePoso
 			return comment;
 		}
 
-		private void button6_Click(object sender, EventArgs e)
+		private void button6_Click(object sender, EventArgs e) // "Prescription en Doses"
 		{
 			flashTreeView.Nodes.Clear();
 
@@ -745,6 +766,7 @@ namespace ExemplePoso
 
 			AnalyseForm analyse = new AnalyseForm(helper.AnalysisService_getAlertsAsHTML(patient, prescr));
 			analyse.Show();
+
 			/*  ServiceAnalysis.prescriptionCostAnalysis prices = AnalysisService_getPrescriptionCostAnalysis(prescr);
 			  for(int i=0;i< prices.prescriptionLineCostList.Count;i++){
 				  if(prices.prescriptionLineCostList[i].priceRange != null){
@@ -758,12 +780,12 @@ namespace ExemplePoso
 			//MessageBox.Show("Prix estimatif : " + prices.MinPrice);
 		}
 
-		//    private ServiceAnalysis.prescriptionCostAnalysis AnalysisService_getPrescriptionCostAnalysis(ServiceAnalysis.ArrayOfString prescr)
-		//  {
-		// throw new NotImplementedException();
-		// }
+		//private ServiceAnalysis.prescriptionCostAnalysis AnalysisService_getPrescriptionCostAnalysis(ServiceAnalysis.ArrayOfString prescr)
+		//{
+		//    throw new NotImplementedException();
+		//}
 
-		private void smrButton_Click(object sender, EventArgs e)
+		private void smrButton_Click(object sender, EventArgs e) // "smr/asmr"
 		{
 			if (productButton.Checked)
 			{
@@ -784,7 +806,7 @@ namespace ExemplePoso
 			}
 		}
 
-		private void exportButton_Click(object sender, EventArgs e)
+		private void exportButton_Click(object sender, EventArgs e) // "Exporter JSON"
 		{
 			String exportFileName = "extract_" + DateTime.Now.Millisecond + ".txt";
 			StreamWriter monStreamWriter = new StreamWriter(exportFileName);
@@ -800,7 +822,7 @@ namespace ExemplePoso
 			MessageBox.Show("Extraction terminée : " + exportFileName);
 		}
 
-		private void linkLabel1_MouseClick(object sender, MouseEventArgs e)
+		private void linkLabel1_MouseClick(object sender, MouseEventArgs e) // Hyperlien vers la monographie
 		{
 			if (linkLabel1.Tag is ProductDto)
 			{
@@ -812,7 +834,7 @@ namespace ExemplePoso
 			}
 		}
 
-		private void button4_Click(object sender, EventArgs e)
+		private void button4_Click(object sender, EventArgs e) // "Détail"
 		{
 			if (linkLabel1.Tag is UcdDto)
 			{
@@ -820,7 +842,7 @@ namespace ExemplePoso
 			}
 		}
 
-		private void recosbutton_Click(object sender, EventArgs e)
+		private void recosbutton_Click(object sender, EventArgs e) // "Recos"
 		{
 			if (patientControl2.getPatientJson() != null || (dataGridView1 != null && dataGridView1.Rows != null))
 			{
@@ -835,6 +857,24 @@ namespace ExemplePoso
 				}
 				RecosForm analyse = new RecosForm(prescr, patient, helper);
 				analyse.Show();
+			}
+		}
+
+		private void timerInit_Tick(object sender, EventArgs e)
+		{
+			if (helper.InitDone() == false)
+			{
+				// Anime la barre de progression pendant l'initialisation (8 à 12 sec. environ)
+				initInProgress.PerformStep();
+			}
+			else
+			{
+				// Initialisation terminée !
+				initInProgress.Visible = false;
+				textBox1.Visible = true;
+				button1.Visible = true;
+				timerInit.Enabled = false;
+				textBox1.Focus();
 			}
 		}
 	}

@@ -169,10 +169,11 @@
 			// hepatCheckBox
 			// 
 			this.hepatCheckBox.AutoSize = true;
-			this.hepatCheckBox.Location = new System.Drawing.Point(497, 76);
+			this.hepatCheckBox.Location = new System.Drawing.Point(452, 75);
 			this.hepatCheckBox.Name = "hepatCheckBox";
-			this.hepatCheckBox.Size = new System.Drawing.Size(15, 14);
+			this.hepatCheckBox.Size = new System.Drawing.Size(42, 17);
 			this.hepatCheckBox.TabIndex = 36;
+			this.hepatCheckBox.Text = "Nul";
 			this.hepatCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// patientJson
@@ -189,55 +190,61 @@
 			// creatinCheckBox
 			// 
 			this.creatinCheckBox.AutoSize = true;
-			this.creatinCheckBox.Location = new System.Drawing.Point(497, 101);
+			this.creatinCheckBox.Location = new System.Drawing.Point(452, 101);
 			this.creatinCheckBox.Name = "creatinCheckBox";
-			this.creatinCheckBox.Size = new System.Drawing.Size(15, 14);
+			this.creatinCheckBox.Size = new System.Drawing.Size(42, 17);
 			this.creatinCheckBox.TabIndex = 35;
+			this.creatinCheckBox.Text = "Nul";
 			this.creatinCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// amenCheckBox
 			// 
 			this.amenCheckBox.AutoSize = true;
-			this.amenCheckBox.Location = new System.Drawing.Point(811, 70);
+			this.amenCheckBox.Location = new System.Drawing.Point(788, 70);
 			this.amenCheckBox.Name = "amenCheckBox";
-			this.amenCheckBox.Size = new System.Drawing.Size(15, 14);
+			this.amenCheckBox.Size = new System.Drawing.Size(42, 17);
 			this.amenCheckBox.TabIndex = 34;
+			this.amenCheckBox.Text = "Nul";
 			this.amenCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// TailleCheckBox
 			// 
 			this.TailleCheckBox.AutoSize = true;
-			this.TailleCheckBox.Location = new System.Drawing.Point(811, 16);
+			this.TailleCheckBox.Location = new System.Drawing.Point(788, 16);
 			this.TailleCheckBox.Name = "TailleCheckBox";
-			this.TailleCheckBox.Size = new System.Drawing.Size(15, 14);
+			this.TailleCheckBox.Size = new System.Drawing.Size(42, 17);
 			this.TailleCheckBox.TabIndex = 33;
+			this.TailleCheckBox.Text = "Nul";
 			this.TailleCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// poidCheckBox
 			// 
 			this.poidCheckBox.AutoSize = true;
-			this.poidCheckBox.Location = new System.Drawing.Point(811, 45);
+			this.poidCheckBox.Location = new System.Drawing.Point(788, 43);
 			this.poidCheckBox.Name = "poidCheckBox";
-			this.poidCheckBox.Size = new System.Drawing.Size(15, 14);
+			this.poidCheckBox.Size = new System.Drawing.Size(42, 17);
 			this.poidCheckBox.TabIndex = 32;
+			this.poidCheckBox.Text = "Nul";
 			this.poidCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// allaitCheckBox
 			// 
 			this.allaitCheckBox.AutoSize = true;
-			this.allaitCheckBox.Location = new System.Drawing.Point(497, 48);
+			this.allaitCheckBox.Location = new System.Drawing.Point(452, 48);
 			this.allaitCheckBox.Name = "allaitCheckBox";
-			this.allaitCheckBox.Size = new System.Drawing.Size(15, 14);
+			this.allaitCheckBox.Size = new System.Drawing.Size(42, 17);
 			this.allaitCheckBox.TabIndex = 31;
+			this.allaitCheckBox.Text = "Nul";
 			this.allaitCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// genderCheckBox
 			// 
 			this.genderCheckBox.AutoSize = true;
-			this.genderCheckBox.Location = new System.Drawing.Point(497, 19);
+			this.genderCheckBox.Location = new System.Drawing.Point(452, 20);
 			this.genderCheckBox.Name = "genderCheckBox";
-			this.genderCheckBox.Size = new System.Drawing.Size(15, 14);
+			this.genderCheckBox.Size = new System.Drawing.Size(42, 17);
 			this.genderCheckBox.TabIndex = 30;
+			this.genderCheckBox.Text = "Nul";
 			this.genderCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// button4
@@ -286,7 +293,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(560, 71);
+			this.label4.Location = new System.Drawing.Point(526, 71);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(120, 13);
 			this.label4.TabIndex = 23;
@@ -295,7 +302,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(560, 18);
+			this.label3.Location = new System.Drawing.Point(526, 18);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(55, 13);
 			this.label3.TabIndex = 22;
@@ -313,7 +320,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(560, 45);
+			this.label1.Location = new System.Drawing.Point(526, 45);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(54, 13);
 			this.label1.TabIndex = 20;
@@ -324,7 +331,7 @@
 			this.hepaticBox.FormattingEnabled = true;
 			this.hepaticBox.Location = new System.Drawing.Point(313, 72);
 			this.hepaticBox.Name = "hepaticBox";
-			this.hepaticBox.Size = new System.Drawing.Size(178, 21);
+			this.hepaticBox.Size = new System.Drawing.Size(133, 21);
 			this.hepaticBox.TabIndex = 19;
 			// 
 			// breathFeedingBox
@@ -332,7 +339,7 @@
 			this.breathFeedingBox.FormattingEnabled = true;
 			this.breathFeedingBox.Location = new System.Drawing.Point(313, 45);
 			this.breathFeedingBox.Name = "breathFeedingBox";
-			this.breathFeedingBox.Size = new System.Drawing.Size(178, 21);
+			this.breathFeedingBox.Size = new System.Drawing.Size(133, 21);
 			this.breathFeedingBox.TabIndex = 18;
 			// 
 			// genderBox
@@ -340,14 +347,14 @@
 			this.genderBox.FormattingEnabled = true;
 			this.genderBox.Location = new System.Drawing.Point(313, 19);
 			this.genderBox.Name = "genderBox";
-			this.genderBox.Size = new System.Drawing.Size(178, 21);
+			this.genderBox.Size = new System.Drawing.Size(133, 21);
 			this.genderBox.TabIndex = 17;
 			// 
 			// creatinBox
 			// 
 			this.creatinBox.Location = new System.Drawing.Point(313, 99);
 			this.creatinBox.Name = "creatinBox";
-			this.creatinBox.Size = new System.Drawing.Size(178, 20);
+			this.creatinBox.Size = new System.Drawing.Size(133, 20);
 			this.creatinBox.TabIndex = 16;
 			this.creatinBox.Value = new decimal(new int[] {
             100,
@@ -357,21 +364,21 @@
 			// 
 			// amenBox
 			// 
-			this.amenBox.Location = new System.Drawing.Point(682, 68);
+			this.amenBox.Location = new System.Drawing.Point(649, 68);
 			this.amenBox.Name = "amenBox";
-			this.amenBox.Size = new System.Drawing.Size(123, 20);
+			this.amenBox.Size = new System.Drawing.Size(133, 20);
 			this.amenBox.TabIndex = 15;
 			// 
 			// heightBox
 			// 
-			this.heightBox.Location = new System.Drawing.Point(627, 16);
+			this.heightBox.Location = new System.Drawing.Point(649, 16);
 			this.heightBox.Maximum = new decimal(new int[] {
             999,
             0,
             0,
             0});
 			this.heightBox.Name = "heightBox";
-			this.heightBox.Size = new System.Drawing.Size(178, 20);
+			this.heightBox.Size = new System.Drawing.Size(133, 20);
 			this.heightBox.TabIndex = 14;
 			this.heightBox.Value = new decimal(new int[] {
             165,
@@ -381,9 +388,9 @@
 			// 
 			// weightBox
 			// 
-			this.weightBox.Location = new System.Drawing.Point(682, 42);
+			this.weightBox.Location = new System.Drawing.Point(649, 42);
 			this.weightBox.Name = "weightBox";
-			this.weightBox.Size = new System.Drawing.Size(123, 20);
+			this.weightBox.Size = new System.Drawing.Size(133, 20);
 			this.weightBox.TabIndex = 13;
 			this.weightBox.Value = new decimal(new int[] {
             65,
