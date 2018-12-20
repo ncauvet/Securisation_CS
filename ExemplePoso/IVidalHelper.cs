@@ -22,6 +22,8 @@ namespace ExemplePoso
          System.Collections.Generic.List<NumberOfDosesDto> PosoService_searchDosesByProductId(int productId, GenderDto? gender, float ageF, float weight, int height, int creatin, HepaticInsufficiencyDto? hepatic, List<int> indications, List<int> routes);
          System.Collections.Generic.List<PosologyUnitDto> PosoService_searchPosologyUnitByCommonNameGroupId(int drugId);
          System.Collections.Generic.List<PosologyUnitDto> PosoService_searchPosologyUnitByProductId(int drugId);
+		 System.Collections.Generic.List<PosologyUnitDto> PosoService_searchPrescriptionUnitsByCommonNameGroupId(int cngId);
+		 System.Collections.Generic.List<PosologyUnitDto> PosoService_searchPrescriptionUnitsByProductId(int productId);
          System.Collections.Generic.List<BrandedPrescribableDto> PrescribableService_searchBrandedPrescribableByName(string p);
          System.Collections.Generic.List<ProductDto> ProductService_searchByName(string p);
          ExemplePoso.dto.ProductDto ProductService_searchByUcdId(int ucdId);
@@ -45,5 +47,7 @@ namespace ExemplePoso
          Object compo(int UcdId);
          //TODO only for WS Do it for native
          ServiceAnalysis.ArrayOfCodedReco recos(List<string> prescription, String patient);
+
+		 bool InitDone();
     }
 }

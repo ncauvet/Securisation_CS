@@ -15,9 +15,11 @@ namespace ExemplePoso
 	class VidalHelperNative : ExemplePoso.IVidalHelper
 	{
 		static VidalAPI.ProductLine vidalProduct;
+		static bool initDone;
 
 		public VidalHelperNative()
 		{
+			initDone = false;
 			WorkerId workerObjet = new WorkerId();
 			Thread worker = new Thread(workerObjet.DoWork);
 			worker.Start();
@@ -32,14 +34,16 @@ namespace ExemplePoso
 			public void DoWork()
 			{
 				Console.WriteLine("worker thread: working...");
-				List<string> vmoptions = new List<string>();
-				vmoptions.Add("-Xms64m");
-				vmoptions.Add("-Xmx128m");
-				vmoptions.Add("-XX:PermSize=32m");
-				vmoptions.Add("-XX:MaxPermSize=64m");
-				vmoptions.Add("-Dcom.sun.management.jmxremote");
 
-				vidalProduct = VidalAPI.ProductLine.GetProduct(VidalAPI.ProductLineID.VIDALEXPERT_PRODUCTID);//,vmoptions);
+				//List<string> vmoptions = new List<string>();
+				//vmoptions.Add("-Xms64m");
+				//vmoptions.Add("-Xmx128m");
+				//vmoptions.Add("-XX:PermSize=32m");
+				//vmoptions.Add("-XX:MaxPermSize=64m");
+				//vmoptions.Add("-Dcom.sun.management.jmxremote");
+
+				vidalProduct = VidalAPI.ProductLine.GetProduct(VidalAPI.ProductLineID.VIDALEXPERT_PRODUCTID); //, vmoptions);
+				initDone = true;
 
 				MessageBox.Show("Initialisation terminée :) " + vidalProduct.Name + " " + vidalProduct.Version);
 			}
@@ -139,6 +143,16 @@ namespace ExemplePoso
 		public List<PosologyUnitDto> PosoService_searchPosologyUnitByCommonNameGroupId(int drugId)
 		{
 			return PosologyUnitDtoHelper.vidalToDtoList(vidalProduct.GetService<VidalAPI.Services.PosologyService>().SearchPosologyUnitByCommonNameGroupId(drugId).PosologyUnits);
+		}
+
+		public List<PosologyUnitDto> PosoService_searchPrescriptionUnitsByProductId(int productId)
+		{
+			return PosologyUnitDtoHelper.vidalToDtoList(vidalProduct.GetService<VidalAPI.Services.PosologyService>().SearchPrescriptionUnitsByProductId(productId));
+		}
+
+		public List<PosologyUnitDto> PosoService_searchPrescriptionUnitsByCommonNameGroupId(int cngId)
+		{
+			return PosologyUnitDtoHelper.vidalToDtoList(vidalProduct.GetService<VidalAPI.Services.PosologyService>().SearchPrescriptionUnitsByCommonNameGroupId(cngId).PosologyUnits);
 		}
 
 		public PrescriptionAnalysisDto AnalysisService_getAlerts(string patient, List<string> prescr)
@@ -241,9 +255,7 @@ namespace ExemplePoso
 			{
 				foreach (VidalAPI.Domain.PrecautionEPPCouple couple in ciList.PrecautionEppCouples)
 				{
-					result.Add(couple.Precaution.Name);
-					result.Add(couple.Epp.ToString());
-					result.Add(couple.Product.Name);
+					result.Add(couple.Precaution.Name + " (" + couple.Epp.ToString() + ")");
 				}
 			}
 			if (ciList != null && ciList.Messages != null)
@@ -272,6 +284,11 @@ namespace ExemplePoso
 		public ServiceAnalysis.ArrayOfCodedReco recos(List<string> prescription, String patient)
 		{
 			return null;
+		}
+
+		public bool InitDone()
+		{
+			return initDone;
 		}
 	}
 }

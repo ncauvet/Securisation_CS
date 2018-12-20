@@ -52,7 +52,7 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(346, 49);
+			this.button2.Location = new System.Drawing.Point(389, 49);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(193, 90);
 			this.button2.TabIndex = 1;
@@ -62,26 +62,25 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(326, 152);
+			this.textBox1.Location = new System.Drawing.Point(350, 152);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(249, 20);
+			this.textBox1.Size = new System.Drawing.Size(268, 20);
 			this.textBox1.TabIndex = 2;
 			this.textBox1.Text = "http://localhost:8011/merlin-service/services/";
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(29, 228);
+			this.button3.Location = new System.Drawing.Point(465, 228);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(139, 23);
 			this.button3.TabIndex = 3;
-			this.button3.Text = "Nouvelle fenêtre";
+			this.button3.Text = "Nouvelle fenêtre WS";
 			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Visible = false;
 			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(419, 228);
+			this.button4.Location = new System.Drawing.Point(29, 228);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(139, 23);
 			this.button4.TabIndex = 4;
@@ -139,7 +138,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(587, 263);
+			this.ClientSize = new System.Drawing.Size(639, 263);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.vxpPath);
 			this.Controls.Add(this.label2);

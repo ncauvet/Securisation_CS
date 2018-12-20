@@ -385,7 +385,7 @@ namespace ExemplePoso
 			DateTime age = monthCalendar1.SelectionStart;
 			float ageF = (DateTime.Now.Year - age.Year) + (((DateTime.Now.Month - age.Month) * 10) * (1 / 12));
 
-			//Récupération des descripteurs posologique sur lesquels se baser pour que la sécurisation fonctionne
+			//Récupération des descripteurs posologiques sur lesquels se baser pour que la sécurisation fonctionne
 			VidalAPI.Domain.NumberOfDosesList result = vidalProduct.GetService<VidalAPI.Services.PosologyService>().SearchDosesByProductId(
 				productId,
 				gender,
