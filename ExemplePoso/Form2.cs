@@ -373,10 +373,6 @@ namespace ExemplePoso
 					searchPosologieDescription((int)(presc).Id);
 				}
 			}
-			else
-			{
-				MessageBox.Show("Sélectionnez un médicament");
-			}
 		}
 
 		private void searchPosologieDescription(int productId)
